@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:taodan/api/http_utils.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -13,6 +14,17 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Container(
+      child: RaisedButton(
+        child: Text("normal"),
+        onPressed: () {
+          _request();
+        },
+      ),
+    );
+  }
+
+  _request() {
+    HttpUtils.instance.asyncRequestNetwork(Method.get, "");
   }
 }

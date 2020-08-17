@@ -30,9 +30,8 @@ void setInitDio({
   _interceptors = interceptors ?? _interceptors;
 }
 
-typedef NetSuccessCallback<T> = Function(T data);
+typedef NetCallback<T> = Function(int code, String msg, T data);
 typedef NetSuccessListCallback<T> = Function(List<T> data);
-typedef NetErrorCallback = Function(int code, String msg);
 
 class HttpUtils {
   static final HttpUtils _singleton = HttpUtils._();
@@ -80,12 +79,13 @@ class HttpUtils {
   }
 
   // 数据返回格式统一，统一处理异常
-  Future<ResultData<T>> _request<T>(String method, String url, {
-    dynamic data,
-    Map<String, dynamic> queryParameters,
-    CancelToken cancelToken,
-    Options options,
-  }) async {
+  Future<ResultData<T>> _request<T>(String method,
+      String url, {
+        dynamic data,
+        Map<String, dynamic> queryParameters,
+        CancelToken cancelToken,
+        Options options,
+      }) async {
     final Response<String> response = await _dio.request<String>(
       url,
       data: data,
@@ -95,14 +95,16 @@ class HttpUtils {
     );
     try {
       final String data = response.data.toString();
+
       /// 集成测试无法使用 isolate https://github.com/flutter/flutter/issues/24703
       /// 使用compute条件：数据大于10KB（粗略使用10 * 1024）且当前不是集成测试（后面可能会根据Web环境进行调整）
       /// 主要目的减少不必要的性能开销
       final bool isCompute = data.length > 10 * 1024;
       debugPrint('isCompute:$isCompute');
-      final Map<String, dynamic> _map = isCompute ? await compute(parseData, data) : parseData(data);
+      final Map<String, dynamic> _map =
+      isCompute ? await compute(parseData, data) : parseData(data);
       return ResultData<T>.fromJson(_map);
-    } catch(e) {
+    } catch (e) {
       debugPrint(e.toString());
       return ResultData<T>(ExceptionHandle.parse_error, '数据解析错误！', null);
     }
@@ -114,15 +116,18 @@ class HttpUtils {
     return options;
   }
 
-  Future requestNetwork<T>(Method method, String url, {
-    NetSuccessCallback<T> onSuccess,
-    NetErrorCallback onError,
-    dynamic params,
-    Map<String, dynamic> queryParameters,
-    CancelToken cancelToken,
-    Options options,
-  }) {
-    return _request<T>(method.value, url,
+  Future requestNetwork<T>(Method method,
+      String url, {
+        NetCallback<T> onSuccess,
+        NetCallback<T> onError,
+        dynamic params,
+        Map<String, dynamic> queryParameters,
+        CancelToken cancelToken,
+        Options options,
+      }) {
+    return _request<T>(
+      method.value,
+      url,
       data: params,
       queryParameters: queryParameters,
       options: options,
@@ -130,45 +135,47 @@ class HttpUtils {
     ).then((ResultData<T> result) {
       if (result.code == 0) {
         if (onSuccess != null) {
-          onSuccess(result.data);
+          onSuccess(result.code, result.message, result.data);
         }
       } else {
-        _onError(result.code, result.message, onError);
+        _onError(result.code, result.message, result.data, onError);
       }
     }, onError: (dynamic e) {
       _cancelLogPrint(e, url);
       final NetError error = ExceptionHandle.handleException(e);
-      _onError(error.code, error.msg, onError);
+      _onError(error.code, error.msg, null, onError);
     });
   }
 
-  /// 统一处理(onSuccess返回T对象，onSuccessList返回 List<T>)
-  void asyncRequestNetwork<T>(Method method, String url, {
-    NetSuccessCallback<T> onSuccess,
-    NetErrorCallback onError,
-    dynamic params,
-    Map<String, dynamic> queryParameters,
-    CancelToken cancelToken,
-    Options options,
-  }) {
-    Stream.fromFuture(_request<T>(method.value, url,
+  /// 异步
+  void asyncRequestNetwork<T>(Method method,
+      String url, {
+        NetCallback<T> onSuccess,
+        NetCallback<T> onError,
+        dynamic params,
+        Map<String, dynamic> queryParameters,
+        CancelToken cancelToken,
+        Options options,
+      }) {
+    Stream.fromFuture(_request<T>(
+      method.value,
+      url,
       data: params,
       queryParameters: queryParameters,
       options: options,
       cancelToken: cancelToken,
-    )).asBroadcastStream()
-        .listen((result) {
+    )).asBroadcastStream().listen((result) {
       if (result.code == 0) {
         if (onSuccess != null) {
-          onSuccess(result.data);
+          onSuccess(result.code, result.message, result.data);
         }
       } else {
-        _onError(result.code, result.message, onError);
+        _onError(result.code, result.message, result.data, onError);
       }
     }, onError: (dynamic e) {
       _cancelLogPrint(e, url);
       final NetError error = ExceptionHandle.handleException(e);
-      _onError(error.code, error.msg, onError);
+      _onError(error.code, error.msg, null, onError);
     });
   }
 
@@ -178,31 +185,23 @@ class HttpUtils {
     }
   }
 
-  void _onError(int code, String msg, NetErrorCallback onError) {
+  void _onError<T>(int code, String msg, T t, NetCallback<T> onError) {
     if (code == null) {
       code = ExceptionHandle.unknown_error;
       msg = '未知异常';
     }
     LogUtil.e('接口请求异常： code: $code, mag: $msg');
     if (onError != null) {
-      onError(code, msg);
+      onError(code, msg, t);
     }
   }
 }
-
 
 Map<String, dynamic> parseData(String data) {
   return json.decode(data) as Map<String, dynamic>;
 }
 
-enum Method {
-  get,
-  post,
-  put,
-  patch,
-  delete,
-  head
-}
+enum Method { get, post, put, patch, delete, head }
 
 /// 使用拓展枚举替代 switch判断取值
 /// https://zhuanlan.zhihu.com/p/98545689
