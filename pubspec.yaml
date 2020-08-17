@@ -32,7 +32,10 @@ dependencies:
   connectivity: ^0.4.9
   shared_preferences: ^0.5.8
   fluttertoast: ^7.0.2
+  fluro: "^1.6.3"
   provider: ^4.3.2
+  flutter_screenutil: ^3.0.0-beta.1
+  rxdart: ^0.22.1+1
 
 
 
@@ -63,7 +66,9 @@ flutter:
 
   # For details regarding adding assets from package dependencies, see
   # https://flutter.dev/assets-and-images/#from-packages
-
+  
+  assets:
+    - assets/images/login/
   # To add custom fonts to your application, add a fonts section here,
   # in this "flutter" section. Each entry in this list should have a
   # "family" key with the font family name, and a "fonts" key with a
