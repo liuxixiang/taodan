@@ -5,6 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:taodan/api/result_data.dart';
 import 'package:taodan/utils/log_util.dart';
+import 'package:taodan/utils/toast_utils.dart';
 
 import 'error_handle.dart';
 
@@ -31,7 +32,7 @@ void setInitDio({
 }
 
 typedef NetCallback<T> = Function(int code, String msg, T data);
-typedef NetSuccessListCallback<T> = Function(List<T> data);
+typedef NetOnComplete = Function();
 
 class HttpUtils {
   static final HttpUtils _singleton = HttpUtils._();
@@ -79,13 +80,14 @@ class HttpUtils {
   }
 
   // 数据返回格式统一，统一处理异常
-  Future<ResultData<T>> _request<T>(String method,
-      String url, {
-        dynamic data,
-        Map<String, dynamic> queryParameters,
-        CancelToken cancelToken,
-        Options options,
-      }) async {
+  Future<ResultData<T>> _request<T>(
+    String method,
+    String url, {
+    dynamic data,
+    Map<String, dynamic> queryParameters,
+    CancelToken cancelToken,
+    Options options,
+  }) async {
     final Response<String> response = await _dio.request<String>(
       url,
       data: data,
@@ -102,7 +104,7 @@ class HttpUtils {
       final bool isCompute = data.length > 10 * 1024;
       debugPrint('isCompute:$isCompute');
       final Map<String, dynamic> _map =
-      isCompute ? await compute(parseData, data) : parseData(data);
+          isCompute ? await compute(parseData, data) : parseData(data);
       return ResultData<T>.fromJson(_map);
     } catch (e) {
       debugPrint(e.toString());
@@ -116,15 +118,15 @@ class HttpUtils {
     return options;
   }
 
-  Future requestNetwork<T>(Method method,
-      String url, {
-        NetCallback<T> onSuccess,
-        NetCallback<T> onError,
-        dynamic params,
-        Map<String, dynamic> queryParameters,
-        CancelToken cancelToken,
-        Options options,
-      }) {
+  Future requestNetwork<T>(Method method, String url,
+      {NetCallback<T> onSuccess,
+      NetCallback<T> onError,
+      NetOnComplete onComplete,
+      dynamic params,
+      Map<String, dynamic> queryParameters,
+      CancelToken cancelToken,
+      Options options,
+      bool isShowError: true}) {
     return _request<T>(
       method.value,
       url,
@@ -133,30 +135,25 @@ class HttpUtils {
       options: options,
       cancelToken: cancelToken,
     ).then((ResultData<T> result) {
-      if (result.code == 0) {
-        if (onSuccess != null) {
-          onSuccess(result.code, result.message, result.data);
-        }
-      } else {
-        _onError(result.code, result.message, result.data, onError);
-      }
+      _responseResult(result, onSuccess, onError, isShowError);
     }, onError: (dynamic e) {
-      _cancelLogPrint(e, url);
-      final NetError error = ExceptionHandle.handleException(e);
-      _onError(error.code, error.msg, null, onError);
+      _responseError(url, e, isShowError, onError);
+    }).whenComplete(() {
+      //无论成功或失败都会走到这里
+      onComplete();
     });
   }
 
   /// 异步
-  void asyncRequestNetwork<T>(Method method,
-      String url, {
-        NetCallback<T> onSuccess,
-        NetCallback<T> onError,
-        dynamic params,
-        Map<String, dynamic> queryParameters,
-        CancelToken cancelToken,
-        Options options,
-      }) {
+  asyncRequestNetwork<T>(Method method, String url,
+      {NetCallback<T> onSuccess,
+      NetCallback<T> onError,
+      NetOnComplete onComplete,
+      dynamic params,
+      Map<String, dynamic> queryParameters,
+      CancelToken cancelToken,
+      Options options,
+      bool isShowError: true}) {
     Stream.fromFuture(_request<T>(
       method.value,
       url,
@@ -165,27 +162,46 @@ class HttpUtils {
       options: options,
       cancelToken: cancelToken,
     )).asBroadcastStream().listen((result) {
-      if (result.code == 0) {
-        if (onSuccess != null) {
-          onSuccess(result.code, result.message, result.data);
-        }
-      } else {
-        _onError(result.code, result.message, result.data, onError);
-      }
+      _responseResult(result, onSuccess, onError, isShowError);
     }, onError: (dynamic e) {
-      _cancelLogPrint(e, url);
-      final NetError error = ExceptionHandle.handleException(e);
-      _onError(error.code, error.msg, null, onError);
+      _responseError(url, e, isShowError, onError);
+    }, onDone: () {
+      onComplete();
     });
   }
 
-  void _cancelLogPrint(dynamic e, String url) {
+  ///网络请求
+  _responseResult<T>(ResultData<T> result, NetCallback<T> onSuccess,
+      NetCallback<T> onError, bool isShowError) {
+    if (result.code == 0) {
+      if (onSuccess != null) {
+        onSuccess(result.code, result.message, result.data);
+      }
+    } else {
+      _onError(result.code, result.message, result.data, isShowError, onError);
+    }
+  }
+
+  ///网络请求异步异常
+  _responseError<T>(
+    String url,
+    dynamic e,
+    bool isShowError,
+    NetCallback<T> onError,
+  ) {
+    _cancelLogPrint(e, url);
+    final NetError error = ExceptionHandle.handleException(e);
+    _onError(error.code, error.msg, null, isShowError, onError);
+  }
+
+  _cancelLogPrint(dynamic e, String url) {
     if (e is DioError && CancelToken.isCancel(e)) {
       LogUtil.e('取消请求接口： $url');
     }
   }
 
-  void _onError<T>(int code, String msg, T t, NetCallback<T> onError) {
+  _onError<T>(
+      int code, String msg, T t, bool isShowError, NetCallback<T> onError) {
     if (code == null) {
       code = ExceptionHandle.unknown_error;
       msg = '未知异常';
@@ -193,6 +209,9 @@ class HttpUtils {
     LogUtil.e('接口请求异常： code: $code, mag: $msg');
     if (onError != null) {
       onError(code, msg, t);
+    }
+    if (isShowError) {
+      ToastUtils.showBottomToast(msg);
     }
   }
 }
@@ -204,7 +223,6 @@ Map<String, dynamic> parseData(String data) {
 enum Method { get, post, put, patch, delete, head }
 
 /// 使用拓展枚举替代 switch判断取值
-/// https://zhuanlan.zhihu.com/p/98545689
 extension MethodExtension on Method {
   String get value => ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'HEAD'][index];
 }
