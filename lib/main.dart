@@ -1,10 +1,38 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:taodan/config/config.dart';
+import 'package:taodan/page/home/hone_page.dart';
+import 'package:taodan/utils/log_util.dart';
+
+import 'api/http_utils.dart';
+import 'api/interceptors/header_interceptor.dart';
 
 void main() {
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  MyApp() {
+    LogUtil.init();
+    initDio();
+  }
+
+  void initDio() {
+    setInitDio(
+      baseUrl: 'https://api.github.com/',
+      interceptors: [
+        /// 统一添加身份验证请求头
+        HeaderInterceptor(),
+
+        /// 打印Log(生产模式去除)
+        !Config.inProduction ? LogInterceptor() : "",
+
+        /// 适配数据(根据自己的数据结构，可自行选择添加)
+        ///AdapterInterceptor()
+      ],
+    );
+  }
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -26,8 +54,7 @@ class MyApp extends StatelessWidget {
         // closer together (more dense) than on mobile platforms.
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: HomePage(),
     );
   }
 }
-

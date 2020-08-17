@@ -1,4 +1,5 @@
 import 'package:taodan/config/keys.dart';
+import 'package:taodan/utils/json_util.dart';
 
 /// 网络结果数据
 class ResultData<T> {
@@ -23,7 +24,7 @@ class ResultData<T> {
       return json as T;
     } else {
       /// List类型数据由fromJsonAsT判断处理
-//      return JsonConvert.fromJsonAsT<T>(json);
+//      return JsonUtil.getObjList(source, (v) => null)<T>(json);
     }
   }
 }
