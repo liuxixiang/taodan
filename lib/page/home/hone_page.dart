@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:stacked/stacked.dart';
 import 'package:taodan/api/http_utils.dart';
+import 'package:taodan/viewmodel/home_viewmodel.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -14,13 +16,13 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: RaisedButton(
-        child: Text("normal"),
-        onPressed: () {
-          _request();
-        },
+    return ViewModelBuilder<HomeViewModel>.reactive(
+      builder: (context, model, child) => Scaffold(
+        body: Center(
+          child: Text(model.title),
+        ),
       ),
+      viewModelBuilder: () => HomeViewModel(),
     );
   }
 

@@ -170,6 +170,13 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "0.0.4"
+  observable_ish:
+    dependency: transitive
+    description:
+      name: observable_ish
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "2.1.4"
   path:
     dependency: transitive
     description:
@@ -280,6 +287,13 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "1.9.5"
+  stacked:
+    dependency: "direct main"
+    description:
+      name: stacked
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "1.7.6"
   stream_channel:
     dependency: transitive
     description:
