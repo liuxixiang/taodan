@@ -1,8 +1,8 @@
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 import 'package:taodan/page/home/hone_page.dart';
-import 'package:taodan/page/login/LoginPage.dart';
-import 'package:taodan/page/splash/SplashPage.dart';
+import 'package:taodan/page/login/login_page.dart';
+import 'package:taodan/page/splash/splash_page.dart';
 
 class RouterHandler {
   var splashHandler = new Handler(

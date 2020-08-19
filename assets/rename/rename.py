@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-   
   
 import os  
-newName = "wendjia"
-moudle_name = "login"
+newName = "gold_egg"
+moudle_name = "index"
 def renameImage(file_dir):   
    path = file_dir
    parent = os.path.abspath(os.path.join(os.getcwd(), ".."))

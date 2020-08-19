@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:taodan/router/Application.dart';
-import 'package:taodan/router/Routes.dart';
+import 'package:taodan/router/application.dart';
+import 'package:taodan/router/routes.dart';
 
 class NavigatorUtil {
   static void goLogin(BuildContext context) {

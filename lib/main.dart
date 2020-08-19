@@ -2,15 +2,14 @@ import 'package:dio/dio.dart';
 import 'package:fluro/fluro.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+
+import 'package:taodan/config/config.dart';
+import 'package:taodan/router/application.dart';
+import 'package:taodan/router/routes.dart';
+import 'package:taodan/utils/yy_screen_util.dart';
 import 'package:taodan/api/api.dart';
 import 'package:taodan/api/interceptors/error_interceptor.dart';
-import 'package:taodan/config/config.dart';
 
-// import 'package:taodan/page/home/hone_page.dart';
-import 'package:taodan/page/login/LoginPage.dart';
-import 'package:taodan/router/Application.dart';
-import 'package:taodan/router/Routes.dart';
-import 'package:taodan/utils/YYScreenUtil.dart';
 import 'package:taodan/utils/log_util.dart';
 
 import 'api/http_utils.dart';
@@ -47,14 +46,13 @@ class MyApp extends StatelessWidget {
         ///AdapterInterceptor()
       ],
     );
-
-
   }
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     YYScreenUtil.init(designSize: Size(375, 766), allowFontScaling: false);
+
     return MaterialApp(
       title: 'Flutter Demo',
       onGenerateRoute: Application.router.generator,

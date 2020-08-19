@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fluro/fluro.dart';
-import 'package:taodan/router/RouterHandler.dart';
+import 'package:taodan/router/router_handler.dart';
 
 class Routes {
   static Router router;
@@ -17,10 +17,8 @@ class Routes {
       return;
     });
 
-    // router.define(root, handler: rootHandler); // 根目录
-    router.define(root, handler: RouterHandler().splashHandler);
+    router.define(root, handler: RouterHandler().splashHandler); // 根目录
     router.define(login, handler: RouterHandler().loginHandler); //  登录
-    router.define(home, handler: RouterHandler().homeHandler); //  登录
-    // router.define(index, handler: settingHandler); // 首页
+    router.define(home, handler: RouterHandler().homeHandler); //  首页
   }
 }

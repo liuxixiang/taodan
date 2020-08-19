@@ -1,8 +1,9 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:taodan/router/NavigatorUtil.dart';
-import 'package:taodan/utils/AssetsUtil.dart';
-import 'package:taodan/utils/YYScreenUtil.dart';
+
+import 'package:taodan/router/navigator_util.dart';
+import 'package:taodan/utils/assets_util.dart';
+import 'package:taodan/utils/yy_screen_util.dart';
 
 class LoginPage extends StatefulWidget {
   @override
