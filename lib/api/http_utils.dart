@@ -55,7 +55,7 @@ class HttpUtils {
       sendTimeout: _sendTimeout,
 
       /// dio默认json解析，这里指定返回UTF8字符串，自己处理解析。（可也以自定义Transformer实现）
-      responseType: ResponseType.plain,
+//      responseType: ResponseType.plain,
       validateStatus: (_) {
         // 不使用http状态码判断状态，使用AdapterInterceptor来处理（适用于标准REST风格）
         return true;
