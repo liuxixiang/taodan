@@ -17,16 +17,13 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<HomeViewModel>.reactive(
+      viewModelBuilder: () => HomeViewModel(),
+      onModelReady: (model) => {model.request()},
       builder: (context, model, child) => Scaffold(
         body: Center(
-          child: Text(model.title),
+          child: Text(""),
         ),
       ),
-      viewModelBuilder: () => HomeViewModel(),
     );
-  }
-
-  _request() {
-    HttpUtils.instance.asyncRequestNetwork(Method.get, "");
   }
 }

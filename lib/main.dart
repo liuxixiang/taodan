@@ -1,7 +1,11 @@
 import 'package:dio/dio.dart';
 import 'package:fluro/fluro.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:taodan/api/api.dart';
+import 'package:taodan/api/interceptors/error_interceptor.dart';
 import 'package:taodan/config/config.dart';
+
 // import 'package:taodan/page/home/hone_page.dart';
 import 'package:taodan/page/login/LoginPage.dart';
 import 'package:taodan/router/Application.dart';
@@ -11,6 +15,8 @@ import 'package:taodan/utils/log_util.dart';
 
 import 'api/http_utils.dart';
 import 'api/interceptors/header_interceptor.dart';
+import 'api/interceptors/sign_interceptor.dart';
+import 'api/interceptors/token_interceptor.dart';
 
 void main() {
   runApp(MyApp());
@@ -27,10 +33,12 @@ class MyApp extends StatelessWidget {
 
   void initDio() {
     setInitDio(
-      baseUrl: 'https://api.github.com/',
+      baseUrl: Api.BASE_URL,
       interceptors: [
         /// 统一添加身份验证请求头
         HeaderInterceptor(),
+        SignInterceptor(),
+        TokenInterceptors(),
 
         /// 打印Log(生产模式去除)
         !Config.inProduction ? LogInterceptor() : "",
@@ -39,6 +47,8 @@ class MyApp extends StatelessWidget {
         ///AdapterInterceptor()
       ],
     );
+
+
   }
 
   // This widget is the root of your application.

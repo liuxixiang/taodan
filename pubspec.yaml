@@ -37,6 +37,9 @@ dependencies:
   flutter_screenutil: ^3.0.0-beta.1
   rxdart: ^0.22.1+1
   stacked: ^1.7.6
+  device_info: ^0.4.2+6
+  package_info: ^0.4.1
+
 
 
 

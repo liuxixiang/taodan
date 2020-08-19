@@ -1,8 +1,11 @@
 import 'dart:convert';
+import 'dart:io';
 
+import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:taodan/api/interceptors/error_interceptor.dart';
 import 'package:taodan/api/result_data.dart';
 import 'package:taodan/utils/log_util.dart';
 import 'package:taodan/utils/toast_utils.dart';
@@ -63,20 +66,23 @@ class HttpUtils {
     _dio = Dio(_options);
 
     /// Fiddler抓包代理配置 https://www.jianshu.com/p/d831b1f7c45b
-//    (_dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate =
-//        (HttpClient client) {
-//      client.findProxy = (uri) {
-//        //proxy all request to localhost:8888
-//        return 'PROXY 10.41.0.132:8888';
-//      };
-//      client.badCertificateCallback =
-//          (X509Certificate cert, String host, int port) => true;
-//    };
+    (_dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate =
+        (HttpClient client) {
+      client.findProxy = (uri) {
+        //proxy all request to localhost:8888
+        return 'PROXY 10.249.151.172:8888';
+      };
+      client.badCertificateCallback =
+          (X509Certificate cert, String host, int port) => true;
+    };
 
     /// 添加拦截器
     _interceptors.forEach((interceptor) {
       _dio.interceptors.add(interceptor);
     });
+
+    /// 添加错误拦截器
+    _dio.interceptors.add(ErrorInterceptors(_dio));
   }
 
   // 数据返回格式统一，统一处理异常
@@ -140,7 +146,9 @@ class HttpUtils {
       _responseError(url, e, isShowError, onError);
     }).whenComplete(() {
       //无论成功或失败都会走到这里
-      onComplete();
+      if (onComplete != null) {
+        onComplete();
+      }
     });
   }
 
@@ -154,7 +162,7 @@ class HttpUtils {
       CancelToken cancelToken,
       Options options,
       bool isShowError: true}) {
-    Stream.fromFuture(_request<T>(
+    return Stream.fromFuture(_request<T>(
       method.value,
       url,
       data: params,
@@ -166,7 +174,9 @@ class HttpUtils {
     }, onError: (dynamic e) {
       _responseError(url, e, isShowError, onError);
     }, onDone: () {
-      onComplete();
+      if (onComplete != null) {
+        onComplete();
+      }
     });
   }
 
