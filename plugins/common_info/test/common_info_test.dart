@@ -18,6 +18,6 @@ void main() {
   });
 
   test('getPlatformVersion', () async {
-    expect(await CommonInfo.platformVersion, '42');
+    expect(await CommonInfo.getMetaData("flutterEmbedding"), '42');
   });
 }
