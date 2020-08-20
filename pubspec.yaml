@@ -41,6 +41,10 @@ dependencies:
   package_info: ^0.4.1
 
 
+  #本地插件引用 注意缩进格式
+  common_info:
+    path: plugins/common_info
+
 
 
 
@@ -69,7 +73,7 @@ flutter:
 
   # For details regarding adding assets from package dependencies, see
   # https://flutter.dev/assets-and-images/#from-packages
-  
+
   assets:
     - assets/images/login/
     - assets/images/index/
