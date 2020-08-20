@@ -7,7 +7,7 @@ class HomeViewModel extends BaseViewModel {
   LoginEntity loginEntity;
 
   request() {
-    HttpUtils.instance.asyncRequestNetwork<LoginEntity>(
+    HttpUtils.instance.requestNetwork<LoginEntity>(
       Method.post,
       Api.LOGIN,
       params: {
@@ -15,7 +15,8 @@ class HomeViewModel extends BaseViewModel {
         'mobile':'18521701325',
         'loginType':'mobile',
       },
-      onSuccess: (code, msg, data) => {loginEntity = data},
+      onSuccess: (code, msg, data) => {
+        loginEntity = data},
     );
   }
 }
