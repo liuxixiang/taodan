@@ -126,7 +126,7 @@ class HttpUtils {
     return options;
   }
 
-  Future requestNetwork(Method method, String url,
+  Future<ResultData> requestNetwork(Method method, String url,
       {NetCallback onSuccess,
       NetCallback onError,
       NetOnComplete onComplete,
