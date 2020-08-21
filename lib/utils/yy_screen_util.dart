@@ -11,15 +11,18 @@ class YYScreenUtil {
   }
 
   static num setSp(num fontSize, {bool allowFontScalingSelf}) {
-    return ScreenUtil()
-        .setSp(fontSize, allowFontScalingSelf: allowFontScalingSelf);
+    return fontSize.sp;
+    // return ScreenUtil()
+    //     .setSp(fontSize, allowFontScalingSelf: allowFontScalingSelf);
   }
 
   static num setWidth(num width) {
-    return ScreenUtil().setWidth(width);
+    return width.w;
+    // return ScreenUtil().setWidth(width);
   }
 
   static num setHeight(num height) {
-    return ScreenUtil().setHeight(height);
+    return height.h;
+    // return ScreenUtil().setHeight(height);
   }
 }

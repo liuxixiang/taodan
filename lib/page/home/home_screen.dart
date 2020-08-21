@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:taodan/ui/widget/progress_widget.dart';
+import 'package:taodan/common/widgets/progress_widget.dart';
 import 'package:taodan/utils/assets_util.dart';
 import 'package:taodan/utils/yy_screen_util.dart';
 
