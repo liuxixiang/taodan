@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-   
   
 import os  
-newName = "gold_egg"
+newName = "user_level"
 moudle_name = "index"
 def renameImage(file_dir):   
    path = file_dir

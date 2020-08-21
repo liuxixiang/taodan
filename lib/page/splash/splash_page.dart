@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:taodan/router/navigator_util.dart';
+import 'package:taodan/ui/widget/progress_widget.dart';
 
 class SplashPage extends StatefulWidget {
   @override
@@ -25,7 +26,7 @@ class _SplashPagState extends State<SplashPage> {
     return Scaffold(
       body: Center(
         child: Container(
-          child: Text('我是欢迎页面'),
+          child: ProgressWidget(80),
         ),
       ),
     );
