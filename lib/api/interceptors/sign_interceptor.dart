@@ -1,7 +1,6 @@
 import 'dart:collection';
 
 import 'package:dio/dio.dart';
-import 'package:taodan/config/keys.dart';
 
 /// sign拦截器
 class SignInterceptor extends InterceptorsWrapper {

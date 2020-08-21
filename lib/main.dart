@@ -3,7 +3,6 @@ import 'package:fluro/fluro.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import 'package:taodan/config/config.dart';
 import 'package:taodan/router/application.dart';
 import 'package:taodan/router/routes.dart';
 import 'package:taodan/utils/yy_screen_util.dart';
@@ -16,6 +15,7 @@ import 'api/http_utils.dart';
 import 'api/interceptors/header_interceptor.dart';
 import 'api/interceptors/sign_interceptor.dart';
 import 'api/interceptors/token_interceptor.dart';
+import 'common/config/config.dart';
 
 void main() {
   runApp(MyApp());

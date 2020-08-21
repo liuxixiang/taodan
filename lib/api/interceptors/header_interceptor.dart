@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:device_info/device_info.dart';
 import 'package:dio/dio.dart';
 import 'package:package_info/package_info.dart';
-import 'package:taodan/config/keys.dart';
+import 'package:taodan/common/config/keys.dart';
 
 /// header拦截器
 class HeaderInterceptor extends InterceptorsWrapper {

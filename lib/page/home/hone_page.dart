@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
-import 'package:taodan/ui/widget/bottom_navigatiton_widget.dart';
+import 'package:taodan/common/widgets/bottom_navigatiton_widget.dart';
 import 'package:taodan/viewmodel/home_viewmodel.dart';
 
 class HomePage extends StatefulWidget {
