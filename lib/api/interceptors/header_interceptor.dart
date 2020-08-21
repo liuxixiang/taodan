@@ -3,8 +3,7 @@ import 'dart:io';
 import 'package:device_info/device_info.dart';
 import 'package:dio/dio.dart';
 import 'package:package_info/package_info.dart';
-import 'package:taodan/config/keys.dart';
-import 'package:taodan/utils/common_utils.dart';
+import 'package:taodan/common/config/keys.dart';
 
 /// header拦截器
 class HeaderInterceptor extends InterceptorsWrapper {
@@ -12,7 +11,7 @@ class HeaderInterceptor extends InterceptorsWrapper {
   onRequest(RequestOptions options) async {
     DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
     PackageInfo packageInfo = await PackageInfo.fromPlatform();
-    options.headers[Keys.APP_ID] = 'joy';
+    options.headers[Keys.APP_ID] = "joy";
     options.headers[Keys.APP_NAME] = packageInfo.appName;
     options.headers[Keys.APP_VERSION_KEY] = packageInfo.version;
     if (Platform.isIOS) {

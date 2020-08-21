@@ -1,6 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:taodan/config/config.dart';
-import 'package:taodan/config/keys.dart';
+import 'package:taodan/common/config/keys.dart';
 import 'package:taodan/utils/shared_preferences.dart';
 
 /// Token拦截器

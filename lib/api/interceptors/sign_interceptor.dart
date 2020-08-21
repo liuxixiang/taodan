@@ -22,9 +22,9 @@ class SignInterceptor extends InterceptorsWrapper {
       map['path'] = path;
       map['body'] = body;
     }
-    options.headers[Keys.APP_TIMESTAMP_KEY] = ts;
-    options.headers[Keys.NONCE_KEY] = nonce;
-    options.headers[Keys.SIGNATURE_KEY] = '';
+//    options.headers[Keys.APP_TIMESTAMP_KEY] = ts;
+//    options.headers[Keys.NONCE_KEY] = nonce;
+//    options.headers[Keys.SIGNATURE_KEY] = '';
     return options;
   }
 }

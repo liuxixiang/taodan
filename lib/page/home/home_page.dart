@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
-import 'package:taodan/ui/widget/bottom_navigatiton_widget.dart';
+import 'package:taodan/common/widgets/bottom_navigatiton_widget.dart';
 import 'package:taodan/viewmodel/home_viewmodel.dart';
 
 class HomePage extends StatefulWidget {
@@ -18,7 +18,9 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return ViewModelBuilder<HomeViewModel>.reactive(
       viewModelBuilder: () => HomeViewModel(),
-      onModelReady: (model) => {model.request()},
+      onModelReady: (model) => {
+        // model.request()
+      },
       builder: (context, model, child) => Scaffold(
         bottomNavigationBar: new BottomNavigationWidget(),
         body: Center(
