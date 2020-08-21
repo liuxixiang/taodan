@@ -34,7 +34,7 @@ void setInitDio({
   _interceptors = interceptors ?? _interceptors;
 }
 
-typedef NetCallback<T> = Function(int code, String msg, T data);
+typedef NetCallback = Function(int code, String msg, dynamic data);
 typedef NetOnComplete = Function();
 
 class HttpUtils {
@@ -47,6 +47,7 @@ class HttpUtils {
   static Dio _dio;
 
   Dio get dio => _dio;
+  CancelToken _cancelToken;
 
   HttpUtils._() {
     BaseOptions _options = BaseOptions(
@@ -63,6 +64,7 @@ class HttpUtils {
       baseUrl: _baseUrl,
 //      contentType: Headers.formUrlEncodedContentType, // 适用于post form表单提交
     );
+    _cancelToken = CancelToken();
     _dio = Dio(_options);
 
     /// Fiddler抓包代理配置 https://www.jianshu.com/p/d831b1f7c45b
@@ -86,7 +88,7 @@ class HttpUtils {
   }
 
   // 数据返回格式统一，统一处理异常
-  Future<ResultData<T>> _request<T>(
+  Future<ResultData> _request(
     String method,
     String url, {
     dynamic data,
@@ -111,10 +113,10 @@ class HttpUtils {
       debugPrint('isCompute:$isCompute');
       final Map<String, dynamic> _map =
           isCompute ? await compute(parseData, data) : parseData(data);
-      return ResultData<T>.fromJson(_map);
+      return ResultData.fromJson(_map);
     } catch (e) {
       debugPrint(e.toString());
-      return ResultData<T>(ExceptionHandle.parse_error, '数据解析错误！', null);
+      return ResultData(ExceptionHandle.parse_error, '数据解析错误！', null);
     }
   }
 
@@ -124,23 +126,23 @@ class HttpUtils {
     return options;
   }
 
-  Future requestNetwork<T>(Method method, String url,
-      {NetCallback<T> onSuccess,
-      NetCallback<T> onError,
+  Future requestNetwork(Method method, String url,
+      {NetCallback onSuccess,
+      NetCallback onError,
       NetOnComplete onComplete,
       dynamic params,
       Map<String, dynamic> queryParameters,
       CancelToken cancelToken,
       Options options,
       bool isShowError: true}) {
-    return _request<T>(
+    return _request(
       method.value,
       url,
       data: params,
       queryParameters: queryParameters,
       options: options,
       cancelToken: cancelToken,
-    ).then((ResultData<T> result) {
+    ).then((ResultData result) {
       _responseResult(result, onSuccess, onError, isShowError);
     }, onError: (dynamic e) {
       _responseError(url, e, isShowError, onError);
@@ -153,16 +155,16 @@ class HttpUtils {
   }
 
   /// 异步
-  asyncRequestNetwork<T>(Method method, String url,
-      {NetCallback<T> onSuccess,
-      NetCallback<T> onError,
+  asyncRequestNetwork(Method method, String url,
+      {NetCallback onSuccess,
+      NetCallback onError,
       NetOnComplete onComplete,
       dynamic params,
       Map<String, dynamic> queryParameters,
       CancelToken cancelToken,
       Options options,
       bool isShowError: true}) {
-    return Stream.fromFuture(_request<T>(
+    return Stream.fromFuture(_request(
       method.value,
       url,
       data: params,
@@ -181,8 +183,8 @@ class HttpUtils {
   }
 
   ///网络请求
-  _responseResult<T>(ResultData<T> result, NetCallback<T> onSuccess,
-      NetCallback<T> onError, bool isShowError) {
+  _responseResult(ResultData result, NetCallback onSuccess, NetCallback onError,
+      bool isShowError) {
     if (result.code == 0) {
       if (onSuccess != null) {
         onSuccess(result.code, result.message, result.data);
@@ -193,11 +195,11 @@ class HttpUtils {
   }
 
   ///网络请求异步异常
-  _responseError<T>(
+  _responseError(
     String url,
     dynamic e,
     bool isShowError,
-    NetCallback<T> onError,
+    NetCallback onError,
   ) {
     _cancelLogPrint(e, url);
     final NetError error = ExceptionHandle.handleException(e);
@@ -210,8 +212,7 @@ class HttpUtils {
     }
   }
 
-  _onError<T>(
-      int code, String msg, T t, bool isShowError, NetCallback<T> onError) {
+  _onError(int code, String msg, var t, bool isShowError, NetCallback onError) {
     if (code == null) {
       code = ExceptionHandle.unknown_error;
       msg = '未知异常';
@@ -223,6 +224,16 @@ class HttpUtils {
     if (isShowError) {
       ToastUtils.showBottomToast(msg);
     }
+  }
+
+  /*
+   * 取消请求
+   *
+   * 同一个cancel token 可以用于多个请求，当一个cancel token取消时，所有使用该cancel token的请求都会被取消。
+   * 所以参数可选
+   */
+  cancelRequests({CancelToken token}) {
+    token ?? _cancelToken.cancel("cancelled");
   }
 }
 

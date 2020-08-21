@@ -11,7 +11,7 @@ class HeaderInterceptor extends InterceptorsWrapper {
   onRequest(RequestOptions options) async {
     DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
     PackageInfo packageInfo = await PackageInfo.fromPlatform();
-    options.headers[Keys.APP_ID] = packageInfo.packageName;
+    options.headers[Keys.APP_ID] = "joy";
     options.headers[Keys.APP_NAME] = packageInfo.appName;
     options.headers[Keys.APP_VERSION_KEY] = packageInfo.version;
     if (Platform.isIOS) {
