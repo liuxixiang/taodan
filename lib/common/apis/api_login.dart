@@ -1,8 +1,20 @@
+import 'package:taodan/api/http_utils.dart';
+import 'package:taodan/model/login_entity.dart';
+
+import 'api_path.dart';
+
 /// 用户
 class UserAPI {
-  /// 登录
-//  static Future<UserResponseEntity> login({UserRequestEntity params}) async {
-//    var response = await HttpUtil().post('/user/login', params: params);
-//    return UserResponseEntity.fromJson(response);
-//  }
+  login() async {
+    HttpUtils.instance.requestNetwork(
+      Method.post,
+      ApiPath.LOGIN,
+      params: {
+        'code': 'devops888',
+        'mobile': '18521701325',
+        'loginType': 'mobile',
+      },
+      onSuccess: (code, msg, data) => {LoginEntity.fromJson(data)},
+    );
+  }
 }

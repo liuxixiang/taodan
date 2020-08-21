@@ -1,15 +1,11 @@
 import 'package:dio/dio.dart';
 import 'package:fluro/fluro.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-
+import 'package:taodan/common/apis/api_path.dart';
 import 'package:taodan/router/application.dart';
 import 'package:taodan/router/routes.dart';
-import 'package:taodan/utils/yy_screen_util.dart';
-import 'package:taodan/api/api.dart';
-import 'package:taodan/api/interceptors/error_interceptor.dart';
-
 import 'package:taodan/utils/log_util.dart';
+import 'package:taodan/utils/yy_screen_util.dart';
 
 import 'api/http_utils.dart';
 import 'api/interceptors/header_interceptor.dart';
@@ -32,7 +28,7 @@ class MyApp extends StatelessWidget {
 
   void initDio() {
     setInitDio(
-      baseUrl: Api.BASE_URL,
+      baseUrl: ApiPath.BASE_URL,
       interceptors: [
         /// 统一添加身份验证请求头
         HeaderInterceptor(),
