@@ -1,6 +1,6 @@
 import 'package:stacked/stacked.dart';
-import 'package:taodan/api/api.dart';
 import 'package:taodan/api/http_utils.dart';
+import 'package:taodan/common/apis/api_path.dart';
 import 'package:taodan/model/login_entity.dart';
 
 class HomeViewModel extends BaseViewModel {
@@ -9,7 +9,7 @@ class HomeViewModel extends BaseViewModel {
   request() {
     HttpUtils.instance.asyncRequestNetwork(
       Method.post,
-      Api.LOGIN,
+      ApiPath.LOGIN,
       params: {
         'code': 'devops888',
         'mobile': '18521701325',
