@@ -155,7 +155,7 @@ class HttpUtils {
   }
 
   /// 异步
-  asyncRequestNetwork(Method method, String url,
+  Stream<ResultData> asyncRequestNetwork(Method method, String url,
       {NetCallback onSuccess,
       NetCallback onError,
       NetOnComplete onComplete,
@@ -171,7 +171,7 @@ class HttpUtils {
       queryParameters: queryParameters,
       options: options,
       cancelToken: cancelToken,
-    )).asBroadcastStream().listen((result) {
+    ))..asBroadcastStream().listen((result) {
       _responseResult(result, onSuccess, onError, isShowError);
     }, onError: (dynamic e) {
       _responseError(url, e, isShowError, onError);
@@ -221,9 +221,12 @@ class HttpUtils {
     if (onError != null) {
       onError(code, msg, t);
     }
+
     if (isShowError) {
       ToastUtils.showBottomToast(msg);
     }
+    //抛出错误异常
+    throw Exception(new NetError(code, msg));
   }
 
   /*

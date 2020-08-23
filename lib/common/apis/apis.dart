@@ -1,4 +1,5 @@
 library apis;
 
-export 'api_login.dart';
+export 'api_user.dart';
+typedef OnNetSuccess<T> = Function(T data);
 

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'package:taodan/common/widgets/bottom_navigatiton_widget.dart';
-import 'package:taodan/viewmodel/home_viewmodel.dart';
+import 'package:taodan/page/home/home_viewmodel.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -19,12 +19,12 @@ class _HomePageState extends State<HomePage> {
     return ViewModelBuilder<HomeViewModel>.reactive(
       viewModelBuilder: () => HomeViewModel(),
       onModelReady: (model) => {
-        // model.request()
+//         model.request()
       },
       builder: (context, model, child) => Scaffold(
         bottomNavigationBar: new BottomNavigationWidget(),
         body: Center(
-          child: Text(""),
+          child: Text(model.loginEntity != null ?model.loginEntity.auth:"没有数据"),
         ),
       ),
     );
