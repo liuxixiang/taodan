@@ -7,6 +7,7 @@ class Routes {
   static String root = '/'; // 根目录
   static String login = '/login'; // 登录
   static String home = '/home'; // 首页
+  static String myBreeder = '/myBreeder'; // 我的饲养员
 
   // 配置route
   static void configureRoutes(Router router) {
@@ -20,5 +21,6 @@ class Routes {
     router.define(root, handler: RouterHandler().splashHandler); // 根目录
     router.define(login, handler: RouterHandler().loginHandler); //  登录
     router.define(home, handler: RouterHandler().homeHandler); //  首页
+    router.define(myBreeder, handler: RouterHandler().myBreederHandler); //我的饲养员
   }
 }

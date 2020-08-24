@@ -12,4 +12,9 @@ class NavigatorUtil {
     /// replace：true 就是将 splash 页面给移除掉了，这点后退键的时候就不会再出现Splash页面
     Application.router.navigateTo(context, Routes.home, replace: true);
   }
+
+  ///我的饲养员界面
+  static void goMyBreeder(BuildContext context) {
+    Application.router.navigateTo(context, Routes.myBreeder, replace: true);
+  }
 }
