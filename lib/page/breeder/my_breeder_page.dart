@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
+import 'package:taodan/common/values/colors.dart';
 import 'package:taodan/page/breeder/my_breeder_viewmodel.dart';
 
 class MyBreederPage extends StatefulWidget {
@@ -39,8 +40,11 @@ class _MyBreederPageState extends State<MyBreederPage>
         appBar: AppBar(
           title: Text('我的饲养员'),
           bottom: TabBar(
+            indicatorColor: AppColors.yellow,
             controller: _tabController,
             tabs: _myTabs,
+            labelColor: AppColors.black_33,
+            unselectedLabelColor: AppColors.gray_99,
           ),
         ),
         body: ViewModelBuilder<MyBreederViewModel>.reactive(
