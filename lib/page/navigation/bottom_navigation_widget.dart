@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:taodan/page/home/home_screen.dart';
-import 'package:taodan/page/home/meassage_sence.dart';
-import 'package:taodan/page/home/mine_sence.dart';
-import 'package:taodan/page/home/reward_sence.dart';
-import 'package:taodan/page/home/wheel_draw_sence.dart';
+import 'package:stacked/stacked.dart';
+import 'package:taodan/page/navigation/bottom_navigation_viewmodel.dart';
+import 'package:taodan/page/home/home_page.dart';
+import 'package:taodan/page/home/meassage_page.dart';
+import 'package:taodan/page/home/mine_page.dart';
+import 'package:taodan/page/home/reward_page.dart';
+import 'package:taodan/page/home/wheel_draw_page.dart';
 import 'package:taodan/utils/assets_util.dart';
 
 class BottomNavigationWidget extends StatefulWidget {
@@ -12,12 +14,10 @@ class BottomNavigationWidget extends StatefulWidget {
 }
 
 class BottomNavigationWidgetState extends State<BottomNavigationWidget> {
-  int _currentIndex = 0;
-
   List<Widget> list = List();
-
   List<String> names = List();
   List<String> images = List();
+
   @override
   void initState() {
     list
@@ -37,16 +37,11 @@ class BottomNavigationWidgetState extends State<BottomNavigationWidget> {
     super.initState();
   }
 
-  List<BottomNavigationBarItem> getItems() {
+  List<BottomNavigationBarItem> getItems(int currentIndex) {
     List<BottomNavigationBarItem> bottomNavigationBarItems = [];
     for (int i = 0; i < names.length; i++) {
       bottomNavigationBarItems.add(new BottomNavigationBarItem(
-          // icon: ImageIcon(
-          //   AssetImage(
-          //       AssetsUtil.IMAGE_PATH + "bottomnav/" + images[i] + "_sel.png"),
-          //   size: YYScreenUtil.setHeight(25),
-          // ),
-          icon: _currentIndex == i
+          icon: currentIndex == i
               ? Image.asset(
                   AssetsUtil.IMAGE_PATH + "bottomnav/" + images[i] + "_sel.png")
               : Image.asset(
@@ -60,18 +55,17 @@ class BottomNavigationWidgetState extends State<BottomNavigationWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: list[_currentIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        items: getItems(),
-        currentIndex: _currentIndex,
-        onTap: (int index) {
-          setState(() {
-            _currentIndex = index;
-          });
-        },
-        fixedColor: Colors.amber[800],
-        type: BottomNavigationBarType.fixed,
+    return ViewModelBuilder<BottomNavigationViewModel>.reactive(
+      viewModelBuilder: () => BottomNavigationViewModel(),
+      builder: (context, model, child) => Scaffold(
+        body: list[model.currentIndex],
+        bottomNavigationBar: BottomNavigationBar(
+          items: getItems(model.currentIndex),
+          currentIndex: model.currentIndex,
+          onTap: model.setIndex,
+          fixedColor: Colors.amber[800],
+          type: BottomNavigationBarType.fixed,
+        ),
       ),
     );
   }
