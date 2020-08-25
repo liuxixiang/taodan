@@ -40,6 +40,8 @@ dependencies:
   device_info: ^0.4.2+6
   package_info: ^0.4.1
   json_annotation: ^3.0.1
+  flutter_easyrefresh: ^2.1.5
+
 
 
   #本地插件引用 注意缩进格式
