@@ -1,6 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:taodan/common/values/strings.dart';
+import 'package:taodan/common/values/styles.dart';
+import 'package:taodan/utils/assets_util.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 typedef RefreshCallback = Future<List<dynamic>> Function();
 typedef LoadMoreCallback = Future<List<dynamic>> Function();
@@ -54,7 +58,7 @@ class _RefreshListViewState extends State<RefreshListView> {
       controller: _controller,
       header: widget.enableRefresh ? ClassicalHeader() : null,
       footer: widget.enableLoad ? ClassicalFooter() : null,
-      emptyWidget: _count == 0 ? Center(child: Text("空")) : null,
+      emptyWidget: _count == 0 ? _buildEmptyWidget() : null,
       onRefresh: widget.enableRefresh
           ? () async {
               if (widget.onRefresh != null) {
@@ -102,10 +106,16 @@ class _RefreshListViewState extends State<RefreshListView> {
   }
 
   _buildEmptyWidget() {
-    return Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[
-          Image(
-        ]);
+    return Container(
+      margin: EdgeInsets.only(top: 87.5.h), //容器外填充
+      child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            Image.asset(
+              AssetsUtil.IMAGE_PATH + "common/no_data.png",
+            ),
+            Text(AppStrings.noData, style: AppStyles.textSize16_99)
+          ]),
+    );
   }
 }
