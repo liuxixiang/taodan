@@ -16,6 +16,7 @@ class RefreshListView extends StatefulWidget {
     @required this.onBuildListItem,
     this.onRefresh,
     this.onLoad,
+    this.controller,
     this.enableRefresh = true,
     this.enableLoad = false,
     this.emptyWidget,
@@ -29,6 +30,7 @@ class RefreshListView extends StatefulWidget {
   final bool enableRefresh;
   final Widget emptyWidget;
   final bool wantKeepAlive;
+  final EasyRefreshController controller;
 
   @override
   _RefreshListViewState createState() => _RefreshListViewState();
@@ -36,7 +38,6 @@ class RefreshListView extends StatefulWidget {
 
 class _RefreshListViewState extends State<RefreshListView>
     with AutomaticKeepAliveClientMixin<RefreshListView> {
-  EasyRefreshController _controller;
   List<dynamic> _items = [];
 
   // 条目总数
@@ -58,7 +59,7 @@ class _RefreshListViewState extends State<RefreshListView>
       enableControlFinishLoad: false,
 
       ///是否开启控制结束加载
-      controller: _controller,
+      controller: widget.controller,
       header: widget.enableRefresh ? ClassicalHeader() : null,
       footer: widget.enableLoad ? ClassicalFooter() : null,
       emptyWidget: _count == 0 ? _buildEmptyWidget() : null,
