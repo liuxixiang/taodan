@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-   
   
 import os  
-newName = "user_level"
-moudle_name = "index"
+newName = "no_data"
+moudle_name = "common"
 def renameImage(file_dir):   
    path = file_dir
    parent = os.path.abspath(os.path.join(os.getcwd(), ".."))
@@ -15,6 +15,7 @@ def renameImage(file_dir):
            os.rename(path+"/"+file,parent+"/images/"+moudle_name+"/"+newName+".png")
            os.rename(path+"/"+fileName+"@2x.png",parent+"/images/"+moudle_name+"/2.0x/"+newName+".png")
            os.rename(path+"/"+fileName+"@3x.png",parent+"/images/"+moudle_name+"/3.0x/"+newName+".png")
+
 
 
 print("Hello, World!")
