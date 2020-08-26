@@ -4,7 +4,7 @@ import 'package:flutter_easyrefresh/easy_refresh.dart';
 
 typedef RefreshCallback = Future<List<dynamic>> Function();
 typedef LoadMoreCallback = Future<List<dynamic>> Function();
-typedef BuildListItem = Widget Function();
+typedef BuildListItem = Widget Function(int, dynamic);
 
 class RefreshListView extends StatefulWidget {
   const RefreshListView({
@@ -12,8 +12,9 @@ class RefreshListView extends StatefulWidget {
     @required this.onBuildListItem,
     this.onRefresh,
     this.onLoad,
+    this.enableRefresh = true,
     this.enableLoad = false,
-    this.enableRefresh,
+    this.emptyWidget,
   }) : super(key: key);
 
   final RefreshCallback onRefresh;
@@ -21,6 +22,7 @@ class RefreshListView extends StatefulWidget {
   final BuildListItem onBuildListItem;
   final bool enableLoad;
   final bool enableRefresh;
+  final Widget emptyWidget;
 
   @override
   _RefreshListViewState createState() => _RefreshListViewState();
@@ -28,8 +30,10 @@ class RefreshListView extends StatefulWidget {
 
 class _RefreshListViewState extends State<RefreshListView> {
   EasyRefreshController _controller;
+  List<dynamic> _items = [];
+
   // 条目总数
-  int _count = 20;
+  int _count;
 
   @override
   Widget build(BuildContext context) {
@@ -38,46 +42,70 @@ class _RefreshListViewState extends State<RefreshListView> {
 
   _buildRefresh() {
     return EasyRefresh.custom(
+      firstRefresh: true,
+
+      ///首次刷新
       enableControlFinishRefresh: false,
-      enableControlFinishLoad: true,
+
+      ///是否开启控制结束刷新
+      enableControlFinishLoad: false,
+
+      ///是否开启控制结束加载
       controller: _controller,
       header: widget.enableRefresh ? ClassicalHeader() : null,
       footer: widget.enableLoad ? ClassicalFooter() : null,
-      onRefresh: widget.enableRefresh ? () async {
-          if(widget.onRefresh != null){
-            List<dynamic> list = await widget.onRefresh();
-            if(list.isNotEmpty) {
-              setState(() {
-                _count = list.length;
-              });
-            }
+      emptyWidget: _count == 0 ? Center(child: Text("空")) : null,
+      onRefresh: widget.enableRefresh
+          ? () async {
+              if (widget.onRefresh != null) {
+                List<dynamic> refreshItems = await widget.onRefresh();
+                if (refreshItems.isNotEmpty) {
+                  setState(() {
+                    _count = refreshItems.length;
+                    _items.clear();
+                    _items.addAll(refreshItems);
+                  });
+                }
 //            if (!_enableControlFinish) {
-              _controller.resetLoadState();
-              _controller.finishRefresh();
-//            }
-          }
-      } : null,
-      onLoad: widget.enableLoad ? () async {
-        List<dynamic> list = await widget.onLoad();
-        if(list.isNotEmpty) {
-          setState(() {
-            _count = _count + list.length;
-          });
-        }
+//                _controller.resetLoadState();
+//                _controller.finishRefresh();
+//            }，
+              }
+            }
+          : null,
+      onLoad: widget.enableLoad
+          ? () async {
+              List<dynamic> loadItems = await widget.onLoad();
+              if (loadItems.isNotEmpty) {
+                setState(() {
+                  _count = _count + loadItems.length;
+                  _items.addAll(loadItems);
+                });
+              }
 //        if (!_enableControlFinish) {
 //          _controller.finishLoad(noMore: _count >= 80);
 //        }
-      } : null,
+            }
+          : null,
       slivers: <Widget>[
         SliverList(
           delegate: SliverChildBuilderDelegate(
-                (context, index) {
-              return widget.onBuildListItem();
+            (context, index) {
+              return widget.onBuildListItem(
+                  index, _items.isNotEmpty ? _items[index] : null);
             },
             childCount: _count,
           ),
         ),
       ],
     );
+  }
+
+  _buildEmptyWidget() {
+    return Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+          Image(
+        ]);
   }
 }
