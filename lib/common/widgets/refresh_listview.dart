@@ -43,35 +43,39 @@ class _RefreshListViewState extends State<RefreshListView> {
       controller: _controller,
       header: widget.enableRefresh ? ClassicalHeader() : null,
       footer: widget.enableLoad ? ClassicalFooter() : null,
-      onRefresh: widget.enableRefresh ? () async {
-          if(widget.onRefresh != null){
-            List<dynamic> list = await widget.onRefresh();
-            if(list.isNotEmpty) {
-              setState(() {
-                _count = list.length;
-              });
-            }
+      onRefresh: widget.enableRefresh
+          ? () async {
+              if (widget.onRefresh != null) {
+                List<dynamic> list = await widget.onRefresh();
+                if (list.isNotEmpty) {
+                  setState(() {
+                    _count = list.length;
+                  });
+                }
 //            if (!_enableControlFinish) {
-              _controller.resetLoadState();
-              _controller.finishRefresh();
+                _controller.resetLoadState();
+                _controller.finishRefresh();
 //            }
-          }
-      } : null,
-      onLoad: widget.enableLoad ? () async {
-        List<dynamic> list = await widget.onLoad();
-        if(list.isNotEmpty) {
-          setState(() {
-            _count = _count + list.length;
-          });
-        }
+              }
+            }
+          : null,
+      onLoad: widget.enableLoad
+          ? () async {
+              List<dynamic> list = await widget.onLoad();
+              if (list.isNotEmpty) {
+                setState(() {
+                  _count = _count + list.length;
+                });
+              }
 //        if (!_enableControlFinish) {
 //          _controller.finishLoad(noMore: _count >= 80);
 //        }
-      } : null,
+            }
+          : null,
       slivers: <Widget>[
         SliverList(
           delegate: SliverChildBuilderDelegate(
-                (context, index) {
+            (context, index) {
               return widget.onBuildListItem();
             },
             childCount: _count,

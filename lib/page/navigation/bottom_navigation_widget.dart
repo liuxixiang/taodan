@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
+import 'package:taodan/model/bottom_nav_view_data.dart';
 import 'package:taodan/page/navigation/bottom_navigation_viewmodel.dart';
 import 'package:taodan/page/home/home_page.dart';
 import 'package:taodan/page/home/meassage_page.dart';
@@ -14,40 +15,33 @@ class BottomNavigationWidget extends StatefulWidget {
 }
 
 class BottomNavigationWidgetState extends State<BottomNavigationWidget> {
-  List<Widget> list = List();
-  List<String> names = List();
-  List<String> images = List();
-
+  List<BottomNavViewData> datas = List();
   @override
   void initState() {
-    list
-      ..add(HomeScreen())
-      ..add(WheelDrawSence())
-      ..add(RewardSence())
-      ..add(MessageSence())
-      ..add(MineSence());
-    names..add("首页")..add("转盘")..add("收益")..add("消息")..add("我的");
-    images
-      ..add("index_icon")
-      ..add("wheel_draw_icon")
-      ..add("reward_icon")
-      ..add("message_icon")
-      ..add("mine_icon");
-
+    datas
+      ..add(BottomNavViewData(HomeScreen(), "首页", "index_icon"))
+      ..add(BottomNavViewData(WheelDrawSence(), "转盘", "wheel_draw_icon"))
+      ..add(BottomNavViewData(RewardSence(), "收益", "reward_icon"))
+      ..add(BottomNavViewData(MessageSence(), "消息", "message_icon"))
+      ..add(BottomNavViewData(MineSence(), "我的", "mine_icon"));
     super.initState();
   }
 
   List<BottomNavigationBarItem> getItems(int currentIndex) {
     List<BottomNavigationBarItem> bottomNavigationBarItems = [];
-    for (int i = 0; i < names.length; i++) {
+    for (int i = 0; i < datas.length; i++) {
       bottomNavigationBarItems.add(new BottomNavigationBarItem(
           icon: currentIndex == i
-              ? Image.asset(
-                  AssetsUtil.IMAGE_PATH + "bottomnav/" + images[i] + "_sel.png")
-              : Image.asset(
-                  AssetsUtil.IMAGE_PATH + "bottomnav/" + images[i] + "_un.png"),
+              ? Image.asset(AssetsUtil.IMAGE_PATH +
+                  "bottomnav/" +
+                  datas[i].url +
+                  "_sel.png")
+              : Image.asset(AssetsUtil.IMAGE_PATH +
+                  "bottomnav/" +
+                  datas[i].url +
+                  "_un.png"),
           title: new Text(
-            names[i],
+            datas[i].name,
           )));
     }
     return bottomNavigationBarItems;
@@ -58,7 +52,7 @@ class BottomNavigationWidgetState extends State<BottomNavigationWidget> {
     return ViewModelBuilder<BottomNavigationViewModel>.reactive(
       viewModelBuilder: () => BottomNavigationViewModel(),
       builder: (context, model, child) => Scaffold(
-        body: list[model.currentIndex],
+        body: datas[model.currentIndex].widget,
         bottomNavigationBar: BottomNavigationBar(
           items: getItems(model.currentIndex),
           currentIndex: model.currentIndex,
