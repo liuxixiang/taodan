@@ -19,6 +19,7 @@ class RefreshListView extends StatefulWidget {
     this.enableRefresh = true,
     this.enableLoad = false,
     this.emptyWidget,
+    this.wantKeepAlive = true,
   }) : super(key: key);
 
   final RefreshCallback onRefresh;
@@ -27,12 +28,14 @@ class RefreshListView extends StatefulWidget {
   final bool enableLoad;
   final bool enableRefresh;
   final Widget emptyWidget;
+  final bool wantKeepAlive;
 
   @override
   _RefreshListViewState createState() => _RefreshListViewState();
 }
 
-class _RefreshListViewState extends State<RefreshListView> {
+class _RefreshListViewState extends State<RefreshListView>
+    with AutomaticKeepAliveClientMixin<RefreshListView> {
   EasyRefreshController _controller;
   List<dynamic> _items = [];
 
@@ -118,4 +121,8 @@ class _RefreshListViewState extends State<RefreshListView> {
           ]),
     );
   }
+
+  @override
+  // TODO: implement wantKeepAlive
+  bool get wantKeepAlive => widget.wantKeepAlive;
 }
