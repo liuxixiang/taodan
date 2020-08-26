@@ -37,7 +37,6 @@ class _State extends State<HomeScreen> {
     top: YYScreenUtil.setHeight(300.5),
     child: Image.asset(
       AssetsUtil.IMAGE_PATH + "index/index_chicken.png",
-      height: YYScreenUtil.setHeight(130),
     ),
   );
   Widget feeder = Positioned(
