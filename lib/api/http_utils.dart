@@ -171,15 +171,16 @@ class HttpUtils {
       queryParameters: queryParameters,
       options: options,
       cancelToken: cancelToken,
-    ))..asBroadcastStream().listen((result) {
-      _responseResult(result, onSuccess, onError, isShowError);
-    }, onError: (dynamic e) {
-      _responseError(url, e, isShowError, onError);
-    }, onDone: () {
-      if (onComplete != null) {
-        onComplete();
-      }
-    });
+    ))
+      ..asBroadcastStream().listen((result) {
+        _responseResult(result, onSuccess, onError, isShowError);
+      }, onError: (dynamic e) {
+        _responseError(url, e, isShowError, onError);
+      }, onDone: () {
+        if (onComplete != null) {
+          onComplete();
+        }
+      });
   }
 
   ///网络请求
@@ -217,7 +218,7 @@ class HttpUtils {
       code = ExceptionHandle.unknown_error;
       msg = '未知异常';
     }
-    LogUtil.e('接口请求异常： code: $code, mag: $msg');
+    LogUtil.e('接口请求异常： code: $code, msg: $msg');
     if (onError != null) {
       onError(code, msg, t);
     }

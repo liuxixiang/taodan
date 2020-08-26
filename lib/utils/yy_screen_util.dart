@@ -1,6 +1,6 @@
 import 'dart:ui';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_screenutil/screenutil.dart';
+// import 'package:flutter_screenutil/screenutil.dart';
 
 class YYScreenUtil {
   static init({
