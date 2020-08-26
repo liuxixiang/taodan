@@ -15,6 +15,6 @@ class NavigatorUtil {
 
   ///我的饲养员界面
   static void goMyBreeder(BuildContext context) {
-    Application.router.navigateTo(context, Routes.myBreeder, replace: false);
+    Application.router.navigateTo(context, Routes.myBreeder, replace: true);
   }
 }
