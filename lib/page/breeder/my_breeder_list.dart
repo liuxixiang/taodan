@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
 import 'package:taodan/common/config/tab_name.dart';
 import 'package:taodan/common/values/colors.dart';
 import 'package:taodan/common/values/dimens.dart';
@@ -56,7 +57,7 @@ class _MyBreederListState extends State<MyBreederList> {
       case TabName.tabEmploy:
         return _buildEmploy();
       case TabName.tabEmploying:
-        return Center(child: Icon(Icons.add));
+        return _buildEmploying();
       case TabName.tabEmployed:
         return Center(child: Text(item ?? ""));
     }
@@ -64,28 +65,33 @@ class _MyBreederListState extends State<MyBreederList> {
 
   ///基础产量信息
   _buildProductionTitle() {
-    return Row(
-      mainAxisSize: MainAxisSize.max,
-      children: [
-        Image.asset(AssetsUtil.common_path + "ic_wing.png"),
-        Expanded(
-          child: Text('基础产量：0.3元宝/日'),
-        ),
-        Container(
-          height: 25.h,
-          child: OutlineButton(
-            borderSide:
-                BorderSide(color: AppColors.yellow, width: AppDimens.dpDefLine),
-            disabledBorderColor: AppColors.yellow,
-            highlightedBorderColor: AppColors.yellow,
-            child: Text(
-              '详细说明',
-              style: AppStyles.textSize13_yellow,
-            ),
-            onPressed: () {},
+    return Container(
+      padding: EdgeInsetsDirectional.only(
+          top: AppDimens.dpDefPadding, bottom: AppDimens.dpDefPadding),
+      child: Row(
+        mainAxisSize: MainAxisSize.max,
+        children: [
+          Image.asset(AssetsUtil.common_path + "ic_wing.png"),
+          SizedBox(width: 9.w),
+          Expanded(
+            child: Text('基础产量：0.3元宝/日'),
           ),
-        )
-      ],
+          Container(
+            height: 25.h,
+            child: OutlineButton(
+              borderSide: BorderSide(
+                  color: AppColors.yellow, width: AppDimens.dpDefLine),
+              disabledBorderColor: AppColors.yellow,
+              highlightedBorderColor: AppColors.yellow,
+              child: Text(
+                '详细说明',
+                style: AppStyles.textSize13_yellow,
+              ),
+              onPressed: () {},
+            ),
+          )
+        ],
+      ),
     );
   }
 
@@ -150,7 +156,37 @@ class _MyBreederListState extends State<MyBreederList> {
     );
   }
 
-  _buildEmploying() {}
+  _buildEmploying() {
+     double _rightW = 83.w;
+    return Stack(
+      alignment: AlignmentDirectional.center, //对齐方式,9个位置.
+      // fit: StackFit.expand, //未定位widget占满Stack整个空间
+      children: [
+        Image.asset(
+          AssetsUtil.breeder_path + 'bg_breeder_level.png',
+          fit: BoxFit.cover,
+        ),
+        Positioned(
+          left: 93.5.w,
+          right: AppDimens.dpDefPadding,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text('新手饲养员', style: AppStyles.textSize15_white),
+              SizedBox(height: 5.h),
+              Text('预计产出金元宝：12个', style: AppStyles.textSize12_white),
+              SizedBox(height: 3.h),
+              Text('基础产量：+0.3金元宝/日', style: AppStyles.textSize12_white),
+              SizedBox(height: 3.h),
+              Text('有效期：2020/08/31-2020/10/10', style: AppStyles.textSize12_white),
+              SizedBox(height: 3.h),
+              Text('已产出金元宝：0.282个', style: AppStyles.textSize12_white),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
 
   _buildEmployed() {}
 
