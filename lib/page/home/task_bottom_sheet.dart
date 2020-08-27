@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:taodan/utils/assets_util.dart';
 
 class TaskBottomSheet extends StatefulWidget {
   @override
@@ -18,7 +19,10 @@ class _TaskBottomSheetState extends State<TaskBottomSheet> {
         child: Column(
           children: [
             Row(
-              children: [Text("领取饲料")],
+              children: [
+                Text("领取饲料"),
+                Image.asset(AssetsUtil.common_path + "close_icon")
+              ],
             ),
             SizedBox(
               height: max(items.length * 100, 300).toDouble(),
