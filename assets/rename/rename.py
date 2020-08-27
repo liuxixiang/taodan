@@ -3,8 +3,8 @@
 import os  
 # from pathlib2 import Path
 
-newName = "ic_breeder_employ"
-moudle_name = "breeder"
+newName = "ic_wing"
+moudle_name = "common"
 def findImage(file_dir):
    path = file_dir
    parent = os.path.abspath(os.path.join(os.getcwd(), ".."))
