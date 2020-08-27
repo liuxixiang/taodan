@@ -84,6 +84,7 @@ flutter:
     - assets/images/index/
     - assets/images/bottomnav/
     - assets/images/common/
+    - assets/images/breeder/
   # To add custom fonts to your application, add a fonts section here,
   # in this "flutter" section. Each entry in this list should have a
   # "family" key with the font family name, and a "fonts" key with a

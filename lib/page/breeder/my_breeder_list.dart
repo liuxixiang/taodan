@@ -76,23 +76,50 @@ class _MyBreederListState extends State<MyBreederList> {
 
   _buildEmploy() {
     return Stack(
+      alignment: AlignmentDirectional.center, //对齐方式,9个位置.
       // fit: StackFit.expand, //未定位widget占满Stack整个空间
       children: [
         Image.asset(
           AssetsUtil.breeder_path + 'bg_breeder_level.png',
-          width: 375.w,
           fit: BoxFit.cover,
         ),
         Positioned(
+          left: 93.5.w,
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text('新手饲养员', style: AppStyles.textSize15_white),
-              // Text('预计产出金元宝：12个', style: AppStyles.textSize12_white),
-              // Text('基础产量：+0.3金元宝/日', style: AppStyles.textSize12_white),
-              // Text('雇佣价格：0金元宝', style: AppStyles.textSize12_white)
+              Text('预计产出金元宝：12个', style: AppStyles.textSize12_white),
+              Row(
+                // mainAxisAlignment:MainAxisAlignment.spaceBetween ,
+                children: [
+                  Text('基础产量：+0.3金元宝/日', style: AppStyles.textSize12_white),
+
+                  Text('雇佣人数：0/8', style: AppStyles.textSize12_white),
+                ],
+              ),
+              Row(
+                children: [
+
+                  Text('雇佣价格：0金元宝', style: AppStyles.textSize12_white),
+                  Text('有效期：40天', style: AppStyles.textSize12_white)
+                ],
+              ),
             ],
           ),
-        )
+        ),
+        Positioned(
+          right: 14.5.w,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              Image.asset(
+                AssetsUtil.breeder_path + 'bg_breeder_employ.png',
+              ),
+
+            ],
+          ),
+        ),
       ],
     );
   }
