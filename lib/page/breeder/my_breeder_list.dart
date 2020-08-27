@@ -4,6 +4,7 @@ import 'package:taodan/common/config/tab_name.dart';
 import 'package:taodan/common/values/styles.dart';
 import 'package:taodan/common/widgets/refresh_listview.dart';
 import 'package:taodan/utils/assets_util.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class MyBreederList extends StatefulWidget {
   String _tabName;
@@ -75,11 +76,17 @@ class _MyBreederListState extends State<MyBreederList> {
 
   _buildEmploy() {
     return Stack(
+      // fit: StackFit.expand, //未定位widget占满Stack整个空间
       children: [
+        Image.asset(
+          AssetsUtil.breeder_path + 'bg_breeder_level.png',
+          width: 375.w,
+          fit: BoxFit.cover,
+        ),
         Positioned(
           child: Column(
             children: [
-              Text('新手饲养员',style: AppStyles.textSize16_99),
+              Text('新手饲养员', style: AppStyles.textSize15_white),
               // Text('预计产出金元宝：12个', style: AppStyles.textSize12_white),
               // Text('基础产量：+0.3金元宝/日', style: AppStyles.textSize12_white),
               // Text('雇佣价格：0金元宝', style: AppStyles.textSize12_white)

@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-   
   
 import os  
-newName = "no_data"
-moudle_name = "common"
+newName = "bg_breeder_level"
+moudle_name = "breeder"
 def renameImage(file_dir):   
    path = file_dir
    parent = os.path.abspath(os.path.join(os.getcwd(), ".."))
