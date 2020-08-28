@@ -4,20 +4,20 @@ import os
 # from pathlib2 import Path
 
 newName = "ic_overdue"
-moudle_name = "breeder"
+moudle_name = "test"
 def findImage(file_dir):
-   path = file_dir
-   parent = os.path.abspath(os.path.join(os.getcwd(), ".."))
+   parentPath = os.path.abspath(os.path.join(os.path.abspath(__file__), "../../assets"))
+   currentParent = os.path.abspath(os.path.join(os.path.abspath(__file__), "../"))
    fileCount = 0
    fileName = ""
-   for file in os.listdir(file_dir):
+   for file in os.listdir(currentParent):
       if(file.endswith("png") and not(file.__contains__("@"))):
          fileName = file.split(".")[0]
          fileCount = fileCount+1
    if fileCount==0:
       print("没图片换个j8")
    elif fileCount==1:
-      renameImage(path,parent,fileName)
+      renameImage(currentParent,parentPath,fileName)
    elif fileCount==2:
       print("一次只能替换一套图片")
 
@@ -37,11 +37,11 @@ def renameImage(path,parent,fileName):
       os.rename(path+"/"+fileName+"@2x.png",path2x+newName+".png")
       os.rename(path+"/"+fileName+"@3x.png",path3x+newName+".png")
       print("替换成功")
-      callCreate()
+      callCreate(path)
 
 
-def callCreate():
-   os.system("python create.py") 
+def callCreate(path):
+   os.system("python {0}/create.py".format(path)) 
 
-findImage(os.getcwd())
+findImage(os.path.abspath(__file__))
 
