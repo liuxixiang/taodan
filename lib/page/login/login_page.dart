@@ -27,7 +27,7 @@ class _LoginPageState extends State<LoginPage> {
       padding: EdgeInsets.only(top: YYScreenUtil.setHeight(70.5)),
       child: new Center(
         child: new Image.asset(
-          AssetsUtil.IMAGE_PATH + "login/logo.png",
+          AssetsUtil.login.logo,
           width: YYScreenUtil.setWidth(90),
         ),
       ),
@@ -89,7 +89,7 @@ class _LoginPageState extends State<LoginPage> {
     Widget bottomArea = new Expanded(
         child: new Container(
       child: new Image.asset(
-        AssetsUtil.IMAGE_PATH + "login/bottom.png",
+        AssetsUtil.login.bottom,
         width: YYScreenUtil.setWidth(375),
       ),
       alignment: AlignmentDirectional.bottomEnd,

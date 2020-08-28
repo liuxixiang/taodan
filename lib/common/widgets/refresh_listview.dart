@@ -116,7 +116,7 @@ class _RefreshListViewState extends State<RefreshListView>
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             Image.asset(
-              AssetsUtil.IMAGE_PATH + "common/no_data.png",
+              AssetsUtil.common.no_data,
             ),
             Text(AppStrings.noData, style: AppStyles.textSize16_99)
           ]),

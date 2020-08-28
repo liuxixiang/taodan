@@ -71,7 +71,7 @@ class _MyBreederListState extends State<MyBreederList> {
       child: Row(
         mainAxisSize: MainAxisSize.max,
         children: [
-          Image.asset(AssetsUtil.common_path + "ic_wing.png"),
+          Image.asset(AssetsUtil.common.ic_wing),
           SizedBox(width: 9.w),
           Expanded(
             child: Text('基础产量：0.3元宝/日'),
@@ -102,7 +102,7 @@ class _MyBreederListState extends State<MyBreederList> {
       // fit: StackFit.expand, //未定位widget占满Stack整个空间
       children: [
         Image.asset(
-          AssetsUtil.breeder_path + 'bg_breeder_level.png',
+          AssetsUtil.breeder.bg_breeder_level,
           fit: BoxFit.cover,
         ),
         Positioned(
@@ -147,7 +147,7 @@ class _MyBreederListState extends State<MyBreederList> {
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               Image.asset(
-                AssetsUtil.breeder_path + 'ic_breeder_employ.png',
+                AssetsUtil.breeder.ic_breeder_employ,
               ),
             ],
           ),
@@ -157,13 +157,13 @@ class _MyBreederListState extends State<MyBreederList> {
   }
 
   _buildEmploying() {
-     double _rightW = 83.w;
+    double _rightW = 83.w;
     return Stack(
       alignment: AlignmentDirectional.center, //对齐方式,9个位置.
       // fit: StackFit.expand, //未定位widget占满Stack整个空间
       children: [
         Image.asset(
-          AssetsUtil.breeder_path + 'bg_breeder_level.png',
+          AssetsUtil.breeder.bg_breeder_level,
           fit: BoxFit.cover,
         ),
         Positioned(
@@ -178,7 +178,8 @@ class _MyBreederListState extends State<MyBreederList> {
               SizedBox(height: 3.h),
               Text('基础产量：+0.3金元宝/日', style: AppStyles.textSize12_white),
               SizedBox(height: 3.h),
-              Text('有效期：2020/08/31-2020/10/10', style: AppStyles.textSize12_white),
+              Text('有效期：2020/08/31-2020/10/10',
+                  style: AppStyles.textSize12_white),
               SizedBox(height: 3.h),
               Text('已产出金元宝：0.282个', style: AppStyles.textSize12_white),
             ],
@@ -194,15 +195,14 @@ class _MyBreederListState extends State<MyBreederList> {
       // fit: StackFit.expand, //未定位widget占满Stack整个空间
       children: [
         Image.asset(
-          AssetsUtil.breeder_path + 'bg_breeder_level.png',
+          AssetsUtil.breeder.bg_breeder_level,
           fit: BoxFit.cover,
         ),
-
         Positioned(
           bottom: 12.5.w,
           right: AppDimens.dpSmallPadding,
           child: Image.asset(
-            AssetsUtil.breeder_path + 'ic_overdue.png',
+            AssetsUtil.breeder.ic_overdue,
             fit: BoxFit.cover,
           ),
         ),
@@ -218,14 +218,14 @@ class _MyBreederListState extends State<MyBreederList> {
               SizedBox(height: 3.h),
               Text('基础产量：+0.3金元宝/日', style: AppStyles.textSize12_white),
               SizedBox(height: 3.h),
-              Text('有效期：2020/08/31-2020/10/10', style: AppStyles.textSize12_white),
+              Text('有效期：2020/08/31-2020/10/10',
+                  style: AppStyles.textSize12_white),
               SizedBox(height: 3.h),
               Text('已产出金元宝：0.282个', style: AppStyles.textSize12_white),
             ],
           ),
         ),
       ],
-
     );
   }
 

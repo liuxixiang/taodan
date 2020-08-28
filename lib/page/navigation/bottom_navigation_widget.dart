@@ -32,14 +32,10 @@ class BottomNavigationWidgetState extends State<BottomNavigationWidget> {
     for (int i = 0; i < datas.length; i++) {
       bottomNavigationBarItems.add(new BottomNavigationBarItem(
           icon: currentIndex == i
-              ? Image.asset(AssetsUtil.IMAGE_PATH +
-                  "bottomnav/" +
-                  datas[i].url +
-                  "_sel.png")
-              : Image.asset(AssetsUtil.IMAGE_PATH +
-                  "bottomnav/" +
-                  datas[i].url +
-                  "_un.png"),
+              ? Image.asset(
+                  AssetsUtil.bottomnav.path + datas[i].url + "_sel.png")
+              : Image.asset(
+                  AssetsUtil.bottomnav.path + datas[i].url + "_un.png"),
           title: new Text(
             datas[i].name,
           )));
