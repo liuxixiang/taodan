@@ -45,29 +45,27 @@ class _State extends State<HomeScreen> {
         onTap: () {
           _clickBottomImage(context, i);
         },
-        child: Image.asset(AssetsUtil.index_path + imgs[i] + ".png"),
+        child: Image.asset(Index.index_path + imgs[i] + ".png"),
       ));
     }
     super.initState();
   }
 
   Widget bg = Image.asset(
-    AssetsUtil.IMAGE_PATH + "index/index_bg.png",
+    AssetsUtil.index.index_bg,
     width: 375.w,
     fit: BoxFit.cover,
   );
   Widget chicken = Positioned(
     left: 29.w,
     top: 300.5.h,
-    child: Image.asset(
-      AssetsUtil.IMAGE_PATH + "index/index_chicken.png",
-    ),
+    child: Image.asset(AssetsUtil.index.index_chicken),
   );
   Widget feeder = Positioned(
     right: 57.w,
     top: 279.h,
     child: Image.asset(
-      AssetsUtil.IMAGE_PATH + "index/people.png",
+      AssetsUtil.index.people,
       height: 120.h,
     ),
   );
@@ -77,7 +75,7 @@ class _State extends State<HomeScreen> {
     child: Column(
       children: [
         Image.asset(
-          AssetsUtil.IMAGE_PATH + "index/egg.png",
+          AssetsUtil.index.egg,
           height: 56.h,
         ),
         ProgressWidget(80),
@@ -90,7 +88,7 @@ class _State extends State<HomeScreen> {
       child: Column(
         children: [
           Image.asset(
-            AssetsUtil.IMAGE_PATH + "index/gold_egg.png",
+            AssetsUtil.index.gold_egg,
             height: 56.h,
           ),
           ProgressWidget(80),
@@ -143,7 +141,7 @@ class _State extends State<HomeScreen> {
             ),
           ),
           Image.asset(
-            AssetsUtil.index_path + "head_icon.png",
+            AssetsUtil.index.head_icon,
             width: 35.w,
             height: 35.w,
           ),
@@ -168,7 +166,7 @@ class _State extends State<HomeScreen> {
           Stack(
             alignment: Alignment.center,
             children: [
-              Image.asset(AssetsUtil.index_path + "user_level.png"),
+              Image.asset(AssetsUtil.index.user_level),
               Text(
                 "1",
                 style: TextStyle(

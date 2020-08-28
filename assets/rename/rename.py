@@ -37,6 +37,11 @@ def renameImage(path,parent,fileName):
       os.rename(path+"/"+fileName+"@2x.png",path2x+newName+".png")
       os.rename(path+"/"+fileName+"@3x.png",path3x+newName+".png")
       print("替换成功")
+      callCreate()
+
+
+def callCreate():
+   os.system("python create.py") 
 
 findImage(os.getcwd())
 
