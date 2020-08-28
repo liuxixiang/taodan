@@ -59,7 +59,7 @@ class _MyBreederListState extends State<MyBreederList> {
       case TabName.tabEmploying:
         return _buildEmploying();
       case TabName.tabEmployed:
-        return Center(child: Text(item ?? ""));
+        return _buildEmployed();
     }
   }
 
@@ -188,7 +188,46 @@ class _MyBreederListState extends State<MyBreederList> {
     );
   }
 
-  _buildEmployed() {}
+  _buildEmployed() {
+    return Stack(
+      alignment: AlignmentDirectional.center, //对齐方式,9个位置.
+      // fit: StackFit.expand, //未定位widget占满Stack整个空间
+      children: [
+        Image.asset(
+          AssetsUtil.breeder_path + 'bg_breeder_level.png',
+          fit: BoxFit.cover,
+        ),
+
+        Positioned(
+          bottom: 12.5.w,
+          right: AppDimens.dpSmallPadding,
+          child: Image.asset(
+            AssetsUtil.breeder_path + 'ic_overdue.png',
+            fit: BoxFit.cover,
+          ),
+        ),
+        Positioned(
+          left: 93.5.w,
+          right: AppDimens.dpDefPadding,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text('新手饲养员', style: AppStyles.textSize15_white),
+              SizedBox(height: 5.h),
+              Text('预计产出金元宝：12个', style: AppStyles.textSize12_white),
+              SizedBox(height: 3.h),
+              Text('基础产量：+0.3金元宝/日', style: AppStyles.textSize12_white),
+              SizedBox(height: 3.h),
+              Text('有效期：2020/08/31-2020/10/10', style: AppStyles.textSize12_white),
+              SizedBox(height: 3.h),
+              Text('已产出金元宝：0.282个', style: AppStyles.textSize12_white),
+            ],
+          ),
+        ),
+      ],
+
+    );
+  }
 
   List<dynamic> _getList() {
     return ['hahah', 'heheh'];

@@ -10,6 +10,7 @@ class AppDimens {
   static double font_sp18 = 18.0.sp;
 
   static  double dpDefPadding = 14.5.w;
+  static  double dpSmallPadding = 8.w;
   static  double dpDefListMargin = 12.h;
   static  double dpDefLine = 1.w;
 
