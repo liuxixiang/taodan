@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:taodan/page/sign/sign_dialog.dart';
 import 'package:taodan/router/navigator_util.dart';
 
 class MineSence extends StatefulWidget {
@@ -17,9 +18,18 @@ class _State extends State<MineSence> {
       child: RaisedButton(
         child: Text("normal"),
         onPressed: () {
-          NavigatorUtil.goMyBreeder(context);
+          _showSignDialog();
         },
       )
     );
+  }
+
+  _showSignDialog() {
+    //Future类型,then或者await获取
+    showDialog(
+        context: context,
+        builder: (context) {
+          return SignDialog();
+        });
   }
 }

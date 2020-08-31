@@ -1,26 +1,44 @@
 import 'package:bloom_ad/banner_ad_view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:taodan/common/values/dimens.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 abstract class AdDialog extends Dialog {
+  double width;
+
+  AdDialog({Key key, double width = AppDimens.dpDialogWidth})
+      : width = width.w,
+        super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return new Material(
+    return Material(
         type: MaterialType.transparency,
         child: Container(
+          //卡片大小
           child: Column(
-            children: [buildDialogContent(), _buildAdBanner()],
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                width: width,
+                child: buildDialogContent(),
+              ),
+              SizedBox(
+                height: 8.h,
+              ),
+              _buildAdBanner()],
           ),
         ));
   }
 
-  buildDialogContent();
+  Widget buildDialogContent();
 
   _buildAdBanner() {
-    BannerAdView(
+    return BannerAdView(
       unitId: "b1",
-      width: 300,
-      height: 300 / 6.4,
+      width: width,
+      height: width / 6.4,
       onAdLoad: (String id) {
         print("BannerAd onAdLoad");
       },
