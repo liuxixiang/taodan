@@ -4,10 +4,11 @@ import 'package:taodan/router/router_handler.dart';
 
 class Routes {
   static Router router;
-  static String root = '/'; // 根目录
-  static String login = '/login'; // 登录
-  static String home = '/home'; // 首页
-  static String myBreeder = '/myBreeder'; // 我的饲养员
+  static const String root = '/'; // 根目录
+  static const String login = '/login'; // 登录
+  static const String home = '/home'; // 首页
+  static const String myBreeder = '/myBreeder'; // 我的饲养员
+  static const String sign = '/sign'; // 我的饲养员
 
   // 配置route
   static void configureRoutes(Router router) {
@@ -22,5 +23,6 @@ class Routes {
     router.define(login, handler: RouterHandler().loginHandler); //  登录
     router.define(home, handler: RouterHandler().homeHandler); //  首页
     router.define(myBreeder, handler: RouterHandler().myBreederHandler); //我的饲养员
+    router.define(sign, handler: RouterHandler().signHandler); //我的饲养员
   }
 }

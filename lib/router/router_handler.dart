@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:taodan/page/breeder/my_breeder_page.dart';
 import 'package:taodan/page/main/main_page.dart';
 import 'package:taodan/page/login/login_page.dart';
+import 'package:taodan/page/sign/sign_page.dart';
 import 'package:taodan/page/splash/splash_page.dart';
 
 class RouterHandler {
@@ -23,6 +24,10 @@ class RouterHandler {
 
   var myBreederHandler = new Handler(
       handlerFunc: (BuildContext context, Map<String, List<String>> params) {
-        return MyBreederPage();
-      });
+    return MyBreederPage();
+  });
+  var signHandler = new Handler(
+      handlerFunc: (BuildContext context, Map<String, List<String>> params) {
+    return SignPage();
+  });
 }

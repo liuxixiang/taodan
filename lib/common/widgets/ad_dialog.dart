@@ -5,7 +5,7 @@ import 'package:taodan/common/values/dimens.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 abstract class AdDialog extends Dialog {
-  double width;
+  final double width;
 
   AdDialog({Key key, double width = AppDimens.dpDialogWidth})
       : width = width.w,

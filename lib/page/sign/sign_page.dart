@@ -22,10 +22,14 @@ class _SignPageState extends State<SignPage> {
 
   _showSignDialog() {
     //Future类型,then或者await获取
-    showDialog(
-        context: context,
-        builder: (context) {
-          return SignDialog();
-        });
+    Future.delayed(Duration.zero, () {
+      showDialog(
+          context: context,
+          builder: (context) {
+            return SignDialog();
+          });
+    });
+
+
   }
 }

@@ -1,6 +1,9 @@
+import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
+import 'package:taodan/page/sign/sign_page.dart';
 import 'package:taodan/router/application.dart';
 import 'package:taodan/router/routes.dart';
+import 'package:taodan/utils/assets_util.dart';
 
 class NavigatorUtil {
   static void goLogin(BuildContext context) {
@@ -16,5 +19,10 @@ class NavigatorUtil {
   ///我的饲养员界面
   static void goMyBreeder(BuildContext context) {
     Application.router.navigateTo(context, Routes.myBreeder, replace: false);
+  }
+
+  //签到
+  static void goSign(BuildContext context) {
+    Application.router.navigateTo(context, Routes.sign, replace: false);
   }
 }
