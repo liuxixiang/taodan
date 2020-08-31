@@ -32,19 +32,21 @@ public class SplashActivity extends Activity {
 
         mContainer = findViewById(R.id.container);
 
-        // 检查、申请必要权限
-        if (checkAndRequestPermission()) {
-            loadSplashAd();
-        }
+//        // 检查、申请必要权限
+//        if (checkAndRequestPermission()) {
+//            loadSplashAd();
+//        }
+
+        next();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        if (mPaused) {
-            next();
-        }
-        mPaused = false;
+//        if (mPaused) {
+//            next();
+//        }
+//        mPaused = false;
     }
 
     @Override
