@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical">
+
+    <!--【非常重要】container 高度一定要大于屏幕高度的75%，否则会影响计费 -->
+    <FrameLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/app_logo" />
+
+    <FrameLayout
+        android:id="@+id/app_logo"
+        android:layout_width="match_parent"
+        android:layout_height="84dp"
+        android:layout_alignParentBottom="true">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@mipmap/logo" />
+
+    </FrameLayout>
+
+</RelativeLayout>

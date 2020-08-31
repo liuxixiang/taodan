@@ -29,6 +29,13 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "2.4.2"
+  bloom_ad:
+    dependency: "direct main"
+    description:
+      name: bloom_ad
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "1.0.2"
   boolean_selector:
     dependency: transitive
     description:
