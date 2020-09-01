@@ -1,5 +1,6 @@
 //不要修改这个类,这个类由create.py自动生成。。。
 class AssetsUtil {
+ static const Test test = Test();
  static const Dialog dialog = Dialog();
  static const Common common = Common();
  static const Index index = Index();
@@ -8,6 +9,14 @@ class AssetsUtil {
  static const Login login = Login();
  static const Bottomnav bottomnav = Bottomnav();
 }
+class Test {
+   const Test();
+   static const String test_path = "assets/images/" + "test/";
+   final String path = "assets/images/" + "test/";
+  final String test = test_path +"test.png";
+}
+
+
 class Dialog {
    const Dialog();
    static const String dialog_path = "assets/images/" + "dialog/";
