@@ -12,8 +12,9 @@ class UserAPI {
       Method.post,
       ApiPath.LOGIN,
       params: {
-        'code': code,
-        'mobile': mobile,
+        'appId': "taodan",
+        'createdBy': code,
+        'loginNo': mobile,
         'loginType': 'mobile',
       },
       onSuccess: (code, msg, data) {
