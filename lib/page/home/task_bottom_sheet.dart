@@ -22,6 +22,7 @@ class _TaskBottomSheetState extends State<TaskBottomSheet> {
     return Container(
         width: 375.w,
         height: 600.h,
+        margin: EdgeInsets.symmetric(horizontal: 15.w),
         child: Column(
           children: [
             Row(
@@ -68,9 +69,34 @@ class _TaskBottomSheetState extends State<TaskBottomSheet> {
                             ),
                           ),
                           Positioned(
-                              child: ImageWidget(
-                                  url:
-                                      "https://image.baidu.com/search/detail?ct=503316480&z=&tn=baiduimagedetail&ipn=d&word=%E5%91%A8%E6%9D%B0%E4%BC%A6&step_word=&ie=utf-8&in=&cl=2&lm=-1&st=-1&hd=&latest=&copyright=&cs=1435330949,2933798089&os=2384184854,1357207506&simid=3402406913,36805649&pn=3&rn=1&di=51700&ln=3080&fr=&fmq=1598579989826_R&ic=&s=undefined&se=&sme=&tab=0&width=&height=&face=undefined&is=0,0&istype=2&ist=&jit=&bdtype=0&spn=0&pi=0&gsm=0&objurl=http%3A%2F%2Fdingyue.nosdn.127.net%2F%3DkRx2zL89xdudUFs3Io16PUSRXuS3aNY2N8iRv6dZz01p1520858048237compressflag.jpg&rpstart=0&rpnum=0&adpicid=0&force=undefined"))
+                              top: 17.5.h,
+                              left: 16.5.w,
+                              child: Image.asset(
+                                AssetsUtil.test.test,
+                                width: 55.w,
+                                height: 55.h,
+                              )),
+                          Positioned(
+                              top: 18.h,
+                              left: 88.5.w,
+                              width: 151.5.w,
+                              child: Text(
+                                "每日签到+1G～28G饲料 连续签到，奖励更多每日签到+1G～28G饲料 连续签到，奖励更多",
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 13.sp),
+                              )),
+                          Positioned(
+                              top: 60.h,
+                              left: 88.5.w,
+                              child: Text(
+                                "每天限1份",
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                                style: TextStyle(
+                                    color: Color(0xffFFEED3), fontSize: 12.sp),
+                              ))
                         ],
                       ),
                     );
