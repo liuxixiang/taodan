@@ -15,7 +15,7 @@ class UserAPI {
         'appId': "taodan",
         'createdBy': code,
         'loginNo': mobile,
-        'loginType': 'mobile',
+        'loginType': 'app',
       },
       onSuccess: (code, msg, data) {
         onNetSuccess.call(LoginEntity.fromJson(data));

@@ -24,6 +24,7 @@ class _SignPageState extends State<SignPage> {
     //Future类型,then或者await获取
     Future.delayed(Duration.zero, () {
       showDialog(
+          barrierDismissible: false, //   点击提示框外围不消失
           context: context,
           builder: (context) {
             return SignDialog();

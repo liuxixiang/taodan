@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:taodan/page/sign/sign_dialog.dart';
 import 'package:taodan/page/widgets/dialog/dialog_chicken_name.dart';
+import 'package:taodan/page/widgets/dialog/dialog_permissions.dart';
 import 'package:taodan/router/navigator_util.dart';
 
 class MineSence extends StatefulWidget {
@@ -32,7 +33,7 @@ class _State extends State<MineSence> {
     showDialog(
         context: context,
         builder: (context) {
-          return ChickenNameDialog();
+          return PermissionsDialog();
         });
   }
 }

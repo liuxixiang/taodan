@@ -14,6 +14,7 @@ class AppDimens {
   static double dpSmallPadding = 8.w;
   static double dpDefListMargin = 12.h;
   static double dpDefLine = 1.w;
+  static  double dpRadius = 23.0.w;
   static const double dpDialogWidth = 310;
 
   static double dp4 = 4.w;
