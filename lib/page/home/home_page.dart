@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:taodan/common/widgets/progress_widget.dart';
-import 'package:taodan/page/home/task_bottom_sheet.dart';
+import 'package:taodan/common/widgets/task_bottom_sheet.dart';
 import 'package:taodan/router/navigator_util.dart';
 import 'package:taodan/utils/assets_util.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -15,6 +15,7 @@ void _clickBottomImage(BuildContext context, int i) {
     case 0:
       showModalBottomSheet(
           context: context,
+          backgroundColor: Colors.transparent,
           builder: (BuildContext context) {
             return TaskBottomSheet();
           });

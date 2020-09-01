@@ -25,4 +25,8 @@ class NavigatorUtil {
   static void goSign(BuildContext context) {
     Application.router.navigateTo(context, Routes.sign, replace: false);
   }
+
+  static void goTaskWall(BuildContext context, String url) {
+    Application.router.navigateTo(context, url, replace: false);
+  }
 }

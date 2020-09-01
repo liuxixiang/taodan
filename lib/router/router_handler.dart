@@ -5,6 +5,7 @@ import 'package:taodan/page/main/main_page.dart';
 import 'package:taodan/page/login/login_page.dart';
 import 'package:taodan/page/sign/sign_page.dart';
 import 'package:taodan/page/splash/splash_page.dart';
+import 'package:taodan/page/task/task_wall.dart';
 
 class RouterHandler {
   var splashHandler = new Handler(
@@ -29,5 +30,10 @@ class RouterHandler {
   var signHandler = new Handler(
       handlerFunc: (BuildContext context, Map<String, List<String>> params) {
     return SignPage();
+  });
+
+  var taskWallHandler = new Handler(
+      handlerFunc: (BuildContext context, Map<String, List<String>> params) {
+    return TaskWallPage();
   });
 }

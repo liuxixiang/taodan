@@ -48,15 +48,14 @@ class BottomNavigationWidgetState extends State<BottomNavigationWidget> {
     return ViewModelBuilder<BottomNavigationViewModel>.reactive(
       viewModelBuilder: () => BottomNavigationViewModel(),
       builder: (context, model, child) => Scaffold(
-        body: datas[model.currentIndex].widget,
-        bottomNavigationBar: BottomNavigationBar(
-          items: getItems(model.currentIndex),
-          currentIndex: model.currentIndex,
-          onTap: model.setIndex,
-          fixedColor: Colors.amber[800],
-          type: BottomNavigationBarType.fixed,
-        ),
-      ),
+          body: datas[model.currentIndex].widget,
+          bottomNavigationBar: BottomNavigationBar(
+            items: getItems(model.currentIndex),
+            currentIndex: model.currentIndex,
+            onTap: model.setIndex,
+            fixedColor: Colors.amber[800],
+            type: BottomNavigationBarType.fixed,
+          )),
     );
   }
 }
