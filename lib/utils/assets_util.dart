@@ -1,5 +1,6 @@
 //不要修改这个类,这个类由create.py自动生成。。。
 class AssetsUtil {
+ static const Dialog dialog = Dialog();
  static const Common common = Common();
  static const Index index = Index();
  static const Breeder breeder = Breeder();
@@ -7,6 +8,14 @@ class AssetsUtil {
  static const Login login = Login();
  static const Bottomnav bottomnav = Bottomnav();
 }
+class Dialog {
+   const Dialog();
+   static const String dialog_path = "assets/images/" + "dialog/";
+   final String path = "assets/images/" + "dialog/";
+  final String bg_dialog_chicken_name = dialog_path +"bg_dialog_chicken_name.png";
+}
+
+
 class Common {
    const Common();
    static const String common_path = "assets/images/" + "common/";

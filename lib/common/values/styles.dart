@@ -18,4 +18,7 @@ class AppStyles {
       TextStyle(fontSize: AppDimens.font_sp13, color: AppColors.yellow);
   static TextStyle textSize21_yellow_light =
   TextStyle(fontSize: AppDimens.font_sp21, color: AppColors.yellow_light);
+
+  static TextStyle textSize15_yellow_black =
+  TextStyle(fontSize: AppDimens.font_sp15, color: Colors.black);
 }
