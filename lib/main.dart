@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:taodan/common/apis/api_path.dart';
 import 'package:taodan/router/application.dart';
 import 'package:taodan/router/routes.dart';
+import 'package:taodan/router/wendjia_router.dart';
 import 'package:taodan/utils/log_util.dart';
 import 'package:taodan/utils/yy_screen_util.dart';
 
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
   MyApp() {
     LogUtil.init();
     initDio();
-    Router router = Router();
+    Router router = WendjiaRouter();
     Routes.configureRoutes(router);
     Application.router = router;
   }

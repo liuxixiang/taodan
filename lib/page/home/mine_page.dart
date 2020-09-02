@@ -20,9 +20,9 @@ class _State extends State<MineSence> {
       child: RaisedButton(
         child: Text("normal"),
         onPressed: () {
-          // NavigatorUtil.goSign(context);
+          NavigatorUtil.goSign(context);
 
-         _showSignDialog();
+         // _showSignDialog();
         },
       )
     );

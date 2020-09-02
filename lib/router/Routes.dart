@@ -9,7 +9,7 @@ class Routes {
   static const String home = '/home'; // 首页
   static const String myBreeder = '/myBreeder'; // 我的饲养员
   static const String sign = '/sign'; // 我的饲养员
-  static const String taskWall = "app/task";
+  static const String taskWall = "/task";
 
   // 配置route
   static void configureRoutes(Router router) {

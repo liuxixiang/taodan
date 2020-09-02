@@ -6,6 +6,7 @@ import 'package:taodan/page/login/login_page.dart';
 import 'package:taodan/page/sign/sign_page.dart';
 import 'package:taodan/page/splash/splash_page.dart';
 import 'package:taodan/page/task/task_wall.dart';
+import 'package:taodan/utils/log_util.dart';
 
 class RouterHandler {
   var splashHandler = new Handler(
@@ -28,12 +29,14 @@ class RouterHandler {
     return MyBreederPage();
   });
   var signHandler = new Handler(
-      handlerFunc: (BuildContext context, Map<String, List<String>> params) {
+      handlerFunc: (BuildContext context, dynamic params) {
+        LogUtil.e("params===$params", tag: "lxh");
     return SignPage();
   });
 
   var taskWallHandler = new Handler(
       handlerFunc: (BuildContext context, Map<String, List<String>> params) {
+        // params["id"],
     return TaskWallPage();
   });
 }

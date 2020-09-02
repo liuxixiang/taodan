@@ -2,7 +2,7 @@ import 'package:taodan/common/config/keys.dart';
 import 'package:taodan/utils/json_util.dart';
 
 /// 网络结果数据
-class ResultData<T> {
+class ResultData {
   int code;
   String message;
   var data;

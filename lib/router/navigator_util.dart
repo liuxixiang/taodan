@@ -29,4 +29,8 @@ class NavigatorUtil {
   static void goTaskWall(BuildContext context, String url) {
     Application.router.navigateTo(context, url, replace: false);
   }
+
+  static void goPath(BuildContext context, String path) {
+    Application.router.navigateTo(context, path, replace: false);
+  }
 }

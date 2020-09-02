@@ -11,17 +11,17 @@ class UserAPI {
     await HttpUtils.instance.requestNetwork(
       Method.post,
       ApiPath.LOGIN,
-//      params: {
-//        'appId': "taodan",
-//        'createdBy': code,
-//        'loginNo': mobile,
-//        'loginType': 'app',
-//      },
-      params: {
-        'code': code,
-        'mobile': mobile,
-        'loginType': 'mobile',
-      },
+     params: {
+       'appId': "taodan",
+       'createdBy': code,
+       'loginNo': mobile,
+       'loginType': 'app',
+     },
+      // params: {
+      //   'code': code,
+      //   'mobile': mobile,
+      //   'loginType': 'mobile',
+      // },
       onSuccess: (code, msg, data) {
         onNetSuccess.call(LoginEntity.fromJson(data));
       },
