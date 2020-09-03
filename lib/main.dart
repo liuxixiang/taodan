@@ -13,11 +13,11 @@ import 'api/interceptors/header_interceptor.dart';
 import 'api/interceptors/sign_interceptor.dart';
 import 'api/interceptors/token_interceptor.dart';
 import 'common/config/config.dart';
+import 'common/manager/context_manager.dart';
 
 void main() {
   runApp(MyApp());
 }
-
 class MyApp extends StatelessWidget {
   MyApp() {
     LogUtil.init();
@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
 
   void initDio() {
     setInitDio(
-      baseUrl: ApiPath.BASE_URL,
+      baseUrl: ApiPath.baseUrl,
       interceptors: [
         /// 统一添加身份验证请求头
         HeaderInterceptor(),
@@ -53,6 +53,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       onGenerateRoute: Application.router.generator,
+      navigatorKey: ContextManager.navigatorKey,
       theme: ThemeData(
         // This is the theme of your application.
         //

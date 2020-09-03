@@ -4,12 +4,12 @@
 
 import 'dart:convert';
 
-LoginEntity loginEntityFromJson(String str) => LoginEntity.fromJson(json.decode(str));
+UserInfoEntity loginEntityFromJson(String str) => UserInfoEntity.fromJson(json.decode(str));
 
-String loginEntityToJson(LoginEntity data) => json.encode(data.toJson());
+String loginEntityToJson(UserInfoEntity data) => json.encode(data.toJson());
 
-class LoginEntity {
-	LoginEntity({
+class UserInfoEntity {
+	UserInfoEntity({
 		this.userId,
 		this.inviteCode,
 		this.bindInviteFlag,
@@ -23,7 +23,7 @@ class LoginEntity {
 	String token;
 	String secretKey;
 
-	factory LoginEntity.fromJson(Map<String, dynamic> json) => LoginEntity(
+	factory UserInfoEntity.fromJson(Map<String, dynamic> json) => UserInfoEntity(
 		userId: json["userId"],
 		inviteCode: json["inviteCode"],
 		bindInviteFlag: json["bindInviteFlag"],

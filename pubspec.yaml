@@ -42,6 +42,8 @@ dependencies:
   json_annotation: ^3.0.1
   flutter_easyrefresh: ^2.1.5
   bloom_ad: ^1.0.1
+  uuid: ^2.2.2
+
 
 
 

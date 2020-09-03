@@ -1,10 +1,11 @@
 import 'package:stacked/stacked.dart';
 import 'package:taodan/common/apis/api_user.dart';
-import 'package:taodan/model/login_entity.dart';
+import 'package:taodan/common/manager/user_manager.dart';
+import 'package:taodan/model/user_entity.dart';
 import 'package:taodan/utils/log_util.dart';
 
-class MainViewModel extends FutureViewModel<LoginEntity> {
-  LoginEntity loginEntity;
+class MainViewModel extends FutureViewModel<UserInfoEntity> {
+  UserInfoEntity loginEntity;
 
   @override
   void onError(error) {
@@ -28,9 +29,24 @@ class MainViewModel extends FutureViewModel<LoginEntity> {
   }
 
   @override
-  Future<LoginEntity> futureToRun() async {
-    await UserAPI.login(
-        'devops888', '18521701324', (data) => {loginEntity = data});
+  Future<UserInfoEntity> futureToRun() async {
+    await UserAPI.login('devops888', '18521701324',
+        (data) => {loginEntity = data, _save(loginEntity)});
     return loginEntity;
+  }
+
+  _save(UserInfoEntity userInfo) {
+    if (userInfo == null) {
+      userInfo = UserInfoEntity();
+    }
+    // 保存用户信息
+    UserManager.getInstance().saveUserInfo(userInfo);
+    UserManager.getInstance().saveSecretKey(userInfo.secretKey);
+
+    String auth = userInfo.token;
+    if (auth.isNotEmpty) {
+      // 重置auth
+      UserManager.getInstance().saveAuth(userInfo.token);
+    }
   }
 }

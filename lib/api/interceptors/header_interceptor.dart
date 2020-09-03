@@ -17,12 +17,12 @@ class HeaderInterceptor extends InterceptorsWrapper {
     options.headers[Keys.APP_VERSION_KEY] = packageInfo.version;
     if (Platform.isIOS) {
       IosDeviceInfo iosInfo = await deviceInfo.iosInfo;
-      options.headers[Keys.APP_OS_KEY] = 'ios';
+      options.headers[Keys.APP_CLIENT_TYPE] = 'ios';
       options.headers[Keys.APP_CHANNEL_KEY] = 'appstore';
       options.headers[Keys.DEVICE_ID_KEY] = iosInfo.identifierForVendor;
     } else if (Platform.isAndroid) {
       AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
-      options.headers[Keys.APP_OS_KEY] = 'android';
+      options.headers[Keys.APP_CLIENT_TYPE] = 'android';
       options.headers[Keys.APP_CHANNEL_KEY] = await CommonUtils.getChannelName();
       options.headers[Keys.DEVICE_ID_KEY] = androidInfo.device;
     }
