@@ -17,7 +17,7 @@ class MainViewModel extends FutureViewModel<LoginEntity> {
   void onData(data) {
     // TODO: implement onData
     super.onData(data);
-    LogUtil.e('onData' + data.auth);
+    LogUtil.e('onData' + data.token);
   }
 
   @override

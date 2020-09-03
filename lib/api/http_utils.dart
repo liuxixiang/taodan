@@ -186,7 +186,7 @@ class HttpUtils {
   ///网络请求
   _responseResult(ResultData result, NetCallback onSuccess, NetCallback onError,
       bool isShowError) {
-    if (result.code == 0) {
+    if (result.code == 200) {
       if (onSuccess != null) {
         onSuccess(result.code, result.message, result.data);
       }

@@ -10,10 +10,10 @@ class ResultData {
   ResultData(this.code, this.message, this.data);
 
   ResultData.fromJson(Map<String, dynamic> json) {
-    code = json[Keys.CODE] as int;
-    message = json[Keys.MESSAGE] as String;
-    if (json.containsKey(Keys.DATA)) {
-      data = json[Keys.DATA];
+    code = json['code'] as int;
+    message = json['message'] as String;
+    if (json.containsKey('data')) {
+      data = json['data'];
     }
   }
 
