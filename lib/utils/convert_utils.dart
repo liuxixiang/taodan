@@ -1,5 +1,7 @@
 import 'dart:collection';
 
+import 'package:taodan/utils/object_utils.dart';
+
 class ConvertUtils {
   ///将map转换成url
   static String map2url(Map<String, dynamic> map) {
@@ -8,7 +10,7 @@ class ConvertUtils {
     }
     StringBuffer sb = StringBuffer();
     map.forEach((key, value) {
-      sb..write(key + '=' + value + '')..write('&');
+      sb..write(key + '=' + value.toString())..write('&');
     });
     String s = sb.toString();
     if (s.endsWith("&")) {
@@ -20,7 +22,7 @@ class ConvertUtils {
   ///将url参数转换成map
   static Map<String, Object> getUrlParams(String param) {
     Map<String, dynamic> map = HashMap();
-    if (param.isEmpty) {
+    if (ObjectUtils.isEmpty(param)) {
       return map;
     }
     List<String> params = param.split("&");

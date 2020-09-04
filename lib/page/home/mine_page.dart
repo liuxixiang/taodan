@@ -17,7 +17,7 @@ class _State extends State<MineSence> {
     return ViewModelBuilder<MineViewModel>.reactive(
         viewModelBuilder: () => MineViewModel(),
 
-        onModelReady: ,
+        // onModelReady:,
         builder: (context, model, child) =>
             Container(
                 constraints: BoxConstraints(
@@ -43,8 +43,9 @@ class _State extends State<MineSence> {
         builder: (context) {
           return PermissionsDialog();
         });
-  }}
+  }
 }
+
 
 
 

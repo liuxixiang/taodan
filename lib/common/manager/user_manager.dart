@@ -3,6 +3,7 @@ import 'package:taodan/common/manager/context_manager.dart';
 import 'package:taodan/model/user_entity.dart';
 import 'package:taodan/router/navigator_util.dart';
 import 'package:taodan/utils/json_util.dart';
+import 'package:taodan/utils/object_utils.dart';
 import 'package:taodan/utils/shared_preferences.dart';
 
 class UserManager {
@@ -49,7 +50,7 @@ class UserManager {
 
   saveAuth(String auth) async {
     _authorization = auth;
-    if (_authorization.isEmpty) {
+    if (ObjectUtils.isEmpty(_authorization)) {
       await SpUtil.instance.remove(Keys.AUTH);
     } else {
       await SpUtil.instance.putString(Keys.AUTH, _authorization);
@@ -72,7 +73,7 @@ class UserManager {
 
   saveSecretKey(String secretKey) async {
     _secretKey = secretKey;
-    if (_secretKey.isEmpty) {
+    if (ObjectUtils.isEmpty(_secretKey)) {
       await SpUtil.instance.remove(Keys.SECRET_KEY);
     } else {
       await SpUtil.instance.putString(Keys.SECRET_KEY,secretKey);
