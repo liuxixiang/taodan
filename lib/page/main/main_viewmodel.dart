@@ -30,23 +30,10 @@ class MainViewModel extends FutureViewModel<UserInfoEntity> {
 
   @override
   Future<UserInfoEntity> futureToRun() async {
-    await UserAPI.login('devops888', '18521701324',
-        (data) => {loginEntity = data, _save(loginEntity)});
-    return loginEntity;
+    // await UserAPI.login('devops888', '18521701324',
+    //     (data) => {loginEntity = data, _save(loginEntity)});
+    // return loginEntity;
   }
 
-  _save(UserInfoEntity userInfo) {
-    if (userInfo == null) {
-      userInfo = UserInfoEntity();
-    }
-    // 保存用户信息
-    UserManager.getInstance().saveUserInfo(userInfo);
-    UserManager.getInstance().saveSecretKey(userInfo.secretKey);
 
-    String auth = userInfo.token;
-    if (auth.isNotEmpty) {
-      // 重置auth
-      UserManager.getInstance().saveAuth(userInfo.token);
-    }
-  }
 }

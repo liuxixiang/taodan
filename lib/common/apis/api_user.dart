@@ -7,9 +7,9 @@ import 'api_path.dart';
 
 /// 用户
 class UserAPI {
-  static login(String code, String mobile,
-      OnNetSuccess<UserInfoEntity> onNetSuccess) async {
-    await HttpUtils.instance.requestNetwork(
+  static login(
+      String code, String mobile, OnNetSuccess<UserInfoEntity> onNetSuccess) {
+    HttpUtils.instance.requestNetwork(
       Method.post,
       ApiPath.login,
       params: {
@@ -19,7 +19,9 @@ class UserAPI {
         'loginType': 'app',
       },
       onSuccess: (code, msg, data) {
-        onNetSuccess.call(UserInfoEntity.fromJson(data));
+        if(onNetSuccess != null) {
+          onNetSuccess(UserInfoEntity.fromJson(data));
+        }
       },
     );
   }

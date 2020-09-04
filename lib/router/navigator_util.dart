@@ -33,4 +33,7 @@ class NavigatorUtil {
   static void goPath(BuildContext context, String path) {
     Application.router.navigateTo(context, path, replace: false);
   }
+  static void goInvite(BuildContext context) {
+    Application.router.navigateTo(context, Routes.invite, replace: false);
+  }
 }

@@ -1,5 +1,8 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:taodan/common/apis/api_user.dart';
+import 'package:taodan/common/manager/user_manager.dart';
+import 'package:taodan/model/user_entity.dart';
 
 import 'package:taodan/router/navigator_util.dart';
 import 'package:taodan/utils/assets_util.dart';
@@ -46,7 +49,7 @@ class _LoginPageState extends State<LoginPage> {
                 borderRadius: BorderRadius.all(Radius.circular(22.5))),
             child: new Text("一键登录"),
             onPressed: () {
-              NavigatorUtil.goHome(context);
+              _clickLogin();
             },
           ),
         ),
@@ -101,5 +104,36 @@ class _LoginPageState extends State<LoginPage> {
       ),
     );
     return Scaffold(body: body);
+  }
+
+  _clickLogin() {
+    UserAPI.login(
+        'devops888',
+        '18521701324',
+        (data) => () {
+              _save(data);
+              if (data.bindInviteFlag) {
+                NavigatorUtil.goHome(context);
+              } else {
+                NavigatorUtil.goInvite(context);
+              }
+            });
+  }
+
+  _save(UserInfoEntity userInfo) {
+    if (userInfo == null) {
+      userInfo = UserInfoEntity();
+    }
+    // 保存用户信息
+    UserManager.getInstance().saveUserInfo(userInfo);
+    UserManager.getInstance().saveSecretKey(userInfo.secretKey);
+    //绑定了上级 保存用户token
+    if (userInfo.bindInviteFlag) {
+      String auth = userInfo.token;
+      if (auth.isNotEmpty) {
+        // 重置auth
+        UserManager.getInstance().saveAuth(userInfo.token);
+      }
+    }
   }
 }

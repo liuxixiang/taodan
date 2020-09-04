@@ -10,6 +10,7 @@ class Routes {
   static const String myBreeder = '/myBreeder'; // 我的饲养员
   static const String sign = '/sign'; // 我的饲养员
   static const String taskWall = "/task";
+  static const String invite = "/invite";//邀请码界面
 
   // 配置route
   static void configureRoutes(Router router) {
@@ -26,5 +27,6 @@ class Routes {
     router.define(myBreeder, handler: RouterHandler().myBreederHandler); //我的饲养员
     router.define(sign, handler: RouterHandler().signHandler); //我的饲养员
     router.define(taskWall, handler: RouterHandler().taskWallHandler);
+    router.define(invite, handler: RouterHandler().inviteHandler);
   }
 }
