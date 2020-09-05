@@ -1,5 +1,5 @@
-import 'package:fluro/fluro.dart';
+import 'package:taodan/router/wendjia_router.dart';
 
 class Application {
-  static Router router;
+  static WendjiaRouter router;
 }

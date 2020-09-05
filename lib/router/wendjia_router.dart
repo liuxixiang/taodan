@@ -30,14 +30,19 @@ class WendjiaRouter extends Router {
   void pop(BuildContext context) => Navigator.pop(context);
 
   ///
-  Future navigateTo(BuildContext context, String path,
+  Future navigateNext(BuildContext context, String path,
       {bool replace = false,
       bool clearStack = false,
+      bool opaque = true,
       TransitionType transition,
       Duration transitionDuration = const Duration(milliseconds: 250),
       RouteTransitionsBuilder transitionBuilder}) {
+    if (opaque == null) {
+      opaque = true;
+    }
     RouteMatch routeMatch = matchRoute(context, path,
         transitionType: transition,
+        opaque: opaque,
         transitionsBuilder: transitionBuilder,
         transitionDuration: transitionDuration);
     Route<dynamic> route = routeMatch.route;
@@ -86,6 +91,7 @@ class WendjiaRouter extends Router {
   RouteMatch matchRoute(BuildContext buildContext, String path,
       {RouteSettings routeSettings,
       TransitionType transitionType,
+      bool opaque = true,
       Duration transitionDuration = const Duration(milliseconds: 250),
       RouteTransitionsBuilder transitionsBuilder}) {
     RouteSettings settingsToUse = routeSettings;
@@ -161,7 +167,7 @@ class WendjiaRouter extends Router {
         }
         return PageRouteBuilder<dynamic>(
           settings: routeSettings,
-          opaque: false,
+          opaque: opaque,
           pageBuilder: (BuildContext context, Animation<double> animation,
               Animation<double> secondaryAnimation) {
             return handler.handlerFunc(context, parameters);

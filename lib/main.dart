@@ -18,11 +18,12 @@ import 'common/manager/context_manager.dart';
 void main() {
   runApp(MyApp());
 }
+
 class MyApp extends StatelessWidget {
   MyApp() {
     LogUtil.init();
     initDio();
-    Router router = WendjiaRouter();
+    WendjiaRouter router = WendjiaRouter();
     Routes.configureRoutes(router);
     Application.router = router;
   }

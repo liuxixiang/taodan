@@ -27,7 +27,8 @@ class NavigatorUtil {
   }
 
   static void goTaskWall(BuildContext context, String url) {
-    Application.router.navigateTo(context, url, replace: false);
+    Application.router
+        .navigateNext(context, url, replace: false, opaque: false);
   }
 
   static void goPath(BuildContext context, String path) {
