@@ -11,9 +11,9 @@ AppBar appBar(context,
   return AppBar(
     backgroundColor: backgroundColor,
     leading: IconButton(
-      icon: Image.asset(AssetsUtil.common.ic_wing),
+      icon: Image.asset(AssetsUtil.common.back_arrow),
       onPressed: () {
-        if (onPressed != null) {
+        if (onPressed == null) {
           Navigator.pop(context);
         }
       },
