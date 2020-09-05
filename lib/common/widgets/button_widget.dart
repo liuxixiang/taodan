@@ -5,9 +5,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ButtonWidget extends StatelessWidget {
   ButtonWidget(
-      {@required this.onPressed,
+      {@required this.text,
+      @required this.onPressed,
       this.color = AppColors.yellow,
-      this.text,
       this.borderSideColor = AppColors.yellow_pale,
       this.borderSideWidth = 3,
       this.borderSideRadius = 23,

@@ -19,7 +19,7 @@ class UserAPI {
         'loginType': 'app',
       },
       onSuccess: (code, msg, data) {
-        if(onNetSuccess != null) {
+        if (onNetSuccess != null) {
           onNetSuccess(UserInfoEntity.fromJson(data));
         }
       },
@@ -33,6 +33,24 @@ class UserAPI {
       ApiPath.findUser,
       onSuccess: (code, msg, data) {
         onNetSuccess.call(UserInfoEntity.fromJson(data));
+      },
+    );
+  }
+
+  static bindInvite(
+      String inviteCode, OnNetSuccess<UserInfoEntity> onNetSuccess) {
+    HttpUtils.instance.requestNetwork(
+      Method.post,
+      ApiPath.bindInvite,
+      params: {
+        'appId': "taodan",
+        // 'createdBy': code,
+        'inviteCode': inviteCode,
+      },
+      onSuccess: (code, msg, data) {
+        // if (onNetSuccess != null) {
+        //   onNetSuccess(UserInfoEntity.fromJson(data));
+        // }
       },
     );
   }

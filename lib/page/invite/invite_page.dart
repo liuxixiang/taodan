@@ -5,6 +5,8 @@ import 'package:stacked/stacked.dart';
 import 'package:taodan/common/values/colors.dart';
 import 'package:taodan/common/values/styles.dart';
 import 'package:taodan/common/widgets/app_bar.dart';
+import 'package:taodan/common/widgets/button_widget.dart';
+import 'package:taodan/common/widgets/clear_textfield.dart';
 import 'package:taodan/page/invite/invite_viewmodel.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -18,34 +20,30 @@ class _InvitePageState extends State<InvitePage> {
   Widget build(BuildContext context) {
     return ViewModelBuilder<InviteViewModel>.reactive(
       viewModelBuilder: () => InviteViewModel(),
-      onModelReady: (model) => {
-//         model.request()
-      },
       builder: (context, model, child) => Scaffold(
-          appBar: appBar(context,title: "hahah"),
-          body: Container(
-            color: Colors.yellow,
-            child: TextField(
-              // maxLength: 8,
-              //不使用maxLength 右下角会出现1/8
-              inputFormatters: [LengthLimitingTextInputFormatter(8)],
-              decoration: InputDecoration(
-                border: InputBorder.none,
-                //去掉输入框的下滑线
-                fillColor: Colors.white,
-                contentPadding:
-                    EdgeInsets.symmetric(vertical: 10.h, horizontal: 20.w),
-                filled: true,
-                enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: AppColors.yellow, width: 3.w),
-                    borderRadius: BorderRadius.all(Radius.circular(23))),
+          appBar: appBar(context,
+              title: "填写邀请码", backgroundColor: AppColors.yellow),
+          body: Column(
+            children: [
+              Container(
+                  // color: Colors.yellow,
+                  child: ClearTextField(
                 hintText: '邀请码',
-                hintStyle: AppStyles.textSize15_yellow_black,
-                focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: AppColors.yellow, width: 3.w),
-                    borderRadius: BorderRadius.all(Radius.circular(23))),
-              ),
-            ),
+                onChanged: (String value) {
+                  model.inviteCode = value;
+                },
+              )),
+              Padding(
+                padding: EdgeInsets.symmetric(vertical: 42.h, horizontal: 15.w),
+                child: ButtonWidget(
+                  height: 45.h,
+                  onPressed: () {
+                    model.invite();
+                  },
+                  text: '确定',
+                ),
+              )
+            ],
           )),
     );
   }
