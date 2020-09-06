@@ -10,10 +10,10 @@ class Keys {
   static const String NONCE_KEY = "nonce";
   static const String SIGNATURE_KEY = "sign";
 
-  static const String AUTH = "auth";
-  static const String TOKEN = "token";
+  static const String AUTH = "token";
   static const String USER_INFO = "userInfo";
   static const String SECRET_KEY = "secretKey";
+  static const String LOGIN = "login";
 
 
 }

@@ -7,8 +7,8 @@ import 'package:taodan/utils/object_utils.dart';
 import 'package:taodan/utils/shared_preferences.dart';
 
 class UserManager {
-  String _authorization;
-  String _secretKey;
+  String _authorization = '';
+  String _secretKey = '';
 
   UserInfoEntity _userInfo;
 
@@ -18,8 +18,7 @@ class UserManager {
   static final _instance = UserManager._();
 
   Future<String> get authorization async {
-    _authorization =
-        _authorization ?? await SpUtil.instance.get(Keys.AUTH);
+    _authorization = _authorization ?? await SpUtil.instance.get(Keys.AUTH);
     return _authorization;
   }
 
@@ -33,20 +32,18 @@ class UserManager {
     return _userInfo;
   }
 
+  Future<bool> get isLogin async {
+    return !(await authorization).isNotEmpty &&
+        await SpUtil.instance.getBool(Keys.LOGIN);
+  }
+
   ///检查登陆
   Future<bool> checkLogin() async {
-    bool login = await isLogin();
-    if (!login) {
+    if (!await isLogin) {
       NavigatorUtil.goLogin(ContextManager.context);
     }
-    return login;
+    return isLogin;
   }
-
-  ///判断是否登录
-  Future<bool> isLogin() async {
-    return !(await authorization).isNotEmpty;
-  }
-
 
   saveAuth(String auth) async {
     _authorization = auth;
@@ -70,14 +67,16 @@ class UserManager {
     }
   }
 
-
   saveSecretKey(String secretKey) async {
     _secretKey = secretKey;
     if (ObjectUtils.isEmpty(_secretKey)) {
       await SpUtil.instance.remove(Keys.SECRET_KEY);
     } else {
-      await SpUtil.instance.putString(Keys.SECRET_KEY,secretKey);
+      await SpUtil.instance.putString(Keys.SECRET_KEY, secretKey);
     }
   }
 
+  saveLogin(bool isLogin) async {
+    await SpUtil.instance.putBool(Keys.LOGIN, isLogin);
+  }
 }

@@ -43,10 +43,19 @@ class UserAPI {
       Method.post,
       ApiPath.bindInvite,
       params: {
+        'zappId': "男",
         'appId': "taodan",
         // 'createdBy': code,
         'inviteCode': inviteCode,
+        'ainviteCode': inviteCode,
       },
+        queryParameters: {
+          'zname': "taodfddan",
+          'name': "taodan",
+          // 'createdBy': code,
+          'sex': "nan",
+          'asex': "男",
+        },
       onSuccess: (code, msg, data) {
         // if (onNetSuccess != null) {
         //   onNetSuccess(UserInfoEntity.fromJson(data));

@@ -124,13 +124,14 @@ class _LoginPageState extends State<LoginPage> {
     // 保存用户信息
     UserManager.getInstance().saveUserInfo(userInfo);
     UserManager.getInstance().saveSecretKey(userInfo.secretKey);
-    //绑定了上级 保存用户token
+    String auth = userInfo.token;
+    if (auth.isNotEmpty) {
+      // 重置auth
+      UserManager.getInstance().saveAuth(userInfo.token);
+    }
+    //绑定了上级 保存用户登陆状态
     if (userInfo.bindInviteFlag) {
-      String auth = userInfo.token;
-      if (auth.isNotEmpty) {
-        // 重置auth
-        UserManager.getInstance().saveAuth(userInfo.token);
-      }
+      UserManager.getInstance().saveLogin(true);
     }
   }
 }

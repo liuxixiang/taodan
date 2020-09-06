@@ -22,21 +22,27 @@ class SignInterceptor extends InterceptorsWrapper {
       Map<String, dynamic> map = SplayTreeMap();
       String method = options.method;
       String path = options.path;
-      String body = options.data.toString();
       map['method'] = method;
-      map['ts'] = ts;
+      map['timestamp'] = ts;
       map['nonce'] = nonce;
       map['path'] = path;
-      map['body'] = body;
+      if (ObjectUtils.isNotEmpty(options.data)) {
+        map['body'] = options.data.toString();
+      }
+      if (ObjectUtils.isNotEmpty(options.queryParameters)) {
+        map['params'] =options.queryParameters.toString();
+      }
+
       String signature = ConvertUtils.map2url(map);
-      LogUtil.e('secretkey==' + secretkey, tag: 'lxh');
-      LogUtil.e('signature==' + signature, tag: 'lxh');
       if (ObjectUtils.isNotEmpty(signature)) {
+        signature = signature.replaceAll(new RegExp(r"\s+"), "");
         var key = utf8.encode(secretkey);
         var bytes = utf8.encode(signature);
         var hmacSha1 = Hmac(sha1, key); // HMAC-SHA1
         var digest = hmacSha1.convert(bytes);
         if (digest != null) {
+          LogUtil.e('secretkey==' + secretkey, tag: 'lxh');
+          LogUtil.e('signature==' + signature, tag: 'lxh');
           LogUtil.e('digest==' + digest.toString(), tag: 'lxh');
           options.headers[Keys.SIGNATURE_KEY] = digest.toString();
         }
