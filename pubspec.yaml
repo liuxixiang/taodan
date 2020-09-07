@@ -31,7 +31,7 @@ dependencies:
   dio: ^3.0.10
   connectivity: ^0.4.9
   shared_preferences: ^0.5.8
-  fluttertoast: ^7.0.2
+  fluttertoast: ^7.0.4
   fluro: "^1.6.3"
   provider: ^4.3.2
   flutter_screenutil: ^3.0.0-beta.1
