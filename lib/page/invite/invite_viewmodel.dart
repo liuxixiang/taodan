@@ -5,6 +5,8 @@ class InviteViewModel extends BaseViewModel {
   String inviteCode = '';
 
   invite() {
-    UserAPI.bindInvite(inviteCode, (data) {});
+    UserAPI.bindInvite(inviteCode, (data) {
+
+    });
   }
 }
