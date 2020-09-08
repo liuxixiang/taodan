@@ -43,7 +43,7 @@ class UserAPI {
       Method.post,
       ApiPath.bindInvite,
       params: {
-        'appId': "taodan",
+        'createdBy': '18521701325',
         // 'createdBy': code,
         'inviteCode': inviteCode,
       },
