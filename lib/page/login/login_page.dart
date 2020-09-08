@@ -107,15 +107,14 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   _clickLogin() {
-    NavigatorUtil.goHome(context);
-    // UserAPI.login('devops888', '18521701324', (data) {
-    //   _save(data);
-    //   if (data.bindInviteFlag) {
-    //     NavigatorUtil.goHome(context);
-    //   } else {
-    //     NavigatorUtil.goInvite(context);
-    //   }
-    // });
+     UserAPI.login('devops888', '18521701324', (data) {
+       _save(data);
+       if (data.bindInviteFlag) {
+         NavigatorUtil.goHome(context);
+       } else {
+         NavigatorUtil.goInvite(context);
+       }
+     });
   }
 
   _save(UserInfoEntity userInfo) {
