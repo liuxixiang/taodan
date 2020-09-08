@@ -1,26 +1,26 @@
 import 'package:taodan/api/http_utils.dart';
 import 'package:taodan/common/apis/apis.dart';
 import 'package:taodan/common/manager/user_manager.dart';
-import 'package:taodan/model/user_entity.dart';
+import 'package:taodan/model/login_entity.dart';
+import 'package:taodan/model/user_info_entity.dart';
 
 import 'api_path.dart';
 
 /// 用户
 class UserAPI {
   static login(
-      String code, String mobile, OnNetSuccess<UserInfoEntity> onNetSuccess) {
+      String code, String mobile, OnNetSuccess<LoginEntity> onNetSuccess) {
     HttpUtils.instance.requestNetwork(
       Method.post,
       ApiPath.login,
       params: {
-        'appId': "taodan",
-        'createdBy': code,
+        'createdBy': mobile,
         'loginNo': mobile,
         'loginType': 'app',
       },
       onSuccess: (code, msg, data) {
         if (onNetSuccess != null) {
-          onNetSuccess(UserInfoEntity.fromJson(data));
+          onNetSuccess(LoginEntity.fromJson(data));
         }
       },
     );

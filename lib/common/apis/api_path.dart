@@ -2,7 +2,7 @@ class ApiPath {
   static const baseUrl = 'http://120.24.243.205';
 
   ///member
-  static const login = '/member/user/register';
+  static const login = '/member/user/login';
   static const findUser = '/member/user/findUser';
   static const bindInvite = '/member/user/bindInvite';
 
