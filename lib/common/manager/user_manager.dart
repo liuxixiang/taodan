@@ -4,6 +4,7 @@ import 'package:taodan/model/login_entity.dart';
 import 'package:taodan/model/user_info_entity.dart';
 import 'package:taodan/router/navigator_util.dart';
 import 'package:taodan/utils/json_util.dart';
+import 'package:taodan/utils/log_util.dart';
 import 'package:taodan/utils/object_utils.dart';
 import 'package:taodan/utils/shared_preferences.dart';
 
@@ -19,12 +20,16 @@ class UserManager {
   static final _instance = UserManager._();
 
   Future<String> get authorization async {
-    _authorization = _authorization ?? await SpUtil.instance.get(Keys.AUTH);
+    _authorization = ObjectUtils.isNotEmpty(_authorization)
+        ? _authorization
+        : await SpUtil.instance.get(Keys.AUTH);
     return _authorization;
   }
 
   Future<String> get secretKey async {
-    _secretKey = _secretKey ?? await SpUtil.instance.get(Keys.SECRET_KEY);
+    _secretKey = ObjectUtils.isNotEmpty(_secretKey)
+        ? _secretKey
+        : await SpUtil.instance.get(Keys.SECRET_KEY);
     return _secretKey;
   }
 
@@ -34,16 +39,17 @@ class UserManager {
   }
 
   Future<bool> get isLogin async {
-    return !(await authorization).isNotEmpty &&
+    return ObjectUtils.isNotEmpty(await authorization) &&
         await SpUtil.instance.getBool(Keys.LOGIN);
   }
 
   ///检查登陆
   Future<bool> checkLogin() async {
-    if (!await isLogin) {
+    bool login = await isLogin;
+    if (!login) {
       NavigatorUtil.goLogin(ContextManager.context);
     }
-    return isLogin;
+    return login;
   }
 
   saveAuth(String auth) async {
