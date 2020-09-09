@@ -26,8 +26,7 @@ class UserAPI {
     );
   }
 
-  static findUser(String code, String mobile,
-      OnNetSuccess<UserInfoEntity> onNetSuccess) async {
+  static findUser(OnNetSuccess<UserInfoEntity> onNetSuccess) async {
     await HttpUtils.instance.requestNetwork(
       Method.get,
       ApiPath.findUser,
