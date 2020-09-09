@@ -29,11 +29,12 @@ class _State extends State<MineSence> {
   _buildItemView() {
     return Column(
       children: [
-        // ItemWidget(itemName: '我的邀请码', leftIcon: AssetsUtil.common.back_arrow),
-        // ItemWidget(itemName: '提现认证', leftIcon: AssetsUtil.common.back_arrow),
-        // ItemWidget(itemName: '设置', leftIcon: AssetsUtil.common.back_arrow),
-        // ItemWidget(itemName: '联系我们', leftIcon: AssetsUtil.common.back_arrow),
-        // ItemWidget(itemName: '当前版本', leftIcon: AssetsUtil.common.back_arrow),
+        ItemWidget(itemName: '我的邀请码', leftIcon: AssetsUtil.common.back_arrow),
+        ItemWidget(itemName: '金币历史记录', leftIcon: AssetsUtil.common.back_arrow),
+        ItemWidget(itemName: '设置', leftIcon: AssetsUtil.common.back_arrow),
+        ItemWidget(itemName: '官方微信群', leftIcon: AssetsUtil.common.back_arrow),
+        ItemWidget(itemName: '联系我们', leftIcon: AssetsUtil.common.back_arrow),
+        ItemWidget(itemName: '当前版本', leftIcon: AssetsUtil.common.back_arrow),
       ],
     );
   }

@@ -3,6 +3,7 @@ class AssetsUtil {
  static const Test test = Test();
  static const Dialog dialog = Dialog();
  static const Common common = Common();
+ static const Mine mine = Mine();
  static const Index index = Index();
  static const Breeder breeder = Breeder();
  static const Sign sign = Sign();
@@ -33,6 +34,14 @@ class Common {
   final String back_arrow = common_path +"back_arrow.png";
   final String no_data = common_path +"no_data.png";
   final String close_icon = common_path +"close_icon.png";
+}
+
+
+class Mine {
+   const Mine();
+   static const String mine_path = "assets/images/" + "mine/";
+   final String path = "assets/images/" + "mine/";
+  final String invite = mine_path +"invite.png";
 }
 
 
