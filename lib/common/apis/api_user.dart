@@ -14,7 +14,6 @@ class UserAPI {
       Method.post,
       ApiPath.login,
       params: {
-        'createdBy': mobile,
         'loginNo': mobile,
         'loginType': 'app',
       },
@@ -42,7 +41,6 @@ class UserAPI {
       Method.post,
       ApiPath.bindInvite,
       params: {
-        'createdBy': '18521701325',
         // 'createdBy': code,
         'inviteCode': inviteCode,
       },
