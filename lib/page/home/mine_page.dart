@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
+import 'package:taodan/common/manager/user_manager.dart';
+import 'package:taodan/common/values/styles.dart';
 import 'package:taodan/common/widgets/item_widget.dart';
 import 'package:taodan/page/mine/mine_viewmodel.dart';
 import 'package:taodan/page/sign/sign_dialog.dart';
@@ -22,8 +24,20 @@ class _State extends State<MineSence> {
         // onModelReady:,
         builder: (context, model, child) => Container(
                 child: Column(
-              children: [_buildItemView()],
+              children: [_buildUserInfo(model), _buildItemView()],
             )));
+  }
+
+  _buildUserInfo(MineViewModel model) async {
+    Row(
+      children: [
+        Image.asset(AssetsUtil.common.back_arrow),
+        Text(
+          await UserManager.getInstance().isLogin ? model.data.name : "立即登陆",
+          style: AppStyles.textSize16_black_33,
+        ),
+      ],
+    );
   }
 
   _buildItemView() {
