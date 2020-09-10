@@ -3,8 +3,8 @@
 import os  
 # from pathlib2 import Path
 
-newName = "back_arrow"
-moudle_name = "common"
+newName = "wallet"
+moudle_name = "mine"
 def findImage(file_dir):
    parentPath = os.path.abspath(os.path.join(os.path.abspath(__file__), "../../assets"))
    currentParent = os.path.abspath(os.path.join(os.path.abspath(__file__), "../"))

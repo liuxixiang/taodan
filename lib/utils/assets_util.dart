@@ -30,6 +30,7 @@ class Common {
    const Common();
    static const String common_path = "assets/images/" + "common/";
    final String path = "assets/images/" + "common/";
+  final String arrow_right_white = common_path +"arrow_right_white.png";
   final String ic_wing = common_path +"ic_wing.png";
   final String back_arrow = common_path +"back_arrow.png";
   final String no_data = common_path +"no_data.png";
@@ -41,7 +42,12 @@ class Mine {
    const Mine();
    static const String mine_path = "assets/images/" + "mine/";
    final String path = "assets/images/" + "mine/";
+  final String bg_head = mine_path +"bg_head.png";
+  final String wallet = mine_path +"wallet.png";
+  final String wing = mine_path +"wing.png";
   final String invite = mine_path +"invite.png";
+  final String head = mine_path +"head.png";
+  final String gold = mine_path +"gold.png";
 }
 
 

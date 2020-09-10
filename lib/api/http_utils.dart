@@ -7,6 +7,9 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:taodan/api/interceptors/error_interceptor.dart';
 import 'package:taodan/api/result_data.dart';
+import 'package:taodan/common/manager/context_manager.dart';
+import 'package:taodan/main.dart';
+import 'package:taodan/router/navigator_util.dart';
 import 'package:taodan/utils/log_util.dart';
 import 'package:taodan/utils/toast_utils.dart';
 
@@ -225,6 +228,12 @@ class HttpUtils {
 
     if (isShowError) {
       ToastUtils.showBottomToast(msg);
+    }
+    switch(code) {
+      //token失效
+      case 90204:
+        NavigatorUtil.goLogin(ContextManager.context);
+        break;
     }
     //抛出错误异常
     throw Exception(new NetError(code, msg));

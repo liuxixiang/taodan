@@ -11,8 +11,8 @@ class UserInfoEntity {
   String userId;
   String inviteCode;
   String status;
-  dynamic name;
-  dynamic six;
+  String name;
+  String six;
   int level;
 
   factory UserInfoEntity.fromJson(Map<String, dynamic> json) => UserInfoEntity(

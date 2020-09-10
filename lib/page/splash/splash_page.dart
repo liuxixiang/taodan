@@ -13,10 +13,10 @@ class _SplashPagState extends State<SplashPage> {
   @override
   void initState() {
     Future.delayed(Duration(seconds: 1), () async {
-//      NavigatorUtil.goHome(context);
-      if (await UserManager.getInstance().checkLogin()) {
-        NavigatorUtil.goHome(context);
-      }
+     NavigatorUtil.goHome(context);
+      // if (await UserManager.getInstance().checkLogin()) {
+      //   NavigatorUtil.goHome(context);
+      // }
     });
     // /// 2秒后跳转到主页面，上面注释的代码也可以做到倒计时
     // Observable.timer(0, Duration(seconds: 5)).listen((_) {

@@ -2,6 +2,7 @@ import 'package:taodan/api/http_utils.dart';
 import 'package:taodan/common/apis/apis.dart';
 import 'package:taodan/common/manager/user_manager.dart';
 import 'package:taodan/model/login_entity.dart';
+import 'package:taodan/model/user_info_all_entity.dart';
 import 'package:taodan/model/user_info_entity.dart';
 
 import 'api_path.dart';
@@ -25,12 +26,12 @@ class UserAPI {
     );
   }
 
-  static findUser(OnNetSuccess<UserInfoEntity> onNetSuccess) async {
+  static findUser(OnNetSuccess<UserInfoAllEntity> onNetSuccess) async {
     await HttpUtils.instance.requestNetwork(
       Method.get,
       ApiPath.findUser,
       onSuccess: (code, msg, data) {
-        onNetSuccess.call(UserInfoEntity.fromJson(data));
+        onNetSuccess.call(UserInfoAllEntity.fromJson(data));
       },
     );
   }
