@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:stacked/stacked.dart';
 import 'package:taodan/common/values/colors.dart';
 import 'package:taodan/common/values/dimens.dart';
@@ -15,6 +18,10 @@ class UserInfoPage extends StatefulWidget {
 }
 
 class _UserInfoPageState extends State<UserInfoPage> {
+  File _image;
+  final picker = ImagePicker();
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,5 +59,13 @@ class _UserInfoPageState extends State<UserInfoPage> {
         ItemWidget(itemName: '微信账号'),
       ],
     );
+  }
+
+  Future getImage() async {
+    final pickedFile = await picker.getImage(source: ImageSource.camera);
+
+    setState(() {
+      _image = File(pickedFile.path);
+    });
   }
 }

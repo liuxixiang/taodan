@@ -25,6 +25,7 @@ dependencies:
   uuid: ^2.2.2
   crypto: ^2.1.5
   badges: ^1.1.1
+  image_picker: ^0.6.7+7
   webview_flutter: ^0.3.22
   permission_handler: ^5.0.1+1
   common_info:
