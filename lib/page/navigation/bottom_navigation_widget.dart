@@ -6,7 +6,6 @@ import 'package:taodan/page/home/home_page.dart';
 import 'package:taodan/page/home/meassage_page.dart';
 import 'package:taodan/page/home/mine_page.dart';
 import 'package:taodan/page/home/reward_page.dart';
-import 'package:taodan/page/home/wheel_draw_page.dart';
 import 'package:taodan/utils/assets_util.dart';
 
 class BottomNavigationWidget extends StatefulWidget {
@@ -20,7 +19,7 @@ class BottomNavigationWidgetState extends State<BottomNavigationWidget> {
   void initState() {
     datas
       ..add(BottomNavViewData(HomeScreen(), "首页", "index_icon"))
-      ..add(BottomNavViewData(WheelDrawSence(), "转盘", "wheel_draw_icon"))
+      // ..add(BottomNavViewData(WheelDrawSence(), "转盘", "wheel_draw_icon"))
       ..add(BottomNavViewData(RewardSence(), "收益", "reward_icon"))
       ..add(BottomNavViewData(MessageSence(), "消息", "message_icon"))
       ..add(BottomNavViewData(MineSence(), "我的", "mine_icon"));

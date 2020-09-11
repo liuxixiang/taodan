@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:taodan/common/manager/user_manager.dart';
 import 'package:taodan/common/widgets/progress_widget.dart';
+import 'package:taodan/page/amount/amount_index.dart';
 import 'package:taodan/router/navigator_util.dart';
 import 'package:taodan/utils/log_util.dart';
 
@@ -29,11 +30,7 @@ class _SplashPagState extends State<SplashPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Container(
-          child: ProgressWidget(80),
-        ),
-      ),
+      body: Text(""),
     );
   }
 }

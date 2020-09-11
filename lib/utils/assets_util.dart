@@ -1,6 +1,7 @@
 //不要修改这个类,这个类由create.py自动生成。。。
 class AssetsUtil {
  static const Test test = Test();
+ static const Amount amount = Amount();
  static const Dialog dialog = Dialog();
  static const Common common = Common();
  static const Mine mine = Mine();
@@ -15,6 +16,17 @@ class Test {
    static const String test_path = "assets/images/" + "test/";
    final String path = "assets/images/" + "test/";
   final String test = test_path +"test.png";
+}
+
+
+class Amount {
+   const Amount();
+   static const String amount_path = "assets/images/" + "amount/";
+   final String path = "assets/images/" + "amount/";
+  final String title = amount_path +"title.png";
+  final String title_bg = amount_path +"title_bg.png";
+  final String button_orange = amount_path +"button_orange.png";
+  final String button_red = amount_path +"button_red.png";
 }
 
 

@@ -73,10 +73,10 @@ class HttpUtils {
     /// Fiddler抓包代理配置 https://www.jianshu.com/p/d831b1f7c45b
     (_dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate =
         (HttpClient client) {
-      client.findProxy = (uri) {
-        //proxy all request to localhost:8888
-        return 'PROXY 10.249.150.53:8888';
-      };
+      // client.findProxy = (uri) {
+      //   //proxy all request to localhost:8888
+      //   return 'PROXY 10.249.150.53:8888';
+      // };
       client.badCertificateCallback =
           (X509Certificate cert, String host, int port) => true;
     };
@@ -229,10 +229,10 @@ class HttpUtils {
     if (isShowError) {
       ToastUtils.showBottomToast(msg);
     }
-    switch(code) {
+    switch (code) {
       //token失效
       case 90204:
-        NavigatorUtil.goLogin(ContextManager.context);
+        NavigatorUtil.goLogin(ContextManager.context, false);
         break;
     }
     //抛出错误异常
