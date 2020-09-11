@@ -42,6 +42,7 @@ class _State extends State<MineSence> {
           _buildUserInfoHead(model),
           SizedBox(height: 14.5.h),
           _buildUserWallet(model),
+          SizedBox(height: 13.h),
           _buildUserFunction(model),
         ],
       ),
@@ -121,14 +122,22 @@ class _State extends State<MineSence> {
   _buildUserFunction(MineViewModel model) {
     return Row(
       children: [
-        FunctionItemWidget(
-            title: "我的订单", num: "10", image: AssetsUtil.mine.order),
-        FunctionItemWidget(
-            title: "我的饲养员", image: AssetsUtil.mine.breeder),
-        FunctionItemWidget(
-            title: "我的好友", num: "10", image: AssetsUtil.mine.friends),
-        FunctionItemWidget(
-            title: "养鸡学院", num: "10", image: AssetsUtil.mine.college),
+        Expanded(
+          child: FunctionItemWidget(
+              title: "我的订单", num: "10", image: AssetsUtil.mine.order),
+        ),
+        Expanded(
+          child: FunctionItemWidget(
+              title: "我的饲养员", image: AssetsUtil.mine.breeder),
+        ),
+        Expanded(
+          child: FunctionItemWidget(
+              title: "我的好友", num: "10", image: AssetsUtil.mine.friends),
+        ),
+        Expanded(
+          child: FunctionItemWidget(
+              title: "养鸡学院", num: "10", image: AssetsUtil.mine.college),
+        ),
       ],
     );
   }

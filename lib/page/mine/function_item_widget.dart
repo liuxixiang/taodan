@@ -24,10 +24,10 @@ class FunctionItemWidget extends StatelessWidget {
           badgeContent: Text(num??"", style: AppStyles.textSize10_white),
           child: Image.asset(image),
         ),
-        SizedBox(height: 7.5.h),
+        SizedBox(height: 14.5.h),
         Text(
           title,
-          style: AppStyles.textSize16_black_33,
+          style: AppStyles.textSize13_black_33,
         )
       ],
     );
