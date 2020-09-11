@@ -8,28 +8,33 @@ class FunctionItemWidget extends StatelessWidget {
   final String title;
   final String num;
   final String image;
+  final GestureTapCallback onTag;
 
-  const FunctionItemWidget({Key key, this.title, this.num, this.image})
+  const FunctionItemWidget(
+      {Key key, this.title, this.num, this.image, this.onTag})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Badge(
-          position: BadgePosition.topRight(top: -5.w, right: -5.w),
-          badgeColor: AppColors.red,
-          padding: EdgeInsets.all(3),
-          showBadge: (num ?? "").isNotEmpty,
-          badgeContent: Text(num??"", style: AppStyles.textSize10_white),
-          child: Image.asset(image),
-        ),
-        SizedBox(height: 14.5.h),
-        Text(
-          title,
-          style: AppStyles.textSize13_black_33,
-        )
-      ],
+    return GestureDetector(
+      onTap: onTag,
+      child: Column(
+        children: [
+          Badge(
+            position: BadgePosition.topRight(top: -5.w, right: -5.w),
+            badgeColor: AppColors.red,
+            padding: EdgeInsets.all(3),
+            showBadge: (num ?? "").isNotEmpty,
+            badgeContent: Text(num ?? "", style: AppStyles.textSize10_white),
+            child: Image.asset(image),
+          ),
+          SizedBox(height: 14.5.h),
+          Text(
+            title,
+            style: AppStyles.textSize13_black_33,
+          )
+        ],
+      ),
     );
   }
 }

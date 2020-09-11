@@ -31,38 +31,45 @@ class _State extends State<MineSence> {
 
   _buildUserInfo(MineViewModel model) {
     return Container(
-      decoration: BoxDecoration(
-          image: DecorationImage(
-        image: AssetImage(AssetsUtil.mine.bg_head),
-        fit: BoxFit.fill,
-      )),
-      padding: EdgeInsets.only(top: 45.h, left: 15.h, right: 21.w),
-      child: Column(
+      color: Colors.white,
+      child: Stack(
         children: [
-          _buildUserInfoHead(model),
-          SizedBox(height: 14.5.h),
-          _buildUserWallet(model),
-          SizedBox(height: 13.h),
-          _buildUserFunction(model),
+          Image.asset(AssetsUtil.mine.bg_head, fit: BoxFit.fill),
+          Container(
+            padding: EdgeInsets.only(
+                top: 45.h, left: 15.h, right: 21.w, bottom: 14.h),
+            child: Column(
+              children: [
+                _buildUserInfoHead(model),
+                SizedBox(height: 14.5.h),
+                _buildUserWallet(model),
+                SizedBox(height: 13.h),
+                _buildUserFunction(model),
+              ],
+            ),
+          ),
         ],
       ),
     );
   }
 
   _buildUserInfoHead(MineViewModel model) {
-    return Row(
-      children: [
-        Image.asset(AssetsUtil.mine.head),
-        SizedBox(width: 16.5),
-        Expanded(
-          child: Text(
-              model.isLogin
-                  ? !model.loadUserInfoBusy ? model.userInfo?.name ?? "" : ""
-                  : "立即登陆",
-              style: AppStyles.textSize16_white),
-        ),
-        Image.asset(AssetsUtil.common.arrow_right_white),
-      ],
+    return GestureDetector(
+      onTap: _onHeadClick(),
+      child: Row(
+        children: [
+          Image.asset(AssetsUtil.mine.head),
+          SizedBox(width: 16.5),
+          Expanded(
+            child: Text(
+                model.isLogin
+                    ? !model.loadUserInfoBusy ? model.userInfo?.name ?? "" : ""
+                    : "立即登陆",
+                style: AppStyles.textSize16_white),
+          ),
+          Image.asset(AssetsUtil.common.arrow_right_white),
+        ],
+      ),
     );
   }
 
@@ -105,13 +112,22 @@ class _State extends State<MineSence> {
           Row(
             children: [
               WalletItemWidget(
-                  title: "今日金币", text: "1000", image: AssetsUtil.mine.gold),
+                  title: "今日金币",
+                  text: "1000",
+                  image: AssetsUtil.mine.gold,
+                  onTag: _onWalletGoldClick),
               Expanded(
                 child: WalletItemWidget(
-                    title: "金元宝余额", text: "1000", image: AssetsUtil.mine.wing),
+                    title: "金元宝余额",
+                    text: "1000",
+                    image: AssetsUtil.mine.wing,
+                    onTag: _onWalletWingClick),
               ),
               WalletItemWidget(
-                  title: "现金分红", text: "1000", image: AssetsUtil.mine.wallet)
+                  title: "现金分红",
+                  text: "1000",
+                  image: AssetsUtil.mine.wallet,
+                  onTag: _onWalletClick)
             ],
           )
         ],
@@ -124,7 +140,7 @@ class _State extends State<MineSence> {
       children: [
         Expanded(
           child: FunctionItemWidget(
-              title: "我的订单", num: "10", image: AssetsUtil.mine.order),
+              title: "我的订单", num: "10", image: AssetsUtil.mine.order,onTag: ()=>{},),
         ),
         Expanded(
           child: FunctionItemWidget(
@@ -135,8 +151,8 @@ class _State extends State<MineSence> {
               title: "我的好友", num: "10", image: AssetsUtil.mine.friends),
         ),
         Expanded(
-          child: FunctionItemWidget(
-              title: "养鸡学院", num: "10", image: AssetsUtil.mine.college),
+          child:
+              FunctionItemWidget(title: "养鸡学院", image: AssetsUtil.mine.college),
         ),
       ],
     );
@@ -154,4 +170,16 @@ class _State extends State<MineSence> {
       ],
     );
   }
+
+  ///头像点击事件
+  _onHeadClick() {}
+
+  ///金币
+  _onWalletGoldClick() {}
+
+  ///金元宝余额
+  _onWalletWingClick() {}
+
+  ///现金余额
+  _onWalletClick() {}
 }
