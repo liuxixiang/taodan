@@ -44,8 +44,12 @@ class Mine {
    final String path = "assets/images/" + "mine/";
   final String bg_head = mine_path +"bg_head.png";
   final String wallet = mine_path +"wallet.png";
+  final String breeder = mine_path +"breeder.png";
+  final String order = mine_path +"order.png";
   final String wing = mine_path +"wing.png";
   final String invite = mine_path +"invite.png";
+  final String friends = mine_path +"friends.png";
+  final String college = mine_path +"college.png";
   final String head = mine_path +"head.png";
   final String gold = mine_path +"gold.png";
 }

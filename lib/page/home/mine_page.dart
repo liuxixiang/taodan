@@ -4,6 +4,7 @@ import 'package:taodan/common/manager/user_manager.dart';
 import 'package:taodan/common/values/colors.dart';
 import 'package:taodan/common/values/styles.dart';
 import 'package:taodan/common/widgets/item_widget.dart';
+import 'package:taodan/page/mine/function_item_widget.dart';
 import 'package:taodan/page/mine/mine_viewmodel.dart';
 import 'package:taodan/page/mine/wallet_item_widget.dart';
 import 'package:taodan/utils/assets_util.dart';
@@ -41,6 +42,7 @@ class _State extends State<MineSence> {
           _buildUserInfoHead(model),
           SizedBox(height: 14.5.h),
           _buildUserWallet(model),
+          _buildUserFunction(model),
         ],
       ),
     );
@@ -66,11 +68,18 @@ class _State extends State<MineSence> {
   _buildUserWallet(MineViewModel model) {
     return Container(
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(5.w),
-        color: Colors.white, // 底色
-        //        shape: BoxShape.circle, // 圆形，使用圆形时不可以使用borderRadius
-        shape: BoxShape.rectangle, // 默认值也是矩形
-      ),
+          borderRadius: BorderRadius.circular(5.w),
+          color: Colors.white, // 底色
+          //        shape: BoxShape.circle, // 圆形，使用圆形时不可以使用borderRadius
+          shape: BoxShape.rectangle, // 默认值也是矩形
+          boxShadow: [
+            BoxShadow(
+                color: AppColors.gray_c1,
+                offset: Offset(0.0, 1.0.w), //阴影xy轴偏移量
+                blurRadius: 4.0.w, //阴影模糊程度
+                spreadRadius: 0 //阴影扩散程度
+                )
+          ]),
       padding:
           EdgeInsets.only(left: 13.5.w, right: 13.5.w, top: 9.h, bottom: 15.h),
       child: Column(
@@ -86,7 +95,7 @@ class _State extends State<MineSence> {
                 ),
               ),
               SizedBox(width: 5.5.w),
-              Text("我的钱包", style: AppStyles.textSize13_black_33)
+              Text("钱包", style: AppStyles.textSize13_black_33)
             ],
           ),
           SizedBox(
@@ -106,6 +115,21 @@ class _State extends State<MineSence> {
           )
         ],
       ),
+    );
+  }
+
+  _buildUserFunction(MineViewModel model) {
+    return Row(
+      children: [
+        FunctionItemWidget(
+            title: "我的订单", num: "10", image: AssetsUtil.mine.order),
+        FunctionItemWidget(
+            title: "我的饲养员", image: AssetsUtil.mine.breeder),
+        FunctionItemWidget(
+            title: "我的好友", num: "10", image: AssetsUtil.mine.friends),
+        FunctionItemWidget(
+            title: "养鸡学院", num: "10", image: AssetsUtil.mine.college),
+      ],
     );
   }
 

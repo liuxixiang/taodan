@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:taodan/common/values/styles.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-
 class WalletItemWidget extends StatelessWidget {
   final String text;
   final String title;
@@ -19,17 +18,17 @@ class WalletItemWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.asset(image),
-            SizedBox(width: 5.5.w),
+            SizedBox(width: 2.5.w),
             Text(
               title,
-              style: AppStyles.textSize16_black_33,
+              style: AppStyles.textSize13_gray_99,
             )
           ],
         ),
         SizedBox(height: 7.5.h),
         Text(
           text,
-          style: AppStyles.textSize13_gray_99,
+          style: AppStyles.textSize16_black_33,
         )
       ],
     );

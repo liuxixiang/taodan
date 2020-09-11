@@ -6,6 +6,9 @@ import 'package:taodan/common/values/colors.dart';
 import 'package:taodan/common/values/dimens.dart';
 
 class AppStyles {
+  static TextStyle textSize10_white =
+  TextStyle(fontSize: AppDimens.font_sp10, color: Colors.white);
+
   static TextStyle textSize12_white =
       TextStyle(fontSize: AppDimens.font_sp12, color: Colors.white);
 
