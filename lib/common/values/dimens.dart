@@ -27,4 +27,6 @@ class AppDimens {
   static double dp24 = 24.w;
   static double dp32 = 32.w;
   static double dp50 = 50.w;
+
+  static double line_8dp = 8.h;
 }
