@@ -22,6 +22,7 @@ void _clickBottomImage(BuildContext context, int i) {
       break;
     case 1:
       //todo 喂养
+      NavigatorUtil.goTest(context);
       break;
     case 2:
       //todo 饲养员

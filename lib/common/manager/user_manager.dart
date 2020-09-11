@@ -47,7 +47,7 @@ class UserManager {
   Future<bool> checkLogin() async {
     bool login = await isLogin;
     if (!login) {
-      NavigatorUtil.goLogin(ContextManager.context);
+      NavigatorUtil.goLogin(ContextManager.context, false);
     }
     return login;
   }

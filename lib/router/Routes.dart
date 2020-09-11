@@ -9,9 +9,12 @@ class Routes {
   static const String home = '/home'; // 首页
   static const String myBreeder = '/myBreeder'; // 我的饲养员
   static const String sign = '/sign'; // 我的饲养员
-  static const String taskWall = "/task";
-  static const String invite = "/invite";//邀请码界面
-  static const String userInfo = "/userInfo";//个人信息
+  static const String taskWall = "app/task";
+  static const String invite = "/invite"; //邀请码界面
+  static const String test = "/test";
+  // static const String taskWall = "/task";
+  // static const String invite = "/invite";//邀请码界面
+  static const String userInfo = "/userInfo"; //个人信息
 
   // 配置route
   static void configureRoutes(Router router) {
@@ -29,6 +32,7 @@ class Routes {
     router.define(sign, handler: RouterHandler().signHandler); //我的饲养员
     router.define(taskWall, handler: RouterHandler().taskWallHandler);
     router.define(invite, handler: RouterHandler().inviteHandler);
+    router.define(test, handler: RouterHandler().testHandler);
     router.define(userInfo, handler: RouterHandler().userInfoHandler);
   }
 }

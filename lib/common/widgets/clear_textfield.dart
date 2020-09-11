@@ -13,7 +13,8 @@ class ClearTextField extends StatefulWidget {
       this.hintText,
       this.maxLength,
       this.controller,
-      this.hintStyle, this.style})
+      this.hintStyle,
+      this.style})
       : super(key: key);
 
   final TextChanged onChanged;

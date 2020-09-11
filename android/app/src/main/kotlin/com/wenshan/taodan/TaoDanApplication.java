@@ -20,7 +20,7 @@ public class TaoDanApplication extends FlutterApplication {
     @Override
     public void onCreate() {
         super.onCreate();
-
+            
         AdSdk.getInstance().init(getApplicationContext(),
                 new AdConfig.Builder()
                         .appId(APP_ID)

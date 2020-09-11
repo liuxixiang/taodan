@@ -1,14 +1,12 @@
-import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
-import 'package:taodan/page/sign/sign_page.dart';
+import 'package:taodan/router/application.dart';
 import 'package:taodan/router/application.dart';
 import 'package:taodan/router/routes.dart';
-import 'package:taodan/utils/assets_util.dart';
 
 class NavigatorUtil {
-  static void goLogin(BuildContext context) {
+  static void goLogin(BuildContext context, bool replace) {
     /// replace：true 就是将 splash 页面给移除掉了，这点后退键的时候就不会再出现Splash页面
-    Application.router.navigateTo(context, Routes.login, replace: true);
+    Application.router.navigateTo(context, Routes.login, replace: replace);
   }
 
   static void goHome(BuildContext context) {
@@ -37,6 +35,10 @@ class NavigatorUtil {
 
   static void goInvite(BuildContext context) {
     Application.router.navigateTo(context, Routes.invite, replace: false);
+  }
+
+  static void goTest(BuildContext context) {
+    Application.router.navigateTo(context, Routes.test, replace: false);
   }
 
   ///个人信息
