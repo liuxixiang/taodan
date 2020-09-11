@@ -111,7 +111,7 @@ class _LoginPageState extends State<LoginPage> {
     UserAPI.login('devops888', '18521701324', (data) {
       _save(data);
       if (data.bindInviteFlag) {
-        NavigatorUtil.goHome(context);
+        NavigatorUtil.goBack(context);
       } else {
         NavigatorUtil.goInvite(context);
       }

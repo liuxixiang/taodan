@@ -7,6 +7,7 @@ import 'package:taodan/page/login/login_page.dart';
 import 'package:taodan/page/sign/sign_page.dart';
 import 'package:taodan/page/splash/splash_page.dart';
 import 'package:taodan/page/task/task_wall.dart';
+import 'package:taodan/page/user_info/user_info_page.dart';
 import 'package:taodan/utils/log_util.dart';
 
 class RouterHandler {
@@ -45,4 +46,10 @@ class RouterHandler {
     // params["id"],
     return InvitePage();
   });
+
+  var userInfoHandler = new Handler(
+      handlerFunc: (BuildContext context, Map<String, List<String>> params) {
+        // params["id"],
+        return UserInfoPage();
+      });
 }

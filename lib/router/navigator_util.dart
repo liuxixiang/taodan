@@ -38,4 +38,14 @@ class NavigatorUtil {
   static void goInvite(BuildContext context) {
     Application.router.navigateTo(context, Routes.invite, replace: false);
   }
+
+  ///个人信息
+  static void goUserInfo(BuildContext context) {
+    Application.router.navigateTo(context, Routes.userInfo, replace: false);
+  }
+
+  // 返回
+  static void goBack(BuildContext context) {
+    Application.router.pop(context);
+  }
 }

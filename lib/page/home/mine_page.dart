@@ -7,8 +7,10 @@ import 'package:taodan/common/widgets/item_widget.dart';
 import 'package:taodan/page/mine/function_item_widget.dart';
 import 'package:taodan/page/mine/mine_viewmodel.dart';
 import 'package:taodan/page/mine/wallet_item_widget.dart';
+import 'package:taodan/router/navigator_util.dart';
 import 'package:taodan/utils/assets_util.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:taodan/utils/toast_utils.dart';
 
 class MineSence extends StatefulWidget {
   @override
@@ -55,7 +57,7 @@ class _State extends State<MineSence> {
 
   _buildUserInfoHead(MineViewModel model) {
     return GestureDetector(
-      onTap: _onHeadClick(),
+      onTap: () => _onHeadClick(),
       child: Row(
         children: [
           Image.asset(AssetsUtil.mine.head),
@@ -140,7 +142,11 @@ class _State extends State<MineSence> {
       children: [
         Expanded(
           child: FunctionItemWidget(
-              title: "我的订单", num: "10", image: AssetsUtil.mine.order,onTag: ()=>{},),
+            title: "我的订单",
+            num: "10",
+            image: AssetsUtil.mine.order,
+            onTag: () => {},
+          ),
         ),
         Expanded(
           child: FunctionItemWidget(
@@ -172,7 +178,12 @@ class _State extends State<MineSence> {
   }
 
   ///头像点击事件
-  _onHeadClick() {}
+  _onHeadClick() async {
+    if (await UserManager.getInstance().checkLogin()) {
+      NavigatorUtil.goUserInfo(context);
+    }
+
+  }
 
   ///金币
   _onWalletGoldClick() {}
