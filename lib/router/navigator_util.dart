@@ -50,4 +50,10 @@ class NavigatorUtil {
   static void goBack(BuildContext context) {
     Application.router.pop(context);
   }
+
+  static void goWebView(BuildContext context, String url) {
+    Application.router
+        .navigateTo(context, Routes.webview + "?{url}", replace: false);
+    ;
+  }
 }
