@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:taodan/common/apis/api_common.dart';
 import 'package:taodan/common/widgets/progress_widget.dart';
 import 'package:taodan/common/widgets/task_bottom_sheet.dart';
 import 'package:taodan/router/navigator_util.dart';
@@ -22,7 +23,10 @@ void _clickBottomImage(BuildContext context, int i) {
       break;
     case 1:
       //todo 喂养
-      NavigatorUtil.goTest(context);
+      // NavigatorUtil.goTest(context);
+      CommonApi.getGame((data) =>
+          // NavigatorUtil.goWebView(context, url)
+          {});
       break;
     case 2:
       //todo 饲养员

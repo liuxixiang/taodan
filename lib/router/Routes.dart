@@ -15,6 +15,7 @@ class Routes {
   // static const String taskWall = "/task";
   // static const String invite = "/invite";//邀请码界面
   static const String userInfo = "/userInfo"; //个人信息
+  static const String webview = "/webview"; //个人信息
 
   // 配置route
   static void configureRoutes(Router router) {
@@ -34,5 +35,6 @@ class Routes {
     router.define(invite, handler: RouterHandler().inviteHandler);
     router.define(test, handler: RouterHandler().testHandler);
     router.define(userInfo, handler: RouterHandler().userInfoHandler);
+    router.define(webview, handler: RouterHandler().webHandler);
   }
 }

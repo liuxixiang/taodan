@@ -3,7 +3,7 @@ import 'package:webview_flutter/webview_flutter.dart';
 
 class WebviewWidget extends StatefulWidget {
   String url;
-
+  WebviewWidget(this.url);
   @override
   _WebviewWidgetState createState() => _WebviewWidgetState();
 }

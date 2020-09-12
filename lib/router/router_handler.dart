@@ -9,6 +9,7 @@ import 'package:taodan/page/splash/splash_page.dart';
 import 'package:taodan/page/task/task_wall.dart';
 import 'package:taodan/page/test/test.dart';
 import 'package:taodan/page/user_info/user_info_page.dart';
+import 'package:taodan/page/webview/webview_page.dart';
 import 'package:taodan/utils/log_util.dart';
 
 class RouterHandler {
@@ -57,5 +58,10 @@ class RouterHandler {
       handlerFunc: (BuildContext context, Map<String, List<String>> params) {
     // params["id"],
     return UserInfoPage();
+  });
+
+  var webHandler = new Handler(
+      handlerFunc: (BuildContext context, Map<String, List<String>> params) {
+    return WebviewWidget(params["url"][0]);
   });
 }
