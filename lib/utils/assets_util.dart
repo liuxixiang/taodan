@@ -45,6 +45,7 @@ class Common {
   final String arrow_right_white = common_path +"arrow_right_white.png";
   final String ic_wing = common_path +"ic_wing.png";
   final String back_arrow = common_path +"back_arrow.png";
+  final String arrow_right_gray = common_path +"arrow_right_gray.png";
   final String no_data = common_path +"no_data.png";
   final String close_icon = common_path +"close_icon.png";
 }

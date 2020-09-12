@@ -16,6 +16,7 @@ class MineViewModel extends MultipleFutureViewModel {
   @override
   Future initialise() async {
     isLogin = await UserManager.getInstance().isLogin;
+    userInfo = await UserManager.getInstance().userInfo;
     return super.initialise();
   }
 

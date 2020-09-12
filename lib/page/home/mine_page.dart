@@ -63,13 +63,10 @@ class _State extends State<MineSence> {
           Image.asset(AssetsUtil.mine.head),
           SizedBox(width: 16.5),
           Expanded(
-            child: Text(
-                model.isLogin
-                    ? !model.loadUserInfoBusy ? model.userInfo?.name ?? "" : ""
-                    : "立即登陆",
+            child: Text(model.isLogin ? model.userInfo?.name ?? "" : "立即登陆",
                 style: AppStyles.textSize16_white),
           ),
-          Image.asset(AssetsUtil.common.arrow_right_white),
+          Image.asset(AssetsUtil.common.arrow_right_gray),
         ],
       ),
     );
@@ -182,7 +179,6 @@ class _State extends State<MineSence> {
     if (await UserManager.getInstance().checkLogin()) {
       NavigatorUtil.goUserInfo(context);
     }
-
   }
 
   ///金币

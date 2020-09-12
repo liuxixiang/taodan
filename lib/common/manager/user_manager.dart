@@ -34,7 +34,9 @@ class UserManager {
   }
 
   Future<UserInfoEntity> get userInfo async {
-    _userInfo = _userInfo ?? await SpUtil.instance.get(Keys.USER_INFO);
+    _userInfo = _userInfo ??
+        await SpUtil.instance
+            .getObj(Keys.USER_INFO, (v) => UserInfoEntity.fromJson(v));
     return _userInfo;
   }
 
@@ -69,8 +71,7 @@ class UserManager {
     if (_userInfo == null) {
       SpUtil.getInstance().remove(Keys.USER_INFO);
     } else {
-      SpUtil.getInstance()
-          .putString(Keys.USER_INFO, JsonUtil.encodeObj(userInfo));
+      SpUtil.getInstance().putObject(Keys.USER_INFO, _userInfo);
     }
   }
 

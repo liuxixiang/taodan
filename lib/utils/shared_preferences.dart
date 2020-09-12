@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -6,8 +7,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 class SpUtil {
   static SpUtil _instance;
 
-  static SpUtil get instance  {
-    return  getInstance();
+  static SpUtil get instance {
+    return getInstance();
   }
 
   static SharedPreferences _spf;
@@ -18,12 +19,12 @@ class SpUtil {
     _spf = await SharedPreferences.getInstance();
   }
 
-  static SpUtil getInstance()  {
+  static SpUtil getInstance() {
     if (_instance == null) {
       _instance = new SpUtil._();
     }
     if (_spf == null) {
-       _instance._init();
+      _instance._init();
     }
     return _instance;
   }
@@ -113,5 +114,54 @@ class SpUtil {
   Future<bool> clear() async {
     await _beforeCheck();
     return _spf.clear();
+  }
+
+  /// put object.
+  Future<bool> putObject(String key, Object value) async {
+    await _beforeCheck();
+    return _spf.setString(key, value == null ? "" : json.encode(value));
+  }
+
+  /// get obj.
+  Future<T> getObj<T>(String key, T f(Map v), {T defValue}) async {
+    await _beforeCheck();
+    Map map = await getObject(key);
+    return map == null ? defValue : f(map);
+  }
+
+  /// get object.
+  Future<Map> getObject(String key) async {
+    await _beforeCheck();
+    String _data = _spf.getString(key);
+    return (_data == null || _data.isEmpty) ? null : json.decode(_data);
+  }
+
+  /// put object list.
+  Future<bool> putObjectList(String key, List<Object> list) async {
+    await _beforeCheck();
+    List<String> _dataList = list?.map((value) {
+      return json.encode(value);
+    })?.toList();
+    return _spf.setStringList(key, _dataList);
+  }
+
+  /// get obj list.
+  Future<List<T>> getObjList<T>(String key, T f(Map v),
+      {List<T> defValue = const []}) async {
+    List<Map> dataList = await getObjectList(key);
+    List<T> list = dataList?.map((value) {
+      return f(value);
+    })?.toList();
+    return list ?? defValue;
+  }
+
+  /// get object list.
+  Future<List<Map>> getObjectList(String key) async {
+    await _beforeCheck();
+    List<String> dataLis = _spf.getStringList(key);
+    return dataLis?.map((value) {
+      Map _dataMap = json.decode(value);
+      return _dataMap;
+    })?.toList();
   }
 }

@@ -6,6 +6,8 @@ class UserInfoEntity {
     this.name,
     this.six,
     this.level,
+    this.mobileNo,
+    this.avatarImage,
   });
 
   String userId;
@@ -14,6 +16,8 @@ class UserInfoEntity {
   String name;
   String six;
   int level;
+  String mobileNo;
+  String avatarImage;
 
   factory UserInfoEntity.fromJson(Map<String, dynamic> json) => UserInfoEntity(
     userId: json["userId"],
@@ -22,6 +26,8 @@ class UserInfoEntity {
     name: json["name"],
     six: json["six"],
     level: json["level"],
+    mobileNo: json["mobileNo"],
+    avatarImage: json["avatarImage"],
   );
 
   Map<String, dynamic> toJson() => {
@@ -31,5 +37,7 @@ class UserInfoEntity {
     "name": name,
     "six": six,
     "level": level,
+    "mobileNo": mobileNo,
+    "avatarImage": avatarImage,
   };
 }
