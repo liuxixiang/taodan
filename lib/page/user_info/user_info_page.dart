@@ -68,4 +68,5 @@ class _UserInfoPageState extends State<UserInfoPage> {
 
     });
   }
+
 }

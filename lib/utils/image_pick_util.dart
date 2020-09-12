@@ -19,20 +19,15 @@ class ImagePickUtil {
                   CupertinoActionSheetAction(
                     child: const Text('图库'),
                     onPressed: () async {
-                      if (imagePickCallBack != null) {
-                        ImagePicker imagePicker = ImagePicker();
-                        imagePickCallBack(
-                            await _fromGallery(context, imagePicker),
-                            imagePicker);
-                      }
+                      _getImage(ImageSource.gallery, imagePickCallBack);
+                      Navigator.of(context).pop();
                     },
                   ),
                   CupertinoActionSheetAction(
                     child: const Text('拍照'),
                     onPressed: () async {
-                      ImagePicker imagePicker = ImagePicker();
-                      imagePickCallBack(
-                          await _fromCamera(context, imagePicker), imagePicker);
+                      _getImage(ImageSource.camera, imagePickCallBack);
+                      Navigator.of(context).pop();
                     },
                   ),
                 ],
@@ -45,31 +40,15 @@ class ImagePickUtil {
                 )));
   }
 
-  /// 从相机
-  static Future<File> _fromCamera(BuildContext context,ImagePicker imagePicker) async {
-    Navigator.of(context).pop();
-    try {
-      var image = await imagePicker.getImage(source: ImageSource.camera);
-      File file = await CropImageUtil.cropImage(context, image);
-      return file;
-    } catch (e) {
-      print(e);
+  static _getImage(
+      ImageSource source, ImagePickCallBack imagePickCallBack) async {
+    ImagePicker imagePicker = ImagePicker();
+    var image = await imagePicker.getImage(source: source);
+    if (image != null && (image.path ?? "").isNotEmpty) {
+      File file = await CropImageUtil.cropImage(image.path);
+      if (file != null && imagePickCallBack != null) {
+        imagePickCallBack(file, imagePicker);
+      }
     }
-    return null;
-  }
-
-  /// 从相册
-  // ignore: missing_return
-  static Future<File> _fromGallery(
-      BuildContext context, ImagePicker imagePicker) async {
-    Navigator.of(context).pop();
-    try {
-      var image = await imagePicker.getImage(source: ImageSource.gallery);
-      File file = await CropImageUtil.cropImage(context, image);
-      return file;
-    } catch (e) {
-      print(e);
-    }
-    return null;
   }
 }
