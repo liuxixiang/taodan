@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:stacked/stacked.dart';
 import 'package:taodan/common/values/colors.dart';
@@ -11,6 +12,8 @@ import 'package:taodan/common/widgets/item_widget.dart';
 import 'package:taodan/page/user_info/user_info_viewmodel.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:taodan/utils/assets_util.dart';
+import 'package:taodan/utils/crop_image_util.dart';
+import 'package:taodan/utils/image_pick_util.dart';
 
 class UserInfoPage extends StatefulWidget {
   @override
@@ -18,10 +21,6 @@ class UserInfoPage extends StatefulWidget {
 }
 
 class _UserInfoPageState extends State<UserInfoPage> {
-  File _image;
-  final picker = ImagePicker();
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,6 +46,9 @@ class _UserInfoPageState extends State<UserInfoPage> {
           itemName: '更换头像',
           rightWidget: Image.asset(AssetsUtil.mine.wallet),
           hasRightArrow: false,
+          onTag: () {
+            _openImageSheet();
+          },
         ),
         ItemWidget(
           itemName: '修改昵称',
@@ -61,11 +63,9 @@ class _UserInfoPageState extends State<UserInfoPage> {
     );
   }
 
-  Future getImage() async {
-    final pickedFile = await picker.getImage(source: ImageSource.camera);
+  _openImageSheet() {
+    ImagePickUtil.openImageSheet(context, (file, imagePicker) {
 
-    setState(() {
-      _image = File(pickedFile.path);
     });
   }
 }
