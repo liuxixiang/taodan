@@ -50,7 +50,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    YYScreenUtil.init(designSize: Size(375, 766), allowFontScaling: false);
+    YYScreenUtil.init(designSize: Size(375, 667), allowFontScaling: false);
 
     return MaterialApp(
       title: 'Flutter Demo',

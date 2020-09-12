@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:taodan/common/apis/api_common.dart';
 import 'package:taodan/common/widgets/progress_widget.dart';
 import 'package:taodan/common/widgets/task_bottom_sheet.dart';
 import 'package:taodan/router/navigator_util.dart';
+import 'package:taodan/state/commons.dart';
 import 'package:taodan/utils/assets_util.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -18,15 +20,17 @@ void _clickBottomImage(BuildContext context, int i) {
           context: context,
           backgroundColor: Colors.transparent,
           builder: (BuildContext context) {
-            return TaskBottomSheet();
+            return ChangeNotifierProvider(
+              create: (_) => CommonState(),
+              child: TaskBottomSheet(),
+            );
           });
       break;
     case 1:
       //todo 喂养
       // NavigatorUtil.goTest(context);
       CommonApi.getGame((data) =>
-          // NavigatorUtil.goWebView(context, url)
-          {});
+          {print("wendjia:" + data), NavigatorUtil.goWebView(context, data)});
       break;
     case 2:
       //todo 饲养员
@@ -57,11 +61,13 @@ class _State extends State<HomeScreen> {
     super.initState();
   }
 
-  Widget bg = Image.asset(
+  Widget bg = Expanded(
+      child: Image.asset(
     AssetsUtil.index.index_bg,
     width: 375.w,
+    height: 618.h,
     fit: BoxFit.cover,
-  );
+  ));
   Widget chicken = Positioned(
     left: 29.w,
     top: 300.5.h,
