@@ -69,7 +69,7 @@ class ItemWidget extends StatelessWidget {
             ),
             Spacer(),
             if (rightWidget != null) rightWidget,
-            if (hasRightArrow) Image.asset(AssetsUtil.common.arrow_right_white),
+            if (hasRightArrow) Image.asset(AssetsUtil.common.arrow_right_gray),
           ],
         ),
       ),

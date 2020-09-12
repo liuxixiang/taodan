@@ -46,6 +46,11 @@ class NavigatorUtil {
     Application.router.navigateTo(context, Routes.userInfo, replace: false);
   }
 
+  ///修改个人信息
+  static void goUpdateInfoPage(BuildContext context) {
+    Application.router.navigateTo(context, Routes.updateInfoPage, replace: false);
+  }
+
   // 返回
   static void goBack(BuildContext context) {
     Application.router.pop(context);

@@ -66,7 +66,7 @@ class _State extends State<MineSence> {
             child: Text(model.isLogin ? model.userInfo?.name ?? "" : "立即登陆",
                 style: AppStyles.textSize16_white),
           ),
-          Image.asset(AssetsUtil.common.arrow_right_gray),
+          Image.asset(AssetsUtil.common.arrow_right_white),
         ],
       ),
     );

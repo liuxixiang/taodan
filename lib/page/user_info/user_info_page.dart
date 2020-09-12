@@ -11,6 +11,7 @@ import 'package:taodan/common/widgets/app_bar.dart';
 import 'package:taodan/common/widgets/item_widget.dart';
 import 'package:taodan/page/user_info/user_info_viewmodel.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:taodan/router/navigator_util.dart';
 import 'package:taodan/utils/assets_util.dart';
 import 'package:taodan/utils/crop_image_util.dart';
 import 'package:taodan/utils/image_pick_util.dart';
@@ -53,20 +54,24 @@ class _UserInfoPageState extends State<UserInfoPage> {
         ItemWidget(
           itemName: '修改昵称',
           hasLine: false,
+          onTag: () {
+            NavigatorUtil.goUpdateInfoPage(context);
+          },
         ),
         SizedBox(height: 8.h),
         ItemWidget(
           itemName: '手机号码',
+          hasRightArrow: false,
         ),
-        ItemWidget(itemName: '微信账号'),
+        ItemWidget(
+          itemName: '微信账号',
+          hasRightArrow: false,
+        ),
       ],
     );
   }
 
   _openImageSheet() {
-    ImagePickUtil.openImageSheet(context, (file, imagePicker) {
-
-    });
+    ImagePickUtil.openImageSheet(context, (file, imagePicker) {});
   }
-
 }

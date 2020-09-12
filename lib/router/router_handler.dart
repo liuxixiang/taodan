@@ -4,6 +4,7 @@ import 'package:taodan/page/breeder/my_breeder_page.dart';
 import 'package:taodan/page/invite/invite_page.dart';
 import 'package:taodan/page/main/main_page.dart';
 import 'package:taodan/page/login/login_page.dart';
+import 'package:taodan/page/setting/update_info_page.dart';
 import 'package:taodan/page/sign/sign_page.dart';
 import 'package:taodan/page/splash/splash_page.dart';
 import 'package:taodan/page/task/task_wall.dart';
@@ -59,6 +60,12 @@ class RouterHandler {
     // params["id"],
     return UserInfoPage();
   });
+
+  var updateInfoHandler = new Handler(
+      handlerFunc: (BuildContext context, Map<String, List<String>> params) {
+        // params["id"],
+        return UpdateInfoPage();
+      });
 
   var webHandler = new Handler(
       handlerFunc: (BuildContext context, Map<String, List<String>> params) {
