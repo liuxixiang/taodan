@@ -4,24 +4,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:taodan/model/task_type.dart';
 import 'package:taodan/router/navigator_util.dart';
+import 'package:taodan/state/commons.dart';
 import 'package:taodan/utils/assets_util.dart';
+import 'package:provider/provider.dart';
 
-class TaskBottomSheet extends StatefulWidget {
-  @override
-  _TaskBottomSheetState createState() => _TaskBottomSheetState();
-}
+class TaskBottomSheet extends StatelessWidget {
+  List<TaskType> items = [];
 
-class _TaskBottomSheetState extends State<TaskBottomSheet> {
-  @override
   Widget build(BuildContext context) {
-    List<TaskType> items = [
-      TaskType()..buttonText = "去完成",
-      TaskType()..buttonText = "去完成",
-      TaskType()..buttonText = "去完成",
-      TaskType()..buttonText = "去完成",
-      TaskType()..buttonText = "去完成",
-      TaskType()..buttonText = "去完成",
-    ];
+    items = context.watch<CommonState>().items;
     return Container(
         width: 375.w,
         decoration: BoxDecoration(
@@ -68,7 +59,8 @@ class _TaskBottomSheetState extends State<TaskBottomSheet> {
                           top: 35.h,
                           right: 19.5.w,
                           child: GestureDetector(
-                            onTap: () => _goTaskWall(items[index].landingUrl),
+                            onTap: () =>
+                                _goTaskWall(context, items[index].landingUrl),
                             child: Container(
                               width: 72.5.w,
                               height: 25.h,
@@ -130,7 +122,7 @@ class _TaskBottomSheetState extends State<TaskBottomSheet> {
         ));
   }
 
-  _goTaskWall(String url) {
+  _goTaskWall(BuildContext context, String url) {
     NavigatorUtil.goTaskWall(context, url);
     // Navigator.of(context).push(
     //   PageRouteBuilder(

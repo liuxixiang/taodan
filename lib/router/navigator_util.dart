@@ -52,8 +52,8 @@ class NavigatorUtil {
   }
 
   static void goWebView(BuildContext context, String url) {
+    var value = Uri.encodeComponent(url);
     Application.router
-        .navigateTo(context, Routes.webview + "?{url}", replace: false);
-    ;
+        .navigateTo(context, Routes.webview + "?url=" + value, replace: false);
   }
 }

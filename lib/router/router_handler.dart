@@ -62,6 +62,7 @@ class RouterHandler {
 
   var webHandler = new Handler(
       handlerFunc: (BuildContext context, Map<String, List<String>> params) {
+    print(params);
     return WebviewWidget(params["url"][0]);
   });
 }

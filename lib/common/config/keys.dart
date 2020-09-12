@@ -1,5 +1,6 @@
 class Keys {
-  static const String APP_CLIENT_TYPE = "clientType"; //客户端类型 android ios h5 server
+  static const String APP_CLIENT_TYPE =
+      "clientType"; //客户端类型 android ios h5 server
   static const String APP_CHANNEL_KEY = "channel";
   static const String APP_VERSION_KEY = "version";
   static const String DEVICE_ID_KEY = "deviceId";
@@ -14,6 +15,4 @@ class Keys {
   static const String USER_INFO = "userInfo";
   static const String SECRET_KEY = "secretKey";
   static const String LOGIN = "login";
-
-
 }

@@ -9,15 +9,9 @@ class CommonApi {
     await HttpUtils.instance.requestNetwork(
       Method.get,
       ApiPath.game,
-      // params: {
-      //   // "gameId": 1
-      //   // 'mobile': mobile,
-      //   // 'loginType': 'mobile',
-      // },
       onSuccess: (code, msg, data) {
         Map<String, dynamic> map = json.decode(data);
-        print("wendjia" + data);
-        // onNetSuccess.call();
+        onNetSuccess.call(map["data"]);
       },
     );
   }

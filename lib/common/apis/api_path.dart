@@ -11,7 +11,7 @@ class ApiPath {
 
   ///common
   static const configs = '/common/getConfigs';
-
+  static const config = '/commons/getConfig';
   //game
   static const game = '/commons/gameLogin';
 }
