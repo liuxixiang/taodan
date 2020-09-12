@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:taodan/common/values/colors.dart';
 import 'package:taodan/common/values/styles.dart';
+import 'package:taodan/utils/log_util.dart';
 
 typedef TextChanged = void Function(String value);
 
@@ -14,7 +15,8 @@ class ClearTextField extends StatefulWidget {
       this.maxLength,
       this.controller,
       this.hintStyle,
-      this.style})
+      this.style,
+      this.border})
       : super(key: key);
 
   final TextChanged onChanged;
@@ -23,6 +25,7 @@ class ClearTextField extends StatefulWidget {
   final String hintText;
   final TextStyle hintStyle;
   final TextStyle style;
+  final InputBorder border;
 
   @override
   State<StatefulWidget> createState() {
@@ -32,7 +35,7 @@ class ClearTextField extends StatefulWidget {
 
 class _ClearTextFieldState extends State<ClearTextField> {
   TextEditingController _controller;
-  String inputText = '';
+  String _inputText = '';
 
   @override
   void initState() {
@@ -53,8 +56,9 @@ class _ClearTextFieldState extends State<ClearTextField> {
           style: widget.style ?? AppStyles.textSize16_black_33,
           //输入文本的样式
           onChanged: (inputText) {
+            LogUtil.e("onChanged---");
             setState(() {
-              this.inputText = inputText;
+              this._inputText = inputText;
             });
             widget.onChanged(inputText);
           },
@@ -63,6 +67,7 @@ class _ClearTextFieldState extends State<ClearTextField> {
             // border: new UnderlineInputBorder(
             //   borderSide: BorderSide(color: Colors.red, width: 1.0, style: BorderStyle.none )),
             //去掉输入框的下滑线
+            border: widget.border,
             fillColor: Colors.white,
             filled: true,
             suffixIcon: hidingIcon(),
@@ -75,7 +80,7 @@ class _ClearTextFieldState extends State<ClearTextField> {
   }
 
   Widget hidingIcon() {
-    if (inputText.length > 0) {
+    if (_inputText.length > 0) {
       return IconButton(
           icon: Icon(
             Icons.clear,
@@ -84,8 +89,9 @@ class _ClearTextFieldState extends State<ClearTextField> {
           splashColor: Colors.redAccent,
           onPressed: () {
             setState(() {
-              inputText = '';
+              _inputText = '';
               _controller.clear();
+              widget.onChanged(_inputText);
             });
           });
     } else {
