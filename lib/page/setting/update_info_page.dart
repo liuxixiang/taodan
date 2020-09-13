@@ -24,18 +24,15 @@ class UpdateInfoPage extends StatelessWidget {
                 child: Center(
                   child: Padding(
                     padding: EdgeInsets.only(right: 15.w),
-                    child: Text(
-                      '保存',
-                      textAlign: TextAlign.center,
-                      style: ObjectUtils.isNotEmpty(model.info)
-                          ? AppStyles.textSize15_white
-                          : AppStyles.textSize15_99,
-                    ),
+                    child: Text('保存',
+                        textAlign: TextAlign.center,
+                        style: AppStyles.textSize15_white),
                   ),
                 ),
               )),
           body: Container(
             child: ClearTextField(
+              border: InputBorder.none,
               hintText: '昵称',
               onChanged: model.updateString,
             ),
@@ -46,6 +43,8 @@ class UpdateInfoPage extends StatelessWidget {
   _clickSave(UpdateInfoViewModel model) {
     if (ObjectUtils.isNotEmpty(model.info)) {
       model.updateInfo();
+    }else{
+      ToastUtils.showCenterToast('请输入昵称');
     }
   }
 }

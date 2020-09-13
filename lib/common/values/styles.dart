@@ -7,7 +7,7 @@ import 'package:taodan/common/values/dimens.dart';
 
 class AppStyles {
   static TextStyle textSize10_white =
-  TextStyle(fontSize: AppDimens.font_sp10, color: Colors.white);
+      TextStyle(fontSize: AppDimens.font_sp10, color: Colors.white);
 
   static TextStyle textSize12_white =
       TextStyle(fontSize: AppDimens.font_sp12, color: Colors.white);
@@ -30,6 +30,8 @@ class AppStyles {
       TextStyle(fontSize: AppDimens.font_sp15, color: AppColors.black_33);
   static TextStyle textSize15_99 =
       TextStyle(fontSize: AppDimens.font_sp15, color: AppColors.gray_99);
+  static TextStyle textSize15_red =
+      TextStyle(fontSize: AppDimens.font_sp15, color: Colors.red);
 
   static TextStyle textSize16_99 =
       TextStyle(fontSize: AppDimens.font_sp16, color: AppColors.gray_99);

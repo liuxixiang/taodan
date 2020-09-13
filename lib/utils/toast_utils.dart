@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 class ToastUtils {
+  static Toast _toast;
+
   static showToast(
-    @required String msg,
-    Toast toastLength,
-    ToastGravity gravity,
-  ) {
+      {@required String msg, Toast toastLength, ToastGravity gravity}) {
+    Fluttertoast.cancel();
     Fluttertoast.showToast(
         msg: msg,
         toastLength: toastLength,
@@ -18,22 +18,22 @@ class ToastUtils {
   }
 
   static showCenterToast(
-    @required String msg,
+    String msg,
   ) {
     showToast(
-      msg,
-      Toast.LENGTH_LONG,
-      ToastGravity.CENTER,
+      msg: msg,
+      toastLength: Toast.LENGTH_SHORT,
+      gravity: ToastGravity.CENTER,
     );
   }
 
   static showBottomToast(
-    @required String msg,
+    String msg,
   ) {
     showToast(
-      msg,
-      Toast.LENGTH_LONG,
-      ToastGravity.BOTTOM,
+      msg: msg,
+      toastLength: Toast.LENGTH_SHORT,
+      gravity: ToastGravity.BOTTOM,
     );
   }
 }
