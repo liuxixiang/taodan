@@ -72,7 +72,7 @@ class _ClearTextFieldState extends State<ClearTextField> {
             filled: true,
             suffixIcon: hidingIcon(),
             hintText: widget.hintText ?? '',
-            hintStyle: widget.hintStyle ?? AppStyles.textSize16_black_33,
+            hintStyle: widget.hintStyle ?? AppStyles.textSize16_99,
           ),
         ),
       ],

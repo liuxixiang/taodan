@@ -42,7 +42,8 @@ class UpdateInfoPage extends StatelessWidget {
                   // 保持光标在最后
                   selection: TextSelection.fromPosition(TextPosition(
                       affinity: TextAffinity.downstream,
-                      offset: model.info?.length)))),
+                      offset: (model.info??"").length))
+              )),
               border: InputBorder.none,
               hintText: '昵称',
               onChanged: model.updateString,
