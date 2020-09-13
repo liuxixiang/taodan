@@ -8,7 +8,6 @@ import 'package:flutter/material.dart';
 import 'package:taodan/api/interceptors/error_interceptor.dart';
 import 'package:taodan/api/result_data.dart';
 import 'package:taodan/common/manager/context_manager.dart';
-import 'package:taodan/main.dart';
 import 'package:taodan/router/navigator_util.dart';
 import 'package:taodan/utils/log_util.dart';
 import 'package:taodan/utils/toast_utils.dart';
@@ -73,10 +72,10 @@ class HttpUtils {
     /// Fiddler抓包代理配置 https://www.jianshu.com/p/d831b1f7c45b
     (_dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate =
         (HttpClient client) {
-      // client.findProxy = (uri) {
-      //   //proxy all request to localhost:8888
-      //   return 'PROXY 10.249.150.53:8888';
-      // };
+      client.findProxy = (uri) {
+        //proxy all request to localhost:8888
+        return 'PROXY 192.168.1.103:8888';
+      };
       client.badCertificateCallback =
           (X509Certificate cert, String host, int port) => true;
     };
@@ -127,6 +126,26 @@ class HttpUtils {
     options ??= Options();
     options.method = method;
     return options;
+  }
+
+  Future<ResultData> uploadFile(String url, String filePath,
+      {String filename,
+      NetCallback onSuccess,
+      NetCallback onError,
+      NetOnComplete onComplete,
+      CancelToken cancelToken,
+      Options options,
+      bool isShowError: true}) async {
+    FormData formData = FormData.fromMap(
+        {"media": await MultipartFile.fromFile(filePath, filename: filename)});
+    return requestNetwork(Method.post, url,
+        params: formData,
+        onSuccess: onSuccess,
+        onError: onError,
+        onComplete: onComplete,
+        cancelToken: cancelToken,
+        options: options,
+        isShowError: isShowError);
   }
 
   Future<ResultData> requestNetwork(Method method, String url,

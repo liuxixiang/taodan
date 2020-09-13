@@ -31,11 +31,11 @@ class _UserInfoPageState extends State<UserInfoPage> {
         body: ViewModelBuilder<UserInfoViewModel>.reactive(
             viewModelBuilder: () => UserInfoViewModel(),
             builder: (context, model, child) => Container(
-                  child: _buildItemView(),
+                  child: _buildItemView(model),
                 )));
   }
 
-  _buildItemView() {
+  _buildItemView(UserInfoViewModel model) {
     return Column(
       children: [
         ItemWidget(itemName: '用户等级'),
@@ -49,7 +49,7 @@ class _UserInfoPageState extends State<UserInfoPage> {
           rightWidget: Image.asset(AssetsUtil.mine.wallet),
           hasRightArrow: false,
           onTag: () {
-            _openImageSheet();
+            _openImageSheet(model);
           },
         ),
         ItemWidget(
@@ -72,11 +72,12 @@ class _UserInfoPageState extends State<UserInfoPage> {
     );
   }
 
-  _openImageSheet() {
+  _openImageSheet(UserInfoViewModel model) {
     ImagePickUtil.openImageSheet(context, (file, imagePicker) async {
-      if(file != null &&await file.exists()) {
-        String fileName =  file?.toString()?.substring(file.toString().lastIndexOf('/'));
-        UploadAPI.upload(file.path, fileName, (data) => null);
+      if (file != null && await file.exists()) {
+        String fileName =
+            file?.toString()?.substring(file.toString().lastIndexOf('/'));
+        model.uploadHead(file.path, fileName);
       }
     });
   }
