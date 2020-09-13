@@ -23,14 +23,7 @@ class MineViewModel extends MultipleFutureViewModel {
   Future<UserInfoEntity> getUserInfo() async {
     if (isLogin) {
       await UserAPI.findUser((data) => {
-            if (data != null)
-              {
-                userInfo = data.userInfoRspDto,
-                if (userInfo != null)
-                  {
-                    UserManager.getInstance().saveUserInfo(userInfo),
-                  }
-              }
+            userInfo = data,
           });
     }
     return userInfo;

@@ -12,6 +12,8 @@ class UpdateInfoViewModel extends BaseViewModel {
   }
 
   updateInfo() {
-    UserAPI.bindInvite(info, (data) {});
+    UserAPI.updateUserInfo((data) {
+
+    }, name: info);
   }
 }

@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:stacked/stacked.dart';
+import 'package:taodan/common/apis/api_upload.dart';
 import 'package:taodan/common/values/colors.dart';
 import 'package:taodan/common/values/dimens.dart';
 import 'package:taodan/common/widgets/app_bar.dart';
@@ -72,6 +73,11 @@ class _UserInfoPageState extends State<UserInfoPage> {
   }
 
   _openImageSheet() {
-    ImagePickUtil.openImageSheet(context, (file, imagePicker) {});
+    ImagePickUtil.openImageSheet(context, (file, imagePicker) async {
+      if(file != null &&await file.exists()) {
+        String fileName =  file?.toString()?.substring(file.toString().lastIndexOf('/'));
+        UploadAPI.upload(file.path, fileName, (data) => null);
+      }
+    });
   }
 }

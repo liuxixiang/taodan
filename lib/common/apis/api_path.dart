@@ -5,6 +5,7 @@ class ApiPath {
   static const login = '/member/user/login';
   static const findUser = '/member/user/findUser';
   static const bindInvite = '/member/user/bindInvite';
+  static const updateUserInfo = '/member/user/updateUserInfo';
 
   // static const BASE_URL = 'http://api-qa.joy.beekuaibao.com/';
   // static const LOGIN = '/account/account/login';
@@ -12,6 +13,10 @@ class ApiPath {
   ///common
   static const configs = '/common/getConfigs';
   static const config = '/commons/getConfig';
+
   //game
   static const game = '/commons/gameLogin';
+
+  //upload
+  static const upload = '/commons/common/oss/upload';
 }

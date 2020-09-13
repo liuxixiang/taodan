@@ -4,6 +4,7 @@ import 'package:taodan/common/manager/user_manager.dart';
 import 'package:taodan/model/login_entity.dart';
 import 'package:taodan/model/user_info_all_entity.dart';
 import 'package:taodan/model/user_info_entity.dart';
+import 'package:taodan/utils/log_util.dart';
 
 import 'api_path.dart';
 
@@ -19,19 +20,23 @@ class UserAPI {
         'loginType': 'app',
       },
       onSuccess: (code, msg, data) {
+        LogUtil.e('dfsdsfs');
         if (onNetSuccess != null) {
           onNetSuccess(LoginEntity.fromJson(data));
         }
+        LogUtil.e('fsdfsadfafasdf');
       },
     );
   }
 
-  static findUser(OnNetSuccess<UserInfoAllEntity> onNetSuccess) async {
+  static findUser(OnNetSuccess<UserInfoEntity> onNetSuccess) async {
     await HttpUtils.instance.requestNetwork(
       Method.get,
       ApiPath.findUser,
-      onSuccess: (code, msg, data) {
-        onNetSuccess.call(UserInfoAllEntity.fromJson(data));
+      onSuccess: (code, msg, data) async {
+        if (data != null && onNetSuccess != null) {
+          onNetSuccess.call(UserInfoAllEntity.fromJson(data)?.userInfoRspDto);
+        }
       },
     );
   }
@@ -51,5 +56,25 @@ class UserAPI {
         // }
       },
     );
+  }
+
+  static updateUserInfo(OnNetSuccess<UserInfoEntity> onNetSuccess,
+      {String avatarImage, String name, String six}) async {
+    await HttpUtils.instance.requestNetwork(
+      Method.post,
+      ApiPath.updateUserInfo,
+      params: {"avatarImage": avatarImage, "name": name, "six": six},
+      onSuccess: (code, msg, data) {
+        UserInfoEntity userInfoEntity = UserInfoEntity.fromJson(data);
+        _saveUserInfo(userInfoEntity);
+        onNetSuccess.call(userInfoEntity);
+      },
+    );
+  }
+
+  static _saveUserInfo(UserInfoEntity userInfoEntity) {
+    if (userInfoEntity != null) {
+      UserManager.getInstance().saveUserInfo(userInfoEntity);
+    }
   }
 }
