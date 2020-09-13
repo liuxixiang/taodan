@@ -56,7 +56,6 @@ class _ClearTextFieldState extends State<ClearTextField> {
           style: widget.style ?? AppStyles.textSize16_black_33,
           //输入文本的样式
           onChanged: (inputText) {
-            LogUtil.e("onChanged---");
             setState(() {
               this._inputText = inputText;
             });
