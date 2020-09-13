@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:taodan/common/config/keys.dart';
 import 'package:taodan/common/manager/context_manager.dart';
 import 'package:taodan/model/login_entity.dart';
@@ -46,7 +47,7 @@ class UserManager {
   }
 
   ///检查登陆
-  Future<bool> checkLogin() async {
+  Future<bool> checkLogin({VoidCallback callback}) async {
     bool login = await isLogin;
     if (!login) {
       NavigatorUtil.goLogin(ContextManager.context, false);
@@ -66,14 +67,15 @@ class UserManager {
     //     new Event(EventCode.LOGIN_STATE_CHANGED, new LoginEventBean(true)));
   }
 
-  saveUserInfo(UserInfoEntity userInfo) {
-    _userInfo = userInfo;
-    if (_userInfo == null) {
-      SpUtil.getInstance().remove(Keys.USER_INFO);
-    } else {
-      SpUtil.getInstance().putObject(Keys.USER_INFO, _userInfo);
-    }
-  }
+  // saveUserInfo(UserInfoEntity userInfo) {
+  //   _userInfo = userInfo;
+  //   if (_userInfo == null) {
+  //     SpUtil.getInstance().remove(Keys.USER_INFO);
+  //   } else {
+  //     SpUtil.getInstance()
+  //         .putString(Keys.USER_INFO, JsonUtil.encodeObj(userInfo));
+  //   }
+  // }
 
   saveSecretKey(String secretKey) async {
     _secretKey = secretKey;

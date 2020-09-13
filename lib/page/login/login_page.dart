@@ -6,8 +6,10 @@ import 'package:taodan/model/login_entity.dart';
 import 'package:taodan/model/user_info_entity.dart';
 
 import 'package:taodan/router/navigator_util.dart';
+import 'package:taodan/state/user_state.dart';
 import 'package:taodan/utils/assets_util.dart';
 import 'package:taodan/utils/yy_screen_util.dart';
+import 'package:provider/provider.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -123,8 +125,11 @@ class _LoginPageState extends State<LoginPage> {
       return;
     }
     // 保存用户信息
-    UserManager.getInstance()
+    context
+        .read<UserState>()
         .saveUserInfo(loginEntity.userInfoRspDto ?? UserInfoEntity());
+    // UserManager.getInstance()
+    //     .saveUserInfo(loginEntity.userInfoRspDto ?? UserInfoEntity());
     UserManager.getInstance().saveSecretKey(loginEntity.secretKey);
     String auth = loginEntity.token;
     if (auth.isNotEmpty) {

@@ -1,11 +1,13 @@
 import 'package:taodan/api/http_utils.dart';
 import 'package:taodan/common/apis/apis.dart';
+import 'package:taodan/common/manager/context_manager.dart';
 import 'package:taodan/common/manager/user_manager.dart';
 import 'package:taodan/model/login_entity.dart';
 import 'package:taodan/model/user_info_all_entity.dart';
 import 'package:taodan/model/user_info_entity.dart';
+import 'package:taodan/state/user_state.dart';
 import 'package:taodan/utils/log_util.dart';
-
+import 'package:provider/provider.dart';
 import 'api_path.dart';
 
 /// 用户
@@ -64,15 +66,16 @@ class UserAPI {
       params: {"avatarImage": avatarImage, "name": name, "six": six},
       onSuccess: (code, msg, data) {
         UserInfoEntity userInfoEntity = UserInfoEntity.fromJson(data);
-        _saveUserInfo(userInfoEntity);
+        // _saveUserInfo(userInfoEntity);
+        ContextManager.context.read<UserState>().saveUserInfo(userInfoEntity);
         onNetSuccess.call(msg);
       },
     );
   }
 
-  static _saveUserInfo(UserInfoEntity userInfoEntity) {
-    if (userInfoEntity != null) {
-      UserManager.getInstance().saveUserInfo(userInfoEntity);
-    }
-  }
+  // static _saveUserInfo(UserInfoEntity userInfoEntity) {
+  //   if (userInfoEntity != null) {
+  //     UserManager.getInstance().saveUserInfo(userInfoEntity);
+  //   }
+  // }
 }

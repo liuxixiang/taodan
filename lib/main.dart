@@ -1,11 +1,13 @@
 import 'package:dio/dio.dart';
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:taodan/common/apis/api_path.dart';
 import 'package:taodan/common/values/colors.dart';
 import 'package:taodan/router/application.dart';
 import 'package:taodan/router/routes.dart';
 import 'package:taodan/router/wendjia_router.dart';
+import 'package:taodan/state/user_state.dart';
 import 'package:taodan/utils/log_util.dart';
 import 'package:taodan/utils/yy_screen_util.dart';
 
@@ -17,7 +19,12 @@ import 'common/config/config.dart';
 import 'common/manager/context_manager.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(MultiProvider(
+    providers: [
+      ChangeNotifierProvider<UserState>(create: (_) => UserState()),
+    ],
+    child: MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {

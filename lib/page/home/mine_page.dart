@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
+import 'package:taodan/common/manager/context_manager.dart';
 import 'package:taodan/common/manager/user_manager.dart';
 import 'package:taodan/common/values/colors.dart';
 import 'package:taodan/common/values/styles.dart';
@@ -7,29 +8,16 @@ import 'package:taodan/common/widgets/item_widget.dart';
 import 'package:taodan/page/mine/function_item_widget.dart';
 import 'package:taodan/page/mine/mine_viewmodel.dart';
 import 'package:taodan/page/mine/wallet_item_widget.dart';
+import 'package:taodan/page/user_info/user_info_viewmodel.dart';
 import 'package:taodan/router/navigator_util.dart';
+import 'package:taodan/state/user_state.dart';
 import 'package:taodan/utils/assets_util.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:taodan/utils/toast_utils.dart';
+import 'package:provider/provider.dart';
 
-class MineSence extends StatefulWidget {
-  @override
-  _State createState() => _State();
-}
-
-class _State extends State<MineSence> {
-  @override
-  Widget build(BuildContext context) {
-    return ViewModelBuilder<MineViewModel>.reactive(
-        viewModelBuilder: () => MineViewModel(),
-        onModelReady: (model) async {
-          model.isLogin = await UserManager.getInstance().isLogin;
-        },
-        builder: (context, model, child) => Container(
-                child: Column(
-              children: [_buildUserInfo(model), _buildItemView()],
-            )));
-  }
+class MineSence extends StatelessWidget {
+  BuildContext context;
 
   _buildUserInfo(MineViewModel model) {
     return Container(
@@ -63,7 +51,10 @@ class _State extends State<MineSence> {
           Image.asset(AssetsUtil.mine.head),
           SizedBox(width: 16.5),
           Expanded(
-            child: Text(model.isLogin ? model.userInfo?.name ?? "" : "立即登陆",
+            child: Text(
+                context.watch<UserState>().isLogin
+                    ? context.watch<UserState>().userInfoEntity?.name ?? ""
+                    : "立即登陆",
                 style: AppStyles.textSize16_white),
           ),
           Image.asset(AssetsUtil.common.arrow_right_white),
@@ -189,4 +180,24 @@ class _State extends State<MineSence> {
 
   ///现金余额
   _onWalletClick() {}
+
+  // String _getShowName(MineViewModel model) {
+  //   // return ContextManager.context.read<UserState>().isLogin
+  //   //     ? !model.loadUserInfoBusy
+  //   //         ? ContextManager.context.read<UserState>().userInfoEntity?.name ??
+  //   //             ""
+  //   //         : ""
+  //   //     : "立即登陆";
+  //   return
+  // }
+
+  @override
+  Widget build(BuildContext context) {
+    MineViewModel model = new MineViewModel();
+    this.context = context;
+    return Container(
+        child: Column(
+      children: [_buildUserInfo(model), _buildItemView()],
+    ));
+  }
 }

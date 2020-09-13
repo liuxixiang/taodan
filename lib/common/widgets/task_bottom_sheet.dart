@@ -59,8 +59,7 @@ class TaskBottomSheet extends StatelessWidget {
                           top: 35.h,
                           right: 19.5.w,
                           child: GestureDetector(
-                            onTap: () =>
-                                _goTaskWall(context, items[index].landingUrl),
+                            onTap: () => _goTaskWall(context, items[index].url),
                             child: Container(
                               width: 72.5.w,
                               height: 25.h,
@@ -71,7 +70,7 @@ class TaskBottomSheet extends StatelessWidget {
                               ),
                               child: Center(
                                 child: Text(
-                                  items[index].buttonText,
+                                  items[index].btnTitle,
                                   style: TextStyle(fontSize: 13.sp),
                                 ),
                               ),
@@ -81,8 +80,8 @@ class TaskBottomSheet extends StatelessWidget {
                         Positioned(
                             top: 17.5.h,
                             left: 16.5.w,
-                            child: Image.asset(
-                              AssetsUtil.test.test,
+                            child: Image.network(
+                              items[index].icon,
                               width: 55.w,
                               height: 55.h,
                             )),
@@ -91,7 +90,7 @@ class TaskBottomSheet extends StatelessWidget {
                             left: 88.5.w,
                             width: 151.5.w,
                             child: Text(
-                              "每日签到+1G～28G饲料 连续签到，奖励更多每日签到+1G～28G饲料 连续签到，奖励更多",
+                              items[index].title,
                               maxLines: 2,
                               overflow: TextOverflow.ellipsis,
                               style: TextStyle(
@@ -101,7 +100,7 @@ class TaskBottomSheet extends StatelessWidget {
                             top: 60.h,
                             left: 88.5.w,
                             child: Text(
-                              "每天限1份",
+                              items[index].desc,
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
                               style: TextStyle(
