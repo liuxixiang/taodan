@@ -20,11 +20,9 @@ class UserAPI {
         'loginType': 'app',
       },
       onSuccess: (code, msg, data) {
-        LogUtil.e('dfsdsfs');
         if (onNetSuccess != null) {
           onNetSuccess(LoginEntity.fromJson(data));
         }
-        LogUtil.e('fsdfsadfafasdf');
       },
     );
   }
@@ -58,7 +56,7 @@ class UserAPI {
     );
   }
 
-  static updateUserInfo(OnNetSuccess<UserInfoEntity> onNetSuccess,
+  static updateUserInfo(OnNetSuccess<String> onNetSuccess,
       {String avatarImage, String name, String six}) async {
     await HttpUtils.instance.requestNetwork(
       Method.post,
@@ -67,7 +65,7 @@ class UserAPI {
       onSuccess: (code, msg, data) {
         UserInfoEntity userInfoEntity = UserInfoEntity.fromJson(data);
         _saveUserInfo(userInfoEntity);
-        onNetSuccess.call(userInfoEntity);
+        onNetSuccess.call(msg);
       },
     );
   }
