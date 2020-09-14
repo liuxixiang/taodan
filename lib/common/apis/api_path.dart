@@ -1,22 +1,33 @@
 class ApiPath {
   static const baseUrl = 'http://120.24.243.205';
-
-  ///member
-  static const login = '/member/user/login';
-  static const findUser = '/member/user/findUser';
-  static const bindInvite = '/member/user/bindInvite';
-  static const updateUserInfo = '/member/user/updateUserInfo';
-
+  static Member member = Member();
+  static Common common = Common();
   // static const BASE_URL = 'http://api-qa.joy.beekuaibao.com/';
   // static const LOGIN = '/account/account/login';
 
+}
+
+class Member {
+  ///member
+  static const _path = "/member";
+  final String login = _path + 'user/login';
+  final String findUser = _path + '/user/findUser';
+  final String bindInvite = _path + '/user/bindInvite';
+  final String updateUserInfo = _path + '/user/updateUserInfo';
+  final String checkTask = _path + "/task/byUserIdGetTask";
+  final String saveTask = _path + "/task/saveUserTask";
+}
+
+class Common {
+  static const _path = "/commonsr";
+
   ///common
-  static const configs = '/commons/common/getConfigs';
-  static const config = '/commons/common/getConfig';
+  final String configs = _path + '/common/getConfigs';
+  final String config = _path + '/common/getConfig';
 
   //game
-  static const game = '/commons/gameLogin';
+  final String game = _path + '/gameLogin';
 
   //upload
-  static const upload = '/commons/common/oss/upload';
+  final String upload = _path + '/common/oss/upload';
 }

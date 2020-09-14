@@ -8,7 +8,7 @@ class ConfigApi {
   static getConfigs<T>(String code, OnNetSuccess<T> onNetSuccess) async {
     await HttpUtils.instance.requestNetwork(
       Method.get,
-      ApiPath.configs,
+      ApiPath.common.configs,
       // params: {
       //   'code': code,
       //   'mobile': mobile,
@@ -22,7 +22,7 @@ class ConfigApi {
 
   static getConfig(
       String code, OnNetSuccess<List<TaskType>> onNetSuccess) async {
-    await HttpUtils.instance.requestNetwork(Method.get, ApiPath.config,
+    await HttpUtils.instance.requestNetwork(Method.get, ApiPath.common.config,
         // params: {'code': code},
         queryParameters: {
           "paramCode": code,

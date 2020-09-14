@@ -11,7 +11,7 @@ class UploadAPI {
     OnNetSuccess<ImageEntity> onNetSuccess,
   ) {
     HttpUtils.instance.uploadFile(
-      ApiPath.upload,
+      ApiPath.common.upload,
       filePath,
       filename: fileName,
       onSuccess: (code, msg, data) {

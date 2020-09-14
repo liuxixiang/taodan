@@ -8,7 +8,7 @@ class CommonApi {
   static getGame<T>(OnNetSuccess<T> onNetSuccess) async {
     await HttpUtils.instance.requestNetwork(
       Method.get,
-      ApiPath.game,
+      ApiPath.common.game,
       onSuccess: (code, msg, data) {
         Map<String, dynamic> map = json.decode(data);
         onNetSuccess.call(map["data"]);

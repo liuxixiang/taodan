@@ -16,7 +16,7 @@ class UserAPI {
       String code, String mobile, OnNetSuccess<LoginEntity> onNetSuccess) {
     HttpUtils.instance.requestNetwork(
       Method.post,
-      ApiPath.login,
+      ApiPath.member.login,
       params: {
         'loginNo': mobile,
         'loginType': 'app',
@@ -32,7 +32,7 @@ class UserAPI {
   static findUser(OnNetSuccess<UserInfoEntity> onNetSuccess) async {
     await HttpUtils.instance.requestNetwork(
       Method.get,
-      ApiPath.findUser,
+      ApiPath.member.findUser,
       onSuccess: (code, msg, data) async {
         if (data != null && onNetSuccess != null) {
           onNetSuccess.call(UserInfoAllEntity.fromJson(data)?.userInfoRspDto);
@@ -45,7 +45,7 @@ class UserAPI {
       String inviteCode, OnNetSuccess<UserInfoEntity> onNetSuccess) {
     HttpUtils.instance.requestNetwork(
       Method.post,
-      ApiPath.bindInvite,
+      ApiPath.member.bindInvite,
       params: {
         // 'createdBy': code,
         'inviteCode': inviteCode,
@@ -62,7 +62,7 @@ class UserAPI {
       {String avatarImage, String name, String six}) async {
     await HttpUtils.instance.requestNetwork(
       Method.post,
-      ApiPath.updateUserInfo,
+      ApiPath.member.updateUserInfo,
       params: {"avatarImage": avatarImage, "name": name, "six": six},
       onSuccess: (code, msg, data) {
         UserInfoEntity userInfoEntity = UserInfoEntity.fromJson(data);
