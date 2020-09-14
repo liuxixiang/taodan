@@ -19,7 +19,7 @@ class Member {
 }
 
 class Common {
-  static const _path = "/commonsr";
+  static const _path = "/commons";
 
   ///common
   final String configs = _path + '/common/getConfigs';

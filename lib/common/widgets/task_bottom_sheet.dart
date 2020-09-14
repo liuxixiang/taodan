@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:taodan/common/apis/api_task.dart';
 import 'package:taodan/model/task_type.dart';
 import 'package:taodan/router/navigator_util.dart';
 import 'package:taodan/state/commons.dart';
@@ -59,7 +60,7 @@ class TaskBottomSheet extends StatelessWidget {
                           top: 35.h,
                           right: 19.5.w,
                           child: GestureDetector(
-                            onTap: () => _goTaskWall(context, items[index].url),
+                            onTap: () => _goTaskWall(context, items[index]),
                             child: Container(
                               width: 72.5.w,
                               height: 25.h,
@@ -121,9 +122,9 @@ class TaskBottomSheet extends StatelessWidget {
         ));
   }
 
-  _goTaskWall(BuildContext context, String url) {
-    NavigatorUtil.goTaskWall(context, url);
-
+  _goTaskWall(BuildContext context, TaskType taskType) {
+    NavigatorUtil.goTaskWall(context, taskType.url);
+    TaskAPI.checkTask(taskType.dataId, (data) => {});
     // Navigator.of(context).push(
     //   PageRouteBuilder(
 
