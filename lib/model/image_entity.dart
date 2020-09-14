@@ -4,7 +4,8 @@
 
 import 'dart:convert';
 
-ImageEntity imageEntityFromJson(String str) => ImageEntity.fromJson(json.decode(str));
+ImageEntity imageEntityFromJson(String str) =>
+    ImageEntity.fromJson(json.decode(str));
 
 String imageEntityToJson(ImageEntity data) => json.encode(data.toJson());
 
@@ -22,16 +23,16 @@ class ImageEntity {
   int height;
 
   factory ImageEntity.fromJson(Map<String, dynamic> json) => ImageEntity(
-    img: json["img"],
-    thumbnail: json["thumbnail"],
-    width: json["width"],
-    height: json["height"],
-  );
+        img: json["img"],
+        thumbnail: json["thumbnail"],
+        width: json["width"],
+        height: json["height"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "img": img,
-    "thumbnail": thumbnail,
-    "width": width,
-    "height": height,
-  };
+        "img": img,
+        "thumbnail": thumbnail,
+        "width": width,
+        "height": height,
+      };
 }

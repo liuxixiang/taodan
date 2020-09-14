@@ -5,7 +5,8 @@ import 'api_path.dart';
 import 'apis.dart';
 
 class TaskAPI {
-  static getConfigs<T>(String taskId, OnNetSuccess<T> onNetSuccess) async {
+  static checkTask(
+      String taskId, OnNetSuccess<TaskCheckEntity> onNetSuccess) async {
     await HttpUtils.instance.requestNetwork(
       Method.get,
       ApiPath.member.checkTask,
