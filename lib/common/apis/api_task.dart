@@ -19,6 +19,7 @@ class TaskAPI {
       //   'loginType': 'mobile',
       // },
       onSuccess: (code, msg, data) {
+        print("wendjia:" + data);
         onNetSuccess.call(TaskCheckEntity.fromJson(data));
       },
     );
