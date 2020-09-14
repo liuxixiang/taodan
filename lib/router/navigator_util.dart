@@ -49,7 +49,8 @@ class NavigatorUtil {
 
   ///修改个人信息
   static void goUpdateInfoPage(BuildContext context) {
-    Application.router.navigateTo(context, Routes.updateInfoPage, replace: false);
+    Application.router
+        .navigateTo(context, Routes.updateInfoPage, replace: false);
   }
 
   // 返回
@@ -66,7 +67,7 @@ class NavigatorUtil {
       {bool replace = false,
       bool opaque = true,
       bool needCheckLogin = true}) async {
-    if (needCheckLogin & await UserManager.getInstance().isLogin) {
+    if (needCheckLogin & !await UserManager.getInstance().isLogin) {
       url = Routes.login;
     }
 

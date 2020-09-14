@@ -75,8 +75,8 @@ class _UserInfoPageState extends State<UserInfoPage> {
   _openImageSheet(UserInfoViewModel model) {
     ImagePickUtil.openImageSheet(context, (file, imagePicker) async {
       if (file != null && await file.exists()) {
-        String fileName =
-            file?.toString()?.substring(file.toString().lastIndexOf('/'));
+        String fileName = file.path.substring(file.path.lastIndexOf('/'));
+        // file?.toString()?.substring(file.toString().lastIndexOf('/'));
         model.uploadHead(file.path, fileName);
       }
     });
