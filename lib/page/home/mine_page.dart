@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'package:taodan/common/manager/context_manager.dart';
@@ -59,7 +60,16 @@ class MineSence extends StatelessWidget {
       onTap: () => _onHeadClick(),
       child: Row(
         children: [
-          Image.asset(AssetsUtil.mine.head),
+          CachedNetworkImage(
+            width: 50.w,
+            height: 50.w,
+            imageUrl:
+                Provider.of<UserState>(context).userInfoEntity?.avatarImage ??
+                    "",
+            placeholder: (context, url) => CircularProgressIndicator(),
+            errorWidget: (context, url, error) =>
+                Image.asset(AssetsUtil.mine.head),
+          ),
           SizedBox(width: 16.5),
           Expanded(
             child: Text(
