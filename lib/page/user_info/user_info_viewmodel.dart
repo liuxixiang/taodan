@@ -7,15 +7,16 @@ import 'package:taodan/utils/object_utils.dart';
 import 'package:taodan/utils/toast_utils.dart';
 
 class UserInfoViewModel extends BaseViewModel {
-  String _avatarImage;
+  String _avatarImage = "http://via.placeholder.com/350x150";
 
   String get avatarImage => _avatarImage;
 
-  uploadHead(String filePath, String fileName)  {
-    UploadAPI.upload(filePath, fileName, (data)  {
+  uploadHead(String filePath, String fileName) {
+    UploadAPI.upload(filePath, fileName, (data) {
       if (data != null) {
         _avatarImage =
-            ObjectUtils.isNotEmpty(data.thumbnail) ? data.thumbnail : data.img;
+        ObjectUtils.isNotEmpty(data.thumbnail) ? data.thumbnail : data.img;
+        notifyListeners();
         if (ObjectUtils.isNotEmpty(_avatarImage)) {
           UserAPI.updateUserInfo((message) {
             ToastUtils.showCenterToast(message);
