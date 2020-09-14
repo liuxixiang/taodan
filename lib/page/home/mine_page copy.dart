@@ -10,7 +10,7 @@
 // import 'package:taodan/page/mine/wallet_item_widget.dart';
 // import 'package:taodan/page/user_info/user_info_viewmodel.dart';
 // import 'package:taodan/router/navigator_util.dart';
-// import 'package:taodan/state/user_state.dart';
+// import 'package:taodan/state/user_service.dart';
 // import 'package:taodan/utils/assets_util.dart';
 // import 'package:flutter_screenutil/flutter_screenutil.dart';
 // import 'package:taodan/utils/toast_utils.dart';

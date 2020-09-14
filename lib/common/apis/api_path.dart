@@ -10,7 +10,7 @@ class ApiPath {
 class Member {
   ///member
   static const _path = "/member";
-  final String login = _path + 'user/login';
+  final String login = _path + '/user/login';
   final String findUser = _path + '/user/findUser';
   final String bindInvite = _path + '/user/bindInvite';
   final String updateUserInfo = _path + '/user/updateUserInfo';

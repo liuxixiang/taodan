@@ -19,6 +19,17 @@ import 'package:provider/provider.dart';
 class MineSence extends StatelessWidget {
   BuildContext context;
 
+  @override
+  Widget build(BuildContext context) {
+    this.context = context;
+    return ViewModelBuilder<MineViewModel>.reactive(
+        viewModelBuilder: () => MineViewModel(),
+        builder: (context, model, child) => Container(
+                child: Column(
+              children: [_buildUserInfo(model), _buildItemView()],
+            )));
+  }
+
   _buildUserInfo(MineViewModel model) {
     return Container(
       color: Colors.white,
@@ -52,8 +63,8 @@ class MineSence extends StatelessWidget {
           SizedBox(width: 16.5),
           Expanded(
             child: Text(
-                context.watch<UserState>().isLogin
-                    ? context.watch<UserState>().userInfoEntity?.name ?? ""
+                Provider.of<UserState>(context).isLogin
+                    ? Provider.of<UserState>(context).userInfoEntity?.name ?? ""
                     : "立即登陆",
                 style: AppStyles.textSize16_white),
           ),
@@ -181,23 +192,14 @@ class MineSence extends StatelessWidget {
   ///现金余额
   _onWalletClick() {}
 
-  // String _getShowName(MineViewModel model) {
-  //   // return ContextManager.context.read<UserState>().isLogin
-  //   //     ? !model.loadUserInfoBusy
-  //   //         ? ContextManager.context.read<UserState>().userInfoEntity?.name ??
-  //   //             ""
-  //   //         : ""
-  //   //     : "立即登陆";
-  //   return
-  // }
+// String _getShowName(MineViewModel model) {
+//   // return ContextManager.context.read<UserState>().isLogin
+//   //     ? !model.loadUserInfoBusy
+//   //         ? ContextManager.context.read<UserState>().userInfoEntity?.name ??
+//   //             ""
+//   //         : ""
+//   //     : "立即登陆";
+//   return
+// }
 
-  @override
-  Widget build(BuildContext context) {
-    MineViewModel model = new MineViewModel();
-    this.context = context;
-    return Container(
-        child: Column(
-      children: [_buildUserInfo(model), _buildItemView()],
-    ));
-  }
 }
