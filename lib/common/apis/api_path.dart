@@ -2,8 +2,9 @@ class ApiPath {
   static const baseUrl = 'http://120.24.243.205';
   static Member member = Member();
   static Common common = Common();
-  // static const BASE_URL = 'http://api-qa.joy.beekuaibao.com/';
-  // static const LOGIN = '/account/account/login';
+  static Account account = Account();
+// static const BASE_URL = 'http://api-qa.joy.beekuaibao.com/';
+// static const LOGIN = '/account/account/login';
 
 }
 
@@ -30,4 +31,12 @@ class Common {
 
   //upload
   final String upload = _path + '/common/oss/upload';
+}
+
+class Account {
+  ///account
+  static const _path = "/account";
+
+  ///queryAccountHome
+  final String queryAccountHome = _path + '/acc/queryAccountHome';
 }
