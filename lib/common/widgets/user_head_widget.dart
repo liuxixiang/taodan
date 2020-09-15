@@ -19,15 +19,15 @@ class UserHeadWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String avatarImage =
-        Provider.of<UserState>(context).userInfo?.avatarImage;
+    String avatarImage = Provider.of<UserState>(context).userInfo?.avatarImage;
+    bool isLogin = Provider.of<UserState>(context).isLogin;
     return Container(
       decoration: BoxDecoration(
           border: Border.all(color: AppColors.gray_97, width: 1),
           borderRadius: BorderRadius.circular(42)),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(imageRadius.w),
-        child: ObjectUtils.isNotEmpty(avatarImage)
+        child: (isLogin || ObjectUtils.isNotEmpty(avatarImage))
             ? CachedNetworkImage(
                 width: width.w,
                 height: height.w,
