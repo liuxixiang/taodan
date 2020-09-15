@@ -67,15 +67,14 @@ class UserManager {
     //     new Event(EventCode.LOGIN_STATE_CHANGED, new LoginEventBean(true)));
   }
 
-  // saveUserInfo(UserInfoEntity userInfo) {
-  //   _userInfo = userInfo;
-  //   if (_userInfo == null) {
-  //     SpUtil.getInstance().remove(Keys.USER_INFO);
-  //   } else {
-  //     SpUtil.getInstance()
-  //         .putString(Keys.USER_INFO, JsonUtil.encodeObj(userInfo));
-  //   }
-  // }
+  saveUserInfo(UserInfoEntity userInfo) {
+    _userInfo = userInfo;
+    if (_userInfo == null) {
+      SpUtil.instance.remove(Keys.USER_INFO);
+    } else {
+      SpUtil.instance.putString(Keys.USER_INFO, JsonUtil.encodeObj(userInfo));
+    }
+  }
 
   saveSecretKey(String secretKey) async {
     _secretKey = secretKey;

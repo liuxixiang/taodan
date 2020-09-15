@@ -39,7 +39,7 @@ class LoginPage extends StatelessWidget {
       }
       //绑定了上级 保存用户登陆状态
       if (loginEntity.bindInviteFlag) {
-        UserManager.getInstance().saveLogin(true);
+        context.read<UserState>().saveLoginState(true);
       }
     }
 

@@ -54,7 +54,7 @@ class _UserInfoPageState extends State<UserInfoPage> {
         ),
         ItemWidget(
           itemName: '修改昵称',
-          itemRightText: Provider.of<UserState>(context).userInfoEntity?.name ?? "",
+          itemRightText: Provider.of<UserState>(context).userInfo?.name ?? "",
           hasLine: false,
           onTag: () {
             NavigatorUtil.goUpdateInfoPage(context);

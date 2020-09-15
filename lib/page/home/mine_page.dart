@@ -71,7 +71,7 @@ class MineSence extends StatelessWidget {
           Expanded(
             child: Text(
                 Provider.of<UserState>(context).isLogin
-                    ? Provider.of<UserState>(context).userInfoEntity?.name ?? "- -"
+                    ? Provider.of<UserState>(context).userInfo?.name ?? "- -"
                     : "立即登陆",
                 style: AppStyles.textSize16_white),
           ),

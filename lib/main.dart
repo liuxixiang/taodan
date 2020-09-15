@@ -15,16 +15,18 @@ import 'api/http_utils.dart';
 import 'api/interceptors/header_interceptor.dart';
 import 'api/interceptors/sign_interceptor.dart';
 import 'api/interceptors/token_interceptor.dart';
+import 'common/Global.dart';
 import 'common/config/config.dart';
 import 'common/manager/context_manager.dart';
 
 void main() {
-  runApp(MultiProvider(
-    providers: [
-      ChangeNotifierProvider<UserState>(create: (_) => UserState()),
-    ],
-    child: MyApp(),
-  ));
+  WidgetsFlutterBinding.ensureInitialized();
+  Global.init().then((e) => runApp(MultiProvider(
+      providers: [
+        ChangeNotifierProvider<UserState>(create: (_) => UserState()),
+      ],
+      child: MyApp(),
+    )));
 }
 
 class MyApp extends StatelessWidget {

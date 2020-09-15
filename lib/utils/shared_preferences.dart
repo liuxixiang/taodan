@@ -8,7 +8,7 @@ class SpUtil {
   static SpUtil _instance;
 
   static SpUtil get instance {
-    return getInstance();
+    return _getInstance();
   }
 
   static SharedPreferences _spf;
@@ -19,7 +19,7 @@ class SpUtil {
     _spf = await SharedPreferences.getInstance();
   }
 
-  static SpUtil getInstance() {
+  static SpUtil _getInstance() {
     if (_instance == null) {
       _instance = new SpUtil._();
     }

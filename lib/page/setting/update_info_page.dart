@@ -18,7 +18,8 @@ class UpdateInfoPage extends StatelessWidget {
     return ViewModelBuilder<UpdateInfoViewModel>.reactive(
       viewModelBuilder: () => UpdateInfoViewModel(),
       onModelReady: (model) async {
-        model.updateString(Provider.of<UserState>(context).userInfoEntity?.name ?? "");
+        model
+            .updateString(Provider.of<UserState>(context).userInfo?.name ?? "");
       },
       builder: (context, model, child) => Scaffold(
           appBar: appBar(context,
@@ -43,8 +44,7 @@ class UpdateInfoPage extends StatelessWidget {
                   // 保持光标在最后
                   selection: TextSelection.fromPosition(TextPosition(
                       affinity: TextAffinity.downstream,
-                      offset: (model.info??"").length))
-              )),
+                      offset: (model.info ?? "").length)))),
               border: InputBorder.none,
               hintText: '昵称',
               onChanged: model.updateString,

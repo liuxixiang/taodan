@@ -20,7 +20,7 @@ class UserHeadWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     String avatarImage =
-        Provider.of<UserState>(context).userInfoEntity?.avatarImage;
+        Provider.of<UserState>(context).userInfo?.avatarImage;
     return Container(
       decoration: BoxDecoration(
           border: Border.all(color: AppColors.gray_97, width: 1),
