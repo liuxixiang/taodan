@@ -1,13 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 import 'package:stacked/stacked.dart';
-import 'package:taodan/common/manager/user_manager.dart';
 import 'package:taodan/common/values/colors.dart';
 import 'package:taodan/common/values/styles.dart';
 import 'package:taodan/common/widgets/app_bar.dart';
 import 'package:taodan/common/widgets/clear_textfield.dart';
 import 'package:taodan/page/setting/update_info_viewmodel.dart';
+import 'package:taodan/state/user_state.dart';
 import 'package:taodan/utils/object_utils.dart';
 import 'package:taodan/utils/toast_utils.dart';
 
@@ -17,7 +18,7 @@ class UpdateInfoPage extends StatelessWidget {
     return ViewModelBuilder<UpdateInfoViewModel>.reactive(
       viewModelBuilder: () => UpdateInfoViewModel(),
       onModelReady: (model) async {
-        model.updateString((await UserManager.getInstance().userInfo).name);
+        model.updateString(Provider.of<UserState>(context).userInfoEntity?.name ?? "");
       },
       builder: (context, model, child) => Scaffold(
           appBar: appBar(context,

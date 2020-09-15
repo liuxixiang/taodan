@@ -4,12 +4,15 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 import 'package:stacked/stacked.dart';
 import 'package:taodan/common/values/colors.dart';
 import 'package:taodan/common/widgets/app_bar.dart';
 import 'package:taodan/common/widgets/item_widget.dart';
+import 'package:taodan/common/widgets/user_head_widget.dart';
 import 'package:taodan/page/user_info/user_info_viewmodel.dart';
 import 'package:taodan/router/navigator_util.dart';
+import 'package:taodan/state/user_state.dart';
 import 'package:taodan/utils/assets_util.dart';
 import 'package:taodan/utils/image_pick_util.dart';
 import 'package:taodan/utils/object_utils.dart';
@@ -43,15 +46,7 @@ class _UserInfoPageState extends State<UserInfoPage> {
         SizedBox(height: 8.h),
         ItemWidget(
           itemName: '更换头像',
-          rightWidget: ObjectUtils.isNotEmpty(model.avatarImage)
-              ? CachedNetworkImage(
-                  width: 50.w,
-                  height: 50.w,
-                  imageUrl: model.avatarImage,
-                  placeholder: (context, url) => CircularProgressIndicator(),
-                  errorWidget: (context, url, error) => Icon(Icons.error),
-                )
-              : null,
+          rightWidget: UserHeadWidget(),
           hasRightArrow: false,
           onTag: () {
             _openImageSheet(model);
@@ -59,6 +54,7 @@ class _UserInfoPageState extends State<UserInfoPage> {
         ),
         ItemWidget(
           itemName: '修改昵称',
+          itemRightText: Provider.of<UserState>(context).userInfoEntity?.name ?? "",
           hasLine: false,
           onTag: () {
             NavigatorUtil.goUpdateInfoPage(context);

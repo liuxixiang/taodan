@@ -63,11 +63,12 @@ class ItemWidget extends StatelessWidget {
               itemName,
               style: itemNameStyle ?? AppStyles.textSize15_black_33,
             ),
+            Spacer(),
             Text(
               itemRightText ?? "",
               style: itemNameStyle ?? AppStyles.textSize15_99,
             ),
-            Spacer(),
+            SizedBox(width: 8.w),
             if (rightWidget != null) rightWidget,
             if (hasRightArrow) Image.asset(AssetsUtil.common.arrow_right_gray),
           ],
