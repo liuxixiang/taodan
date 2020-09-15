@@ -14,6 +14,7 @@ import 'package:taodan/router/navigator_util.dart';
 import 'package:taodan/state/user_state.dart';
 import 'package:taodan/utils/assets_util.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:taodan/utils/object_utils.dart';
 import 'package:taodan/utils/toast_utils.dart';
 import 'package:provider/provider.dart';
 
@@ -25,10 +26,12 @@ class MineSence extends StatelessWidget {
     this.context = context;
     return ViewModelBuilder<MineViewModel>.reactive(
         viewModelBuilder: () => MineViewModel(),
-        builder: (context, model, child) => Container(
-                child: Column(
-              children: [_buildUserInfo(model), _buildItemView()],
-            )));
+        builder: (context, model, child) => SingleChildScrollView(
+          child: Container(
+                  child: Column(
+                children: [_buildUserInfo(model), _buildItemView()],
+              )),
+        ));
   }
 
   _buildUserInfo(MineViewModel model) {
@@ -36,7 +39,15 @@ class MineSence extends StatelessWidget {
       color: Colors.white,
       child: Stack(
         children: [
-          Image.asset(AssetsUtil.mine.bg_head, fit: BoxFit.fill),
+          Image.asset(AssetsUtil.mine.bg_head, fit: BoxFit.cover),
+          Container(
+            color: Colors.white,
+            height: 184.5.h,
+            child: Image.asset(AssetsUtil.mine.bg_head,
+                fit: BoxFit.cover,
+                width: double.infinity,
+                height: double.infinity),
+          ),
           Container(
             padding: EdgeInsets.only(
                 top: 45.h, left: 15.h, right: 21.w, bottom: 14.h),
@@ -60,16 +71,7 @@ class MineSence extends StatelessWidget {
       onTap: () => _onHeadClick(),
       child: Row(
         children: [
-          CachedNetworkImage(
-            width: 50.w,
-            height: 50.w,
-            imageUrl:
-                Provider.of<UserState>(context).userInfoEntity?.avatarImage ??
-                    "",
-            placeholder: (context, url) => CircularProgressIndicator(),
-            errorWidget: (context, url, error) =>
-                Image.asset(AssetsUtil.mine.head),
-          ),
+          _buildNetworkImage(),
           SizedBox(width: 16.5),
           Expanded(
             child: Text(
@@ -82,6 +84,21 @@ class MineSence extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  _buildNetworkImage() {
+    String avatarImage =
+        Provider.of<UserState>(context).userInfoEntity?.avatarImage;
+    return ObjectUtils.isNotEmpty(avatarImage)
+        ? CachedNetworkImage(
+            width: 50.w,
+            height: 50.w,
+            imageUrl: avatarImage,
+            placeholder: (context, url) => CircularProgressIndicator(),
+            errorWidget: (context, url, error) =>
+                Image.asset(AssetsUtil.mine.head),
+          )
+        :Image.asset(AssetsUtil.mine.head);
   }
 
   _buildUserWallet(MineViewModel model) {
