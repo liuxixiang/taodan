@@ -35,7 +35,7 @@ class NavigatorUtil {
   }
 
   static void goInvite(BuildContext context) {
-    goNext(context, Routes.invite);
+    goNext(context, Routes.invite, needCheckLogin: false);
   }
 
   static void goTest(BuildContext context) {
@@ -49,7 +49,8 @@ class NavigatorUtil {
 
   ///修改个人信息
   static void goUpdateInfoPage(BuildContext context) {
-    Application.router.navigateTo(context, Routes.updateInfoPage, replace: false);
+    Application.router
+        .navigateTo(context, Routes.updateInfoPage, replace: false);
   }
 
   // 返回

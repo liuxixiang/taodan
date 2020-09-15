@@ -9,15 +9,16 @@ import 'package:taodan/common/widgets/button_widget.dart';
 import 'package:taodan/common/widgets/clear_textfield.dart';
 import 'package:taodan/page/invite/invite_viewmodel.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:taodan/router/navigator_util.dart';
+import 'package:taodan/utils/EventBus.dart';
 
-class InvitePage extends StatefulWidget {
-  @override
-  _InvitePageState createState() => _InvitePageState();
-}
-
-class _InvitePageState extends State<InvitePage> {
+class InvitePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    //监听登录事件
+    bus.on("login", (arg) {
+      NavigatorUtil.goBack(context);
+    });
     return ViewModelBuilder<InviteViewModel>.reactive(
       viewModelBuilder: () => InviteViewModel(),
       builder: (context, model, child) => Scaffold(
@@ -30,7 +31,7 @@ class _InvitePageState extends State<InvitePage> {
                   child: ClearTextField(
                 hintText: '邀请码',
                 onChanged: (String value) {
-                  model.inviteCode = value;
+                  model.updateInviteCode(value);
                 },
               )),
               Padding(
@@ -38,7 +39,7 @@ class _InvitePageState extends State<InvitePage> {
                 child: ButtonWidget(
                   height: 45.h,
                   onPressed: () {
-                    model.invite();
+                    model.invite(context);
                   },
                   text: '确定',
                 ),

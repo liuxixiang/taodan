@@ -7,18 +7,52 @@ import 'package:taodan/model/user_info_entity.dart';
 
 import 'package:taodan/router/navigator_util.dart';
 import 'package:taodan/state/user_state.dart';
+import 'package:taodan/utils/EventBus.dart';
 import 'package:taodan/utils/assets_util.dart';
 import 'package:taodan/utils/yy_screen_util.dart';
 import 'package:provider/provider.dart';
 
-class LoginPage extends StatefulWidget {
-  @override
-  _LoginPageState createState() => _LoginPageState();
-}
-
-class _LoginPageState extends State<LoginPage> {
+class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    //监听登录事件
+    bus.on("login", (arg) {
+      NavigatorUtil.goBack(context);
+    });
+
+    _save(LoginEntity loginEntity) {
+      if (loginEntity == null) {
+        return;
+      }
+      // 保存用户信息
+      context
+          .read<UserState>()
+          .saveUserInfo(loginEntity.userInfoRspDto ?? UserInfoEntity());
+      // UserManager.getInstance()
+      //     .saveUserInfo(loginEntity.userInfoRspDto ?? UserInfoEntity());
+      UserManager.getInstance().saveSecretKey(loginEntity.secretKey);
+      String auth = loginEntity.token;
+      if (auth.isNotEmpty) {
+        // 重置auth
+        UserManager.getInstance().saveAuth(loginEntity.token);
+      }
+      //绑定了上级 保存用户登陆状态
+      if (loginEntity.bindInviteFlag) {
+        UserManager.getInstance().saveLogin(true);
+      }
+    }
+
+    _clickLogin() {
+      UserAPI.login('devops888', '18521701324', (data) {
+        _save(data);
+        if (data.bindInviteFlag) {
+          NavigatorUtil.goBack(context);
+        } else {
+          NavigatorUtil.goInvite(context);
+        }
+      });
+    }
+
     Widget titleArea = new Padding(
       padding: EdgeInsets.fromLTRB(
           YYScreenUtil.setWidth(15.5), YYScreenUtil.setHeight(36.5), 0, 0),
@@ -107,38 +141,5 @@ class _LoginPageState extends State<LoginPage> {
       ),
     );
     return Scaffold(body: body);
-  }
-
-  _clickLogin() {
-    UserAPI.login('devops888', '18521701324', (data) {
-      _save(data);
-      if (data.bindInviteFlag) {
-        NavigatorUtil.goBack(context);
-      } else {
-        NavigatorUtil.goInvite(context);
-      }
-    });
-  }
-
-  _save(LoginEntity loginEntity) {
-    if (loginEntity == null) {
-      return;
-    }
-    // 保存用户信息
-    context
-        .read<UserState>()
-        .saveUserInfo(loginEntity.userInfoRspDto ?? UserInfoEntity());
-    // UserManager.getInstance()
-    //     .saveUserInfo(loginEntity.userInfoRspDto ?? UserInfoEntity());
-    UserManager.getInstance().saveSecretKey(loginEntity.secretKey);
-    String auth = loginEntity.token;
-    if (auth.isNotEmpty) {
-      // 重置auth
-      UserManager.getInstance().saveAuth(loginEntity.token);
-    }
-    //绑定了上级 保存用户登陆状态
-    if (loginEntity.bindInviteFlag) {
-      UserManager.getInstance().saveLogin(true);
-    }
   }
 }
