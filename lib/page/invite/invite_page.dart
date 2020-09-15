@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:stacked/stacked.dart';
+import 'package:taodan/common/config/event_code.dart';
 import 'package:taodan/common/values/colors.dart';
 import 'package:taodan/common/values/styles.dart';
 import 'package:taodan/common/widgets/app_bar.dart';
@@ -16,7 +17,7 @@ class InvitePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //监听登录事件
-    bus.on("login", (arg) {
+    bus.on(EventCode.login, (arg) {
       NavigatorUtil.goBack(context);
     });
     return ViewModelBuilder<InviteViewModel>.reactive(

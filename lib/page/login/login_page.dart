@@ -1,6 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:taodan/common/apis/api_user.dart';
+import 'package:taodan/common/config/event_code.dart';
 import 'package:taodan/common/manager/user_manager.dart';
 import 'package:taodan/model/login_entity.dart';
 import 'package:taodan/model/user_info_entity.dart';
@@ -16,7 +17,7 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //监听登录事件
-    bus.on("login", (arg) {
+    bus.on(EventCode.login, (arg) {
       NavigatorUtil.goBack(context);
     });
 
@@ -45,10 +46,11 @@ class LoginPage extends StatelessWidget {
     _clickLogin() {
       UserAPI.login('devops888', '18521701324', (data) {
         _save(data);
-        if (data.bindInviteFlag) {
-          NavigatorUtil.goBack(context);
-        } else {
+        if (!data.bindInviteFlag) {
           NavigatorUtil.goInvite(context);
+        } else {
+          //登录成功后触发登录事件，页面A中订阅者会被调用
+          bus.emit(EventCode.login, data);
         }
       });
     }
