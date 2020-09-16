@@ -5,7 +5,7 @@ import 'package:taodan/common/config/tab_name.dart';
 import 'package:taodan/common/values/colors.dart';
 import 'package:taodan/page/breeder/my_breeder_viewmodel.dart';
 
-import 'my_breeder_list.dart';
+import 'my_breeder_list_widget.dart';
 
 class MyBreederPage extends StatefulWidget {
   @override
@@ -74,7 +74,7 @@ class _MyBreederPageState extends State<MyBreederPage>
           child: TabBarView(
               controller: _tabController,
               children: _myTabs.map((Tab tab) {
-                return Center(child: MyBreederList(tab.text));
+                return Center(child: MyBreederListWidget(tab.text));
               }).toList()),
         ),
       ],

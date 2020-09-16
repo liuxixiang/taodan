@@ -1,27 +1,25 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
+import 'package:stacked/stacked.dart';
 import 'package:taodan/common/config/tab_name.dart';
 import 'package:taodan/common/values/colors.dart';
 import 'package:taodan/common/values/dimens.dart';
 import 'package:taodan/common/values/strings.dart';
 import 'package:taodan/common/values/styles.dart';
 import 'package:taodan/common/widgets/refresh_listview.dart';
+import 'package:taodan/model/breeder_entity.dart';
+import 'package:taodan/page/breeder/my_breeder_viewmodel.dart';
 import 'package:taodan/utils/assets_util.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class MyBreederList extends StatefulWidget {
+class MyBreederListWidget extends ViewModelWidget<MyBreederViewModel> {
   String _tabName;
 
-  MyBreederList(this._tabName);
+  MyBreederListWidget(this._tabName);
 
   @override
-  _MyBreederListState createState() => _MyBreederListState();
-}
-
-class _MyBreederListState extends State<MyBreederList> {
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, MyBreederViewModel model) {
     // return _buildProductionTitle();
     return Container(
       padding: EdgeInsets.only(left: 8.w, right: 10.w),
@@ -41,10 +39,10 @@ class _MyBreederListState extends State<MyBreederList> {
               );
             },
             onRefresh: () async {
-              return _getList();
+              return _getList(true, model);
             },
             onLoad: () async {
-              return _getList();
+              return _getList(false, model);
             },
           ))
         ],
@@ -53,7 +51,7 @@ class _MyBreederListState extends State<MyBreederList> {
   }
 
   _buildListItem(int index, dynamic item) {
-    switch (widget._tabName) {
+    switch (_tabName) {
       case TabName.tabEmploy:
         return _buildEmploy();
       case TabName.tabEmploying:
@@ -229,7 +227,7 @@ class _MyBreederListState extends State<MyBreederList> {
     );
   }
 
-  List<dynamic> _getList() {
-    return ['hahah', 'heheh'];
+  List<BreederEntity> _getList(bool isRefresh, MyBreederViewModel model) {
+    return model.findBreederInfo(isRefresh, "B");
   }
 }
