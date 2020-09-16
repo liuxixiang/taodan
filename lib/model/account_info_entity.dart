@@ -1,43 +1,34 @@
+
+// To parse this JSON data, do
+//
+//     final accountInfoEntity = accountInfoEntityFromJson(jsonString);
+
+import 'dart:convert';
+
+AccountInfoEntity accountInfoEntityFromJson(String str) => AccountInfoEntity.fromJson(json.decode(str));
+
+String accountInfoEntityToJson(AccountInfoEntity data) => json.encode(data.toJson());
+
 class AccountInfoEntity {
   AccountInfoEntity({
-    this.userId,
-    this.inviteCode,
-    this.status,
-    this.name,
-    this.six,
-    this.level,
-    this.mobileNo,
-    this.avatarImage,
+    this.todayCoinCount,
+    this.goldIngotCount,
+    this.cashCount,
   });
 
-  String userId;
-  String inviteCode;
-  String status;
-  String name;
-  String six;
-  int level;
-  String mobileNo;
-  String avatarImage;
+  String todayCoinCount;
+  String goldIngotCount;
+  String cashCount;
 
   factory AccountInfoEntity.fromJson(Map<String, dynamic> json) => AccountInfoEntity(
-    userId: json["userId"],
-    inviteCode: json["inviteCode"],
-    status: json["status"],
-    name: json["name"],
-    six: json["six"],
-    level: json["level"],
-    mobileNo: json["mobileNo"],
-    avatarImage: json["avatarImage"],
+    todayCoinCount: json["todayCoinCount"],
+    goldIngotCount: json["goldIngotCount"],
+    cashCount: json["cashCount"],
   );
 
   Map<String, dynamic> toJson() => {
-    "userId": userId,
-    "inviteCode": inviteCode,
-    "status": status,
-    "name": name,
-    "six": six,
-    "level": level,
-    "mobileNo": mobileNo,
-    "avatarImage": avatarImage,
+    "todayCoinCount": todayCoinCount,
+    "goldIngotCount": goldIngotCount,
+    "cashCount": cashCount,
   };
 }

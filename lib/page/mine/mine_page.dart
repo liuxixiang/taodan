@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 import 'package:stacked/stacked.dart';
 import 'package:taodan/common/manager/user_manager.dart';
 import 'package:taodan/common/values/colors.dart';
@@ -68,7 +69,10 @@ class MineSence extends StatelessWidget {
           UserHeadWidget(),
           SizedBox(width: 16.5),
           Expanded(
-            child: Text(model.isLogin ? model.userInfo?.name ?? "- -" : "立即登陆",
+            child: Text(
+                Provider.of<UserState>(context).isLogin
+                    ? Provider.of<UserState>(context).userInfo?.name ?? "- -"
+                    : "立即登陆",
                 style: AppStyles.textSize16_white),
           ),
           Image.asset(AssetsUtil.common.arrow_right_white),
@@ -118,7 +122,7 @@ class MineSence extends StatelessWidget {
               WalletItemWidget(
                   title: "今日金币",
                   text: !model.loadAccountInfoBusy
-                      ? model.accountInfo.name
+                      ? model.accountInfo?.todayCoinCount
                       : "- -",
                   image: AssetsUtil.mine.gold,
                   onTag: _onWalletGoldClick),

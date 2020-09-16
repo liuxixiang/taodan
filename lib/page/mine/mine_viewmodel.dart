@@ -48,7 +48,7 @@ class MineViewModel extends MultipleFutureViewModel {
       await AccountAPI.queryAccountInfo((data) => {
             if (data != null)
               {
-                // userInfo = data,
+                _accountInfo = data,
               }
           });
     }
