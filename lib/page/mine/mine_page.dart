@@ -122,20 +122,24 @@ class MineSence extends StatelessWidget {
               WalletItemWidget(
                   title: "今日金币",
                   text: !model.loadAccountInfoBusy
-                      ? model.accountInfo?.todayCoinCount
+                      ? model.accountInfo?.todayCoinCount ?? "0"
                       : "- -",
                   image: AssetsUtil.mine.gold,
                   onTag: _onWalletGoldClick),
               Expanded(
                 child: WalletItemWidget(
                     title: "金元宝余额",
-                    text: "1000",
+                    text: !model.loadAccountInfoBusy
+                        ? model.accountInfo?.goldIngotCount ?? "0.00000"
+                        : "- -",
                     image: AssetsUtil.mine.wing,
                     onTag: _onWalletWingClick),
               ),
               WalletItemWidget(
                   title: "现金分红",
-                  text: "1000",
+                  text: !model.loadAccountInfoBusy
+                      ? model.accountInfo?.cashCount ?? "0.00"
+                      : "- -",
                   image: AssetsUtil.mine.wallet,
                   onTag: _onWalletClick)
             ],
