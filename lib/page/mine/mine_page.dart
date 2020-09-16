@@ -21,6 +21,9 @@ class MineSence extends StatelessWidget {
   Widget build(BuildContext context) {
     this.context = context;
     return ViewModelBuilder<MineViewModel>.reactive(
+        // 如果您只想触发初始化逻辑，则可以设置一次initialiseSpecialViewModelsOnce: true
+        // initialiseSpecialViewModelsOnce: true,
+        // disposeViewModel: false,
         viewModelBuilder: () => MineViewModel(),
         builder: (context, model, child) => SingleChildScrollView(
               child: Container(
