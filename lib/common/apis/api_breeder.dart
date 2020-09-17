@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:taodan/api/http_utils.dart';
+import 'package:taodan/model/breeder_entity.dart';
 import 'package:taodan/model/login_entity.dart';
 
 import 'api_path.dart';
@@ -11,7 +12,7 @@ class BreederApi {
       {int page = 1,
       @required String type,
       int pageSize = 10,
-      OnNetSuccess<LoginEntity> onNetSuccess}) {
+      OnNetSuccess<List<BreederEntity>> onNetSuccess}) {
     HttpUtils.instance.requestNetwork(
       Method.get,
       ApiPath.member.findBreederInfo,
@@ -22,7 +23,7 @@ class BreederApi {
       },
       onSuccess: (code, msg, data) {
         if (onNetSuccess != null) {
-          onNetSuccess(LoginEntity.fromJson(data));
+          onNetSuccess(breederEntityFromJson(data));
         }
       },
     );

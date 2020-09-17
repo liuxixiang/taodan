@@ -15,12 +15,13 @@ class MyBreederViewModel extends BaseViewModel {
   findBreederInfo(bool isRefresh, type) async {
     await BreederApi.findBreederInfo(
         page: _page,
+        pageSize: 20,
         type: type,
         onNetSuccess: (data) {
           if (isRefresh) {
-            _breederEntities.clear();
+            _breederEntities = data;
           } else {
-            _breederEntities.addAll(null);
+            _breederEntities.addAll(data);
           }
         });
     return _breederEntities;

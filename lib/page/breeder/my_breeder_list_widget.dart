@@ -12,6 +12,7 @@ import 'package:taodan/model/breeder_entity.dart';
 import 'package:taodan/page/breeder/my_breeder_viewmodel.dart';
 import 'package:taodan/utils/assets_util.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:taodan/utils/log_util.dart';
 
 class MyBreederListWidget extends ViewModelWidget<MyBreederViewModel> {
   String _tabName;
@@ -22,38 +23,40 @@ class MyBreederListWidget extends ViewModelWidget<MyBreederViewModel> {
   Widget build(BuildContext context, MyBreederViewModel model) {
     // return _buildProductionTitle();
     return Container(
-      padding: EdgeInsets.only(left: 8.w, right: 10.w),
-      // decoration: BoxDecoration(border: Border.all(color: Colors.black)),
-      child: Column(
-        mainAxisSize: MainAxisSize.max,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          _buildProductionTitle(),
-          Expanded(
-              child: RefreshListView(
-            onBuildListItem: (index, item) {
-              return Container(
-                padding: EdgeInsets.only(left: 2.w),
-                margin: EdgeInsets.only(bottom: AppDimens.dpDefListMargin),
-                child: _buildListItem(index, item),
-              );
-            },
-            onRefresh: () async {
-              return _getList(true, model);
-            },
-            onLoad: () async {
-              return _getList(false, model);
-            },
-          ))
-        ],
-      ),
+        padding: EdgeInsets.only(left: 8.w, right: 10.w),
+        // decoration: BoxDecoration(border: Border.all(color: Colors.black)),
+        child: Column(
+            mainAxisSize: MainAxisSize.max,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+            _buildProductionTitle(),
+        Expanded(
+          child: RefreshListView<BreederEntity>(
+              onBuildListItem: (index, item) {
+                return Container(
+                  padding: EdgeInsets.only(left: 2.w),
+                  margin: EdgeInsets.only(bottom: AppDimens.dpDefListMargin),
+                  child: _buildListItem(index, item),
+                );
+              },
+              onRefresh: () async {
+        return _getList(true, model);
+        },
+          onLoad: TabName.tabEmploy != _tabName
+              ? () async {
+            return _getList(false, model);
+          }
+              : null,
+        ))],
+    )
+    ,
     );
   }
 
-  _buildListItem(int index, dynamic item) {
+  _buildListItem(int index, BreederEntity item) {
     switch (_tabName) {
       case TabName.tabEmploy:
-        return _buildEmploy();
+        return _buildEmploy(item);
       case TabName.tabEmploying:
         return _buildEmploying();
       case TabName.tabEmployed:
@@ -93,7 +96,8 @@ class MyBreederListWidget extends ViewModelWidget<MyBreederViewModel> {
     );
   }
 
-  _buildEmploy() {
+  _buildEmploy(BreederEntity item) {
+    if (item == null) return;
     double _rightW = 83.w;
     return Stack(
       alignment: AlignmentDirectional.center, //对齐方式,9个位置.
@@ -109,9 +113,10 @@ class MyBreederListWidget extends ViewModelWidget<MyBreederViewModel> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('新手饲养员', style: AppStyles.textSize15_white),
+              Text(item.name ?? "", style: AppStyles.textSize15_white),
               SizedBox(height: 5.h),
-              Text('预计产出金元宝：12个', style: AppStyles.textSize12_white),
+              Text("预计产出金元宝：${item.outPutGoldIngot}",
+                  style: AppStyles.textSize12_white),
               SizedBox(height: 3.h),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -227,7 +232,8 @@ class MyBreederListWidget extends ViewModelWidget<MyBreederViewModel> {
     );
   }
 
-  List<BreederEntity> _getList(bool isRefresh, MyBreederViewModel model) {
-    return model.findBreederInfo(isRefresh, "B");
+  Future<List<BreederEntity>> _getList(bool isRefresh,
+      MyBreederViewModel model) async {
+    return await model.findBreederInfo(isRefresh, "B");
   }
 }

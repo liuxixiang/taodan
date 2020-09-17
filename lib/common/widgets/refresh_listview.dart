@@ -6,11 +6,11 @@ import 'package:taodan/common/values/styles.dart';
 import 'package:taodan/utils/assets_util.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-typedef RefreshCallback = Future<List<dynamic>> Function();
-typedef LoadMoreCallback = Future<List<dynamic>> Function();
-typedef BuildListItem = Widget Function(int, dynamic);
+typedef RefreshCallback<T> = Future<List<T>> Function();
+typedef LoadMoreCallback<T> = Future<List<T>> Function();
+typedef BuildListItem<T> = Widget Function(int, T);
 
-class RefreshListView extends StatefulWidget {
+class RefreshListView<T> extends StatefulWidget {
   const RefreshListView({
     Key key,
     @required this.onBuildListItem,
@@ -23,9 +23,9 @@ class RefreshListView extends StatefulWidget {
     this.wantKeepAlive = true,
   }) : super(key: key);
 
-  final RefreshCallback onRefresh;
-  final LoadMoreCallback onLoad;
-  final BuildListItem onBuildListItem;
+  final RefreshCallback<T> onRefresh;
+  final LoadMoreCallback<T> onLoad;
+  final BuildListItem<T> onBuildListItem;
   final bool enableLoad;
   final bool enableRefresh;
   final Widget emptyWidget;
@@ -33,12 +33,12 @@ class RefreshListView extends StatefulWidget {
   final EasyRefreshController controller;
 
   @override
-  _RefreshListViewState createState() => _RefreshListViewState();
+  _RefreshListViewState createState() => _RefreshListViewState<T>();
 }
 
-class _RefreshListViewState extends State<RefreshListView>
+class _RefreshListViewState<T> extends State<RefreshListView>
     with AutomaticKeepAliveClientMixin<RefreshListView> {
-  List<dynamic> _items = [];
+  List<T> _items = List();
 
   // 条目总数
   int _count;
@@ -66,7 +66,7 @@ class _RefreshListViewState extends State<RefreshListView>
       onRefresh: widget.enableRefresh
           ? () async {
               if (widget.onRefresh != null) {
-                List<dynamic> refreshItems = await widget.onRefresh();
+                List<T> refreshItems = await widget.onRefresh();
                 if (refreshItems.isNotEmpty) {
                   setState(() {
                     _count = refreshItems.length;
@@ -83,7 +83,7 @@ class _RefreshListViewState extends State<RefreshListView>
           : null,
       onLoad: widget.enableLoad
           ? () async {
-              List<dynamic> loadItems = await widget.onLoad();
+              List<T> loadItems = await widget.onLoad();
               if (loadItems.isNotEmpty) {
                 setState(() {
                   _count = _count + loadItems.length;
