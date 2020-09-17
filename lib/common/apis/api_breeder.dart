@@ -12,7 +12,7 @@ class BreederApi {
       {int page = 1,
       @required String type,
       int pageSize = 10,
-      OnNetSuccess<List<BreederEntity>> onNetSuccess}) {
+      OnNetSuccess<List<Result>> onNetSuccess}) {
     HttpUtils.instance.requestNetwork(
       Method.get,
       ApiPath.member.findBreederInfo,
@@ -23,7 +23,7 @@ class BreederApi {
       },
       onSuccess: (code, msg, data) {
         if (onNetSuccess != null) {
-          onNetSuccess(breederEntityFromJson(data));
+          onNetSuccess(BreederEntity.fromJson(data).result);
         }
       },
     );

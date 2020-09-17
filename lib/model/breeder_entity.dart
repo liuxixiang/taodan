@@ -1,79 +1,112 @@
-// To parse this JSON data, do
-//
-//     final breederEntity = breederEntityFromJson(jsonString);
-
-import 'dart:convert';
-
-String breederEntityToJson(List<BreederEntity> data) =>
-    json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
-
-List<BreederEntity> breederEntityFromJson(List<dynamic> str) =>
-    str.map((e) => BreederEntity.fromJson(e)).toList();
-
 class BreederEntity {
-  BreederEntity({
-    this.userId,
-    this.status,
-    this.breederType,
-    this.name,
-    this.outPutGoldIngot,
-    this.baseOut,
-    this.startDate,
-    this.endDate,
-    this.hasOutPutGoldIngot,
-    this.hirePrice,
-    this.hireNum,
-    this.getType,
-    this.validityDate,
-    this.userHireNum,
-  });
+  bool needPaging;
+  List<Result> result;
+  String map;
+  int page;
+  int pageSize;
+  int size;
 
-  dynamic userId;
-  dynamic status;
+  BreederEntity(
+      {this.needPaging,
+        this.result,
+        this.map,
+        this.page,
+        this.pageSize,
+        this.size});
+
+  BreederEntity.fromJson(Map<String, dynamic> json) {
+    needPaging = json['needPaging'];
+    if (json['result'] != null) {
+      result = new List<Result>();
+      json['result'].forEach((v) {
+        result.add(new Result.fromJson(v));
+      });
+    }
+    map = json['map'];
+    page = json['page'];
+    pageSize = json['page_size'];
+    size = json['size'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['needPaging'] = this.needPaging;
+    if (this.result != null) {
+      data['result'] = this.result.map((v) => v.toJson()).toList();
+    }
+    data['map'] = this.map;
+    data['page'] = this.page;
+    data['page_size'] = this.pageSize;
+    data['size'] = this.size;
+    return data;
+  }
+}
+
+class Result {
+  String userId;
+  String status;
   String breederType;
   String name;
   int outPutGoldIngot;
   int baseOut;
-  dynamic startDate;
-  dynamic endDate;
-  dynamic hasOutPutGoldIngot;
+  String startDate;
+  String endDate;
+  String hasOutPutGoldIngot;
   int hirePrice;
   int hireNum;
   String getType;
   String validityDate;
   String userHireNum;
 
-  factory BreederEntity.fromJson(Map<String, dynamic> json) => BreederEntity(
-        userId: json["userId"],
-        status: json["status"],
-        breederType: json["breederType"],
-        name: json["name"],
-        outPutGoldIngot: json["outPutGoldIngot"],
-        baseOut: json["baseOut"],
-        startDate: json["startDate"],
-        endDate: json["endDate"],
-        hasOutPutGoldIngot: json["hasOutPutGoldIngot"],
-        hirePrice: json["hirePrice"],
-        hireNum: json["hireNum"],
-        getType: json["getType"],
-        validityDate: json["validityDate"],
-        userHireNum: json["userHireNum"],
-      );
+  Result(
+      {this.userId,
+        this.status,
+        this.breederType,
+        this.name,
+        this.outPutGoldIngot,
+        this.baseOut,
+        this.startDate,
+        this.endDate,
+        this.hasOutPutGoldIngot,
+        this.hirePrice,
+        this.hireNum,
+        this.getType,
+        this.validityDate,
+        this.userHireNum});
 
-  Map<String, dynamic> toJson() => {
-        "userId": userId,
-        "status": status,
-        "breederType": breederType,
-        "name": name,
-        "outPutGoldIngot": outPutGoldIngot,
-        "baseOut": baseOut,
-        "startDate": startDate,
-        "endDate": endDate,
-        "hasOutPutGoldIngot": hasOutPutGoldIngot,
-        "hirePrice": hirePrice,
-        "hireNum": hireNum,
-        "getType": getType,
-        "validityDate": validityDate,
-        "userHireNum": userHireNum,
-      };
+  Result.fromJson(Map<String, dynamic> json) {
+    userId = json['userId'];
+    status = json['status'];
+    breederType = json['breederType'];
+    name = json['name'];
+    outPutGoldIngot = json['outPutGoldIngot'];
+    baseOut = json['baseOut'];
+    startDate = json['startDate'];
+    endDate = json['endDate'];
+    hasOutPutGoldIngot = json['hasOutPutGoldIngot'];
+    hirePrice = json['hirePrice'];
+    hireNum = json['hireNum'];
+    getType = json['getType'];
+    validityDate = json['validityDate'];
+    userHireNum = json['userHireNum'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['userId'] = this.userId;
+    data['status'] = this.status;
+    data['breederType'] = this.breederType;
+    data['name'] = this.name;
+    data['outPutGoldIngot'] = this.outPutGoldIngot;
+    data['baseOut'] = this.baseOut;
+    data['startDate'] = this.startDate;
+    data['endDate'] = this.endDate;
+    data['hasOutPutGoldIngot'] = this.hasOutPutGoldIngot;
+    data['hirePrice'] = this.hirePrice;
+    data['hireNum'] = this.hireNum;
+    data['getType'] = this.getType;
+    data['validityDate'] = this.validityDate;
+    data['userHireNum'] = this.userHireNum;
+    return data;
+  }
 }
