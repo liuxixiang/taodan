@@ -36,8 +36,16 @@ class RefreshListView<T> extends StatefulWidget {
   _RefreshListViewState createState() => _RefreshListViewState<T>();
 }
 
-class _RefreshListViewState<T> extends State<RefreshListView>
-    with AutomaticKeepAliveClientMixin<RefreshListView> {
+class _RefreshListViewState<T> extends State<RefreshListView<T>>
+    with AutomaticKeepAliveClientMixin {
+  RefreshListView<T> _refreshListView;
+
+  @override
+  void initState() {
+    _refreshListView = widget;
+    super.initState();
+  }
+
   List<T> _items = List();
 
   // 条目总数
@@ -99,7 +107,7 @@ class _RefreshListViewState<T> extends State<RefreshListView>
         SliverList(
           delegate: SliverChildBuilderDelegate(
             (context, index) {
-              return widget.onBuildListItem(
+              return _refreshListView.onBuildListItem(
                   index, _items.isNotEmpty ? _items[index] : null);
             },
             childCount: _count,
