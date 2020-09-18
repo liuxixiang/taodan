@@ -12,8 +12,8 @@ class BreederApi {
       {int page = 1,
       @required String type,
       int pageSize = 10,
-      OnNetSuccess<List<Result>> onNetSuccess}) {
-    HttpUtils.instance.requestNetwork(
+      OnNetSuccess<List<Result>> onNetSuccess}) async {
+    await HttpUtils.instance.requestNetwork(
       Method.get,
       ApiPath.member.findBreederInfo,
       queryParameters: {

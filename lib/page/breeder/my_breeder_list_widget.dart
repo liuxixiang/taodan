@@ -31,22 +31,21 @@ class MyBreederListWidget extends ViewModelWidget<MyBreederViewModel> {
           _buildProductionTitle(),
           Expanded(
               child: RefreshListView<Result>(
-            onBuildListItem: (index, item) {
-              return Container(
-                padding: EdgeInsets.only(left: 2.w),
-                margin: EdgeInsets.only(bottom: AppDimens.dpDefListMargin),
-                child: _buildListItem(index, item),
-              );
-            },
-            onRefresh: () async {
-              return _getList(true, model);
-            },
-            onLoad: TabName.tabEmploy != _tabName
-                ? () async {
+                  enableLoad: TabName.tabEmploy != _tabName,
+                  onBuildListItem: (index, item) {
+                    return Container(
+                      padding: EdgeInsets.only(left: 2.w),
+                      margin:
+                          EdgeInsets.only(bottom: AppDimens.dpDefListMargin),
+                      child: _buildListItem(index, item),
+                    );
+                  },
+                  onRefresh: () async {
+                    return _getList(true, model);
+                  },
+                  onLoad: () async {
                     return _getList(false, model);
-                  }
-                : null,
-          ))
+                  }))
         ],
       ),
     );

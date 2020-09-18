@@ -38,18 +38,18 @@ class RefreshListView<T> extends StatefulWidget {
 
 class _RefreshListViewState<T> extends State<RefreshListView<T>>
     with AutomaticKeepAliveClientMixin {
-  RefreshListView<T> _refreshListView;
+  EasyRefreshController _controller;
 
   @override
   void initState() {
-    _refreshListView = widget;
+    _controller = widget.controller ?? EasyRefreshController();
     super.initState();
   }
 
   List<T> _items = List();
 
   // 条目总数
-  int _count;
+  int _count = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -58,15 +58,15 @@ class _RefreshListViewState<T> extends State<RefreshListView<T>>
 
   _buildRefresh() {
     return EasyRefresh.custom(
+      ///首次刷新
       firstRefresh: true,
 
-      ///首次刷新
+      ///是否开启控制结束刷新
       enableControlFinishRefresh: false,
 
-      ///是否开启控制结束刷新
+      ///是否开启控制结束加载
       enableControlFinishLoad: false,
 
-      ///是否开启控制结束加载
       controller: widget.controller,
       header: widget.enableRefresh ? ClassicalHeader() : null,
       footer: widget.enableLoad ? ClassicalFooter() : null,
@@ -103,16 +103,15 @@ class _RefreshListViewState<T> extends State<RefreshListView<T>>
 //        }
             }
           : null,
-      slivers: <Widget>[
-        SliverList(
-          delegate: SliverChildBuilderDelegate(
-            (context, index) {
-              return _refreshListView.onBuildListItem(
-                  index, _items.isNotEmpty ? _items[index] : null);
-            },
-            childCount: _count,
-          ),
-        ),
+      slivers: <Widget>[SliverList(
+                delegate: SliverChildBuilderDelegate(
+                  (context, index) {
+                    return widget.onBuildListItem(
+                        index, _items.isNotEmpty ? _items[index] : null);
+                  },
+                  childCount: _count,
+                ),
+              ),
       ],
     );
   }
