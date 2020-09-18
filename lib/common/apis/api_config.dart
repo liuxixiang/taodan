@@ -31,10 +31,8 @@ class ConfigApi {
           "configVersion": "0",
           "osType": "android"
         }, onSuccess: (code, msg, data) {
-      print("data===" + data);
-      onNetSuccess.call(TaskType.taskTypesFromJson(data));
-      // onNetSuccess.call();
-      // onNetSuccess.call(LoginEntity.fromJson(data));
+      print(data["data"].runtimeType);
+      onNetSuccess.call(TaskType.taskTypesFromList(data["data"]));
     });
   }
 }

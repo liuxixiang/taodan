@@ -22,11 +22,11 @@ import 'common/manager/context_manager.dart';
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   Global.init().then((e) => runApp(MultiProvider(
-      providers: [
-        ChangeNotifierProvider<UserState>(create: (_) => UserState()),
-      ],
-      child: MyApp(),
-    )));
+        providers: [
+          ChangeNotifierProvider<UserState>(create: (_) => UserState()),
+        ],
+        child: MyApp(),
+      )));
 }
 
 class MyApp extends StatelessWidget {

@@ -5,21 +5,35 @@ import 'api_path.dart';
 import 'apis.dart';
 
 class TaskAPI {
-  static checkTask(
-      String taskId, OnNetSuccess<TaskCheckEntity> onNetSuccess) async {
+  static checkTask(String taskId, String userId,
+      OnNetSuccess<TaskCheckEntity> onNetSuccess) async {
     await HttpUtils.instance.requestNetwork(
       Method.get,
       ApiPath.member.checkTask,
-      queryParameters: {
-        'taskId': taskId,
-      },
+      queryParameters: {'taskId': taskId, 'userId': userId},
       // params: {
       // 'taskId': code,
       //   'mobile': mobile,
       //   'loginType': 'mobile',
       // },
       onSuccess: (code, msg, data) {
-        print("wendjia:" + data);
+        onNetSuccess.call(TaskCheckEntity.fromJson(data));
+      },
+    );
+  }
+
+  static saveUserTask(String taskId, String userId,
+      OnNetSuccess<TaskCheckEntity> onNetSuccess) async {
+    await HttpUtils.instance.requestNetwork(
+      Method.post,
+      ApiPath.member.saveTask,
+      params: {'taskId': taskId, 'userId': userId},
+      // params: {
+      // 'taskId': code,
+      //   'mobile': mobile,
+      //   'loginType': 'mobile',
+      // },
+      onSuccess: (code, msg, data) {
         onNetSuccess.call(TaskCheckEntity.fromJson(data));
       },
     );

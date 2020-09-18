@@ -41,8 +41,7 @@ class UserAPI {
     );
   }
 
-  static bindInvite(
-      String inviteCode, OnNetSuccess<String> onNetSuccess) {
+  static bindInvite(String inviteCode, OnNetSuccess<String> onNetSuccess) {
     HttpUtils.instance.requestNetwork(
       Method.post,
       ApiPath.member.bindInvite,

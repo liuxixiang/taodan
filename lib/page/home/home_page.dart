@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:taodan/common/apis/api_common.dart';
+import 'package:taodan/common/apis/api_egg.dart';
 import 'package:taodan/common/widgets/progress_widget.dart';
 import 'package:taodan/common/widgets/task_bottom_sheet.dart';
 import 'package:taodan/router/navigator_util.dart';
@@ -28,15 +29,15 @@ void _clickBottomImage(BuildContext context, int i) {
       break;
     case 1:
       //todo 喂养
-      // NavigatorUtil.goTest(context);
-      CommonApi.getGame((data) =>
-          {print("wendjia:" + data), NavigatorUtil.goWebView(context, data)});
+      EggApi.feedChick((data) => {});
       break;
     case 2:
       //todo 饲养员
       NavigatorUtil.goMyBreeder(context);
       break;
     case 3:
+      // NavigatorUtil.goTest(context);
+      CommonApi.getGame((data) => {NavigatorUtil.goWebView(context, data)});
       //todo 玩法引导
       break;
     default:
@@ -48,9 +49,9 @@ class _State extends State<HomeScreen> {
   List<String> imgs = ["get_food", "feed", "feeder", "guide"];
   @override
   void initState() {
+    EggApi.getEggInfo((data) => {});
     imgs = ["get_food", "feed", "feeder", "guide"];
     for (var i = 0; i < imgs.length; i++) {
-      // widgets.add(new Expanded(flex: 1, child: new Text("wendjia")));
       widgets.add(GestureDetector(
         onTap: () {
           _clickBottomImage(context, i);

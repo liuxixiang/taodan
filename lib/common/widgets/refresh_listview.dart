@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:taodan/common/values/strings.dart';
 import 'package:taodan/common/values/styles.dart';
+import 'package:taodan/model/breeder_entity.dart';
 import 'package:taodan/utils/assets_util.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 

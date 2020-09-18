@@ -74,7 +74,7 @@ class HttpUtils {
         (HttpClient client) {
       client.findProxy = (uri) {
         //proxy all request to localhost:8888
-        return 'PROXY 192.168.50.126:8888';
+        return 'PROXY 192.168.50.63:8888';
       };
       client.badCertificateCallback =
           (X509Certificate cert, String host, int port) => true;

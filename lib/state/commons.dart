@@ -13,7 +13,6 @@ class CommonState with ChangeNotifier {
   // List<TaskType> get items => _items ?? loadTaskWall();
 
   List<TaskType> loadTaskWall() {
-    // CommonApi.getGame((data) => {print("wendjia:" + data)});
     ConfigApi.getConfig(RemoteConfig.code.task_wall,
         (data) => {items = data, notifyListeners()});
   }
