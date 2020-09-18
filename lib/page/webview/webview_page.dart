@@ -12,7 +12,6 @@ class _WebviewWidgetState extends State<WebviewWidget> {
   bool _loading;
   @override
   Widget build(BuildContext context) {
-    print("wendjia url =" + widget.url);
     return Scaffold(
       appBar: AppBar(
         title: Text("淘蛋蛋"),

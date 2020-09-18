@@ -21,6 +21,13 @@ class MyBreederListWidget extends ViewModelWidget<MyBreederViewModel> {
   @override
   Widget build(BuildContext context, MyBreederViewModel model) {
     // return _buildProductionTitle();
+    BuildListItem<Result> onBuildListItem = (index, item) {
+      return Container(
+        padding: EdgeInsets.only(left: 2.w),
+        margin: EdgeInsets.only(bottom: AppDimens.dpDefListMargin),
+        child: _buildListItem(index, item),
+      );
+    };
     return Container(
       padding: EdgeInsets.only(left: 8.w, right: 10.w),
       // decoration: BoxDecoration(border: Border.all(color: Colors.black)),
@@ -31,13 +38,7 @@ class MyBreederListWidget extends ViewModelWidget<MyBreederViewModel> {
           _buildProductionTitle(),
           Expanded(
               child: RefreshListView<Result>(
-            onBuildListItem: (index, item) {
-              return Container(
-                padding: EdgeInsets.only(left: 2.w),
-                margin: EdgeInsets.only(bottom: AppDimens.dpDefListMargin),
-                child: _buildListItem(index, item),
-              );
-            },
+            onBuildListItem: onBuildListItem,
             onRefresh: () async {
               return _getList(true, model);
             },

@@ -16,7 +16,6 @@ class PicTextButton extends StatefulWidget {
 class _PicTextButtonState extends State<PicTextButton> {
   @override
   Widget build(BuildContext context) {
-    print("wendjia " + widget.width.toString());
     return Container(
       width: widget.width.w,
       alignment: Alignment.center,

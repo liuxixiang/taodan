@@ -17,6 +17,8 @@ class Member {
   final String updateUserInfo = _path + '/user/updateUserInfo';
   final String checkTask = _path + "/task/byUserIdGetTask";
   final String saveTask = _path + "/task/saveUserTask";
+  final String feedChick = _path + "/feed/feedTheChick";
+  final String eggInfo = _path + "/feed/queryEggProgress";
   final String findBreederInfo = _path + "/user/findBreederInfo";
 }
 
