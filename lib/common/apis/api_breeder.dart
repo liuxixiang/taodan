@@ -12,7 +12,7 @@ class BreederApi {
       {int page = 1,
       @required String type,
       int pageSize = 10,
-      OnNetSuccess<List<Result>> onNetSuccess}) async {
+      OnNetSuccess<List<BreederInfoEntity>> onNetSuccess}) async {
     await HttpUtils.instance.requestNetwork(
       Method.get,
       ApiPath.member.findBreederInfo,

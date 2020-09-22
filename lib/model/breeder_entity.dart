@@ -1,6 +1,6 @@
 class BreederEntity {
   bool needPaging;
-  List<Result> result;
+  List<BreederInfoEntity> result;
   String map;
   int page;
   int pageSize;
@@ -17,9 +17,9 @@ class BreederEntity {
   BreederEntity.fromJson(Map<String, dynamic> json) {
     needPaging = json['needPaging'];
     if (json['result'] != null) {
-      result = new List<Result>();
+      result = new List<BreederInfoEntity>();
       json['result'].forEach((v) {
-        result.add(new Result.fromJson(v));
+        result.add(new BreederInfoEntity.fromJson(v));
       });
     }
     map = json['map'];
@@ -42,7 +42,7 @@ class BreederEntity {
   }
 }
 
-class Result {
+class BreederInfoEntity {
   String userId;
   String status;
   String breederType;
@@ -58,7 +58,7 @@ class Result {
   String validityDate;
   String userHireNum;
 
-  Result(
+  BreederInfoEntity(
       {this.userId,
         this.status,
         this.breederType,
@@ -74,7 +74,7 @@ class Result {
         this.validityDate,
         this.userHireNum});
 
-  Result.fromJson(Map<String, dynamic> json) {
+  BreederInfoEntity.fromJson(Map<String, dynamic> json) {
     userId = json['userId'];
     status = json['status'];
     breederType = json['breederType'];

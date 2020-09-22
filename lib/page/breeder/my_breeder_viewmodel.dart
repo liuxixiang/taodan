@@ -6,9 +6,9 @@ import 'package:taodan/model/breeder_entity.dart';
 
 class MyBreederViewModel extends BaseViewModel {
   int _page = 1;
-  List<Result> _breederEntities = List();
+  List<BreederInfoEntity> _breederEntities = List();
 
-  List<Result> get breederEntities => _breederEntities;
+  List<BreederInfoEntity> get breederEntities => _breederEntities;
 
   int get page => _page;
 

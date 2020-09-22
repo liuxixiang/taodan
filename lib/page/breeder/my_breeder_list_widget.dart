@@ -30,7 +30,7 @@ class MyBreederListWidget extends ViewModelWidget<MyBreederViewModel> {
         children: [
           _buildProductionTitle(),
           Expanded(
-              child: RefreshListView<Result>(
+              child: RefreshListView<BreederInfoEntity>(
                   enableLoad: TabName.tabEmploy != _tabName,
                   onBuildListItem: (index, item) {
                     return Container(
@@ -51,14 +51,14 @@ class MyBreederListWidget extends ViewModelWidget<MyBreederViewModel> {
     );
   }
 
-  _buildListItem(int index, Result item) {
+  _buildListItem(int index, BreederInfoEntity item) {
     switch (_tabName) {
       case TabName.tabEmploy:
         return _buildEmploy(item);
       case TabName.tabEmploying:
-        return _buildEmploying();
+        return _buildEmploying(item);
       case TabName.tabEmployed:
-        return _buildEmployed();
+        return _buildEmployed(item);
     }
   }
 
@@ -94,7 +94,7 @@ class MyBreederListWidget extends ViewModelWidget<MyBreederViewModel> {
     );
   }
 
-  _buildEmploy(Result item) {
+  _buildEmploy(BreederInfoEntity item) {
     if (item == null) return;
     double _rightW = 83.w;
     return Stack(
@@ -119,10 +119,12 @@ class MyBreederListWidget extends ViewModelWidget<MyBreederViewModel> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('基础产量：+0.3金元宝/日', style: AppStyles.textSize12_white),
+                  Text('基础产量：+${item.baseOut}金元宝/日',
+                      style: AppStyles.textSize12_white),
                   Container(
                     width: _rightW,
-                    child: Text('雇佣人数：0/8', style: AppStyles.textSize12_white),
+                    child: Text('雇佣人数：${item.userHireNum}/${item.hireNum}',
+                        style: AppStyles.textSize12_white),
                   )
                 ],
               ),
@@ -130,10 +132,12 @@ class MyBreederListWidget extends ViewModelWidget<MyBreederViewModel> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('雇佣价格：0金元宝', style: AppStyles.textSize12_white),
+                  Text('雇佣价格：${item.hirePrice}金元宝',
+                      style: AppStyles.textSize12_white),
                   Container(
                     width: _rightW,
-                    child: Text('有效期：40天', style: AppStyles.textSize12_white),
+                    child: Text('有效期：${item.validityDate}天',
+                        style: AppStyles.textSize12_white),
                   )
                 ],
               ),
@@ -157,7 +161,7 @@ class MyBreederListWidget extends ViewModelWidget<MyBreederViewModel> {
     );
   }
 
-  _buildEmploying() {
+  _buildEmploying(BreederInfoEntity item) {
     double _rightW = 83.w;
     return Stack(
       alignment: AlignmentDirectional.center, //对齐方式,9个位置.
@@ -190,7 +194,7 @@ class MyBreederListWidget extends ViewModelWidget<MyBreederViewModel> {
     );
   }
 
-  _buildEmployed() {
+  _buildEmployed(BreederInfoEntity item) {
     return Stack(
       alignment: AlignmentDirectional.center, //对齐方式,9个位置.
       // fit: StackFit.expand, //未定位widget占满Stack整个空间
@@ -230,8 +234,21 @@ class MyBreederListWidget extends ViewModelWidget<MyBreederViewModel> {
     );
   }
 
-  Future<List<Result>> _getList(
+  Future<List<BreederInfoEntity>> _getList(
       bool isRefresh, MyBreederViewModel model) async {
-    return await model.findBreederInfo(isRefresh, "B");
+    ///B 雇佣    Y   雇佣中     N    已过期
+    String type = "";
+    switch (_tabName) {
+      case TabName.tabEmploy:
+        type = "B";
+        break;
+      case TabName.tabEmploying:
+        type = "Y";
+        break;
+      case TabName.tabEmployed:
+        type = "N";
+        break;
+    }
+    return await model.findBreederInfo(isRefresh, type);
   }
 }
