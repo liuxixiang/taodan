@@ -1,5 +1,5 @@
 [{
-  "appId": "taodandan",
+  "appId": "taodan",
   "configType": "rwq",
   "paramDesc": "我的任务墙",
   "configVersion": 29,
@@ -22,7 +22,7 @@
     "sort": 0
   }]
 }, {
-  "appId": "taodandan",
+  "appId": "taodan",
   "configType": "rwq",
   "paramDesc": "我的任务墙",
   "configVersion": 29,
@@ -45,7 +45,7 @@
     "sort": 3
   }]
 }, {
-  "appId": "taodandan",
+  "appId": "taodan",
   "configType": "rwq",
   "paramDesc": "我的任务墙",
   "configVersion": 29,
@@ -69,7 +69,7 @@
     "sort": 4
   }]
 }, {
-  "appId": "taodandan",
+  "appId": "taodan",
   "configType": "rwq",
   "paramDesc": "我的任务墙",
   "configVersion": 29,
@@ -92,7 +92,7 @@
     "sort": 5
   }]
 }, {
-  "appId": "taodandan",
+  "appId": "taodan",
   "configType": "rwq",
   "paramDesc": "我的任务墙",
   "configVersion": 12,
@@ -116,7 +116,7 @@
     "sort": 7
   }]
 }, {
-  "appId": "taodandan",
+  "appId": "taodan",
   "configType": "rwq",
   "paramDesc": "我的任务墙",
   "configVersion": 29,
