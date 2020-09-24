@@ -9,9 +9,10 @@ import 'package:taodan/api/interceptors/error_interceptor.dart';
 import 'package:taodan/api/result_data.dart';
 import 'package:taodan/common/manager/context_manager.dart';
 import 'package:taodan/router/navigator_util.dart';
+import 'package:taodan/state/user_state.dart';
 import 'package:taodan/utils/log_util.dart';
 import 'package:taodan/utils/toast_utils.dart';
-
+import 'package:provider/provider.dart';
 import 'error_handle.dart';
 
 /// 默认dio配置
@@ -72,10 +73,10 @@ class HttpUtils {
     /// Fiddler抓包代理配置 https://www.jianshu.com/p/d831b1f7c45b
     (_dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate =
         (HttpClient client) {
-      client.findProxy = (uri) {
-        //proxy all request to localhost:8888
-        return 'PROXY 192.168.1.103:8888';
-      };
+      // client.findProxy = (uri) {
+      //   //proxy all request to localhost:8888
+      //   return 'PROXY 192.168.1.103:8888';
+      // };
       client.badCertificateCallback =
           (X509Certificate cert, String host, int port) => true;
     };
@@ -208,6 +209,7 @@ class HttpUtils {
   ///网络请求
   _responseResult(ResultData result, NetCallback onSuccess, NetCallback onError,
       bool isShowError) {
+    print("http:" + result.code.toString() + " data=" + result.data.toString());
     if (result.code == 200) {
       if (onSuccess != null) {
         onSuccess(result.code, result.message, result.data);
@@ -251,6 +253,8 @@ class HttpUtils {
     switch (code) {
       //token失效
       case 90204:
+        // todo: 每个url都应该判断用户登录状态再发起请求
+        ContextManager.context.read<UserState>().clearLogin();
         NavigatorUtil.goLogin(ContextManager.context, false);
         break;
     }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:stacked/stacked.dart';
 import 'package:taodan/model/bottom_nav_view_data.dart';
 import 'package:taodan/page/mine/mine_page.dart';
@@ -6,6 +7,7 @@ import 'package:taodan/page/navigation/bottom_navigation_viewmodel.dart';
 import 'package:taodan/page/home/home_page.dart';
 import 'package:taodan/page/home/meassage_page.dart';
 import 'package:taodan/page/home/reward_page.dart';
+import 'package:taodan/state/egg_state.dart';
 import 'package:taodan/utils/assets_util.dart';
 
 class BottomNavigationWidget extends StatelessWidget {

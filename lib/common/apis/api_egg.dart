@@ -10,14 +10,10 @@ import 'apis.dart';
 class EggApi {
   static getEggInfo(OnNetSuccess<EggEntity> onNetSuccess) async {
     await HttpUtils.instance.requestNetwork(Method.get, ApiPath.member.eggInfo,
-        // params: {'code': code},
         queryParameters: {
           "userId": ContextManager.context.read<UserState>().userInfo.userId
         }, onSuccess: (code, msg, data) {
       onNetSuccess.call(EggEntity.fromJson(data));
-      // onNetSuccess.call(TaskType.taskTypesFromJson(data));
-      // onNetSuccess.call();
-      // onNetSuccess.call(LoginEntity.fromJson(data));
     });
   }
 

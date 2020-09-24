@@ -24,4 +24,11 @@ class UserState extends ChangeNotifier {
     Global.isLogin = await UserManager.getInstance().isLogin;
     notifyListeners();
   }
+
+  clearLogin() {
+    UserManager.getInstance().saveUserInfo(null);
+    UserManager.getInstance().saveLogin(false);
+    UserManager.getInstance().saveAuth("");
+    UserManager.getInstance().saveSecretKey("");
+  }
 }

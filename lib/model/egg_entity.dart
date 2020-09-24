@@ -1,7 +1,8 @@
 class EggEntity {
-  int feedNeededForUpgrade;
-  int feedSchedule;
-  int userEggTotal;
+  int feedNeededForUpgrade = 0;
+  int feedSchedule = 0;
+  int userEggTotal = 0;
+
   EggEntity({this.feedNeededForUpgrade, this.feedSchedule, this.userEggTotal});
 
   factory EggEntity.fromJson(Map<String, dynamic> json) => EggEntity(
