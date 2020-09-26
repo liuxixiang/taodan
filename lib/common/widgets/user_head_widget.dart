@@ -27,7 +27,7 @@ class UserHeadWidget extends StatelessWidget {
           borderRadius: BorderRadius.circular(42)),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(imageRadius.w),
-        child: (isLogin || ObjectUtils.isNotEmpty(avatarImage))
+        child: (isLogin && ObjectUtils.isNotEmpty(avatarImage))
             ? CachedNetworkImage(
                 width: width.w,
                 height: height.w,

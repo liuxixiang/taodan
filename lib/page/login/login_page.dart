@@ -21,36 +21,25 @@ class LoginPage extends StatelessWidget {
       NavigatorUtil.goBack(context);
     });
 
-    _save(LoginEntity loginEntity) {
-      if (loginEntity == null) {
-        return;
-      }
-      // 保存用户信息
-      context
-          .read<UserState>()
-          .saveUserInfo(loginEntity.userInfoRspDto ?? UserInfoEntity());
-      // UserManager.getInstance()
-      //     .saveUserInfo(loginEntity.userInfoRspDto ?? UserInfoEntity());
-      UserManager.getInstance().saveSecretKey(loginEntity.secretKey);
-      String auth = loginEntity.token;
-      if (auth.isNotEmpty) {
-        // 重置auth
-        UserManager.getInstance().saveAuth(loginEntity.token);
-      }
-      //绑定了上级 保存用户登陆状态
-      if (loginEntity.bindInviteFlag) {
-        context.read<UserState>().saveLoginState(true);
-      }
-    }
-
     _clickLogin() {
-      UserAPI.login('devops888', '18521701324', (data) {
-        _save(data);
-        if (!data.bindInviteFlag) {
-          NavigatorUtil.goInvite(context);
-        } else {
-          //登录成功后触发登录事件，页面A中订阅者会被调用
-          bus.emit(EventCode.login, data);
+      UserAPI.login('devops888', '18521701325', (data) {
+        if (data != null) {
+          // UserManager.getInstance()
+          //     .saveUserInfo(loginEntity.userInfoRspDto ?? UserInfoEntity());
+          UserManager.getInstance().saveSecretKey(data.secretKey);
+          UserManager.getInstance().saveAuth(data.token);
+          if (data.code == "0") {
+            //绑定了上级 保存用户登陆状态
+            // 保存用户信息
+            context
+                .read<UserState>()
+                .saveUserInfo(data.userInfoRspDto ?? UserInfoEntity());
+            //登录成功后触发登录事件，页面A中订阅者会被调用
+            context.read<UserState>().saveLoginState(true);
+            bus.emit(EventCode.login, data);
+          } else {
+            NavigatorUtil.goInvite(context);
+          }
         }
       });
     }

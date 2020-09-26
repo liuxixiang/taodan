@@ -194,9 +194,7 @@ class MineSence extends StatelessWidget {
 
   ///头像点击事件
   _onHeadClick() async {
-    if (await UserManager.getInstance().checkLogin()) {
-      NavigatorUtil.goUserInfo(context);
-    }
+    NavigatorUtil.goUserInfo(context);
   }
 
   ///金币

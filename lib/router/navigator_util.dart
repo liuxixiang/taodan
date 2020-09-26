@@ -67,7 +67,7 @@ class NavigatorUtil {
       {bool replace = false,
       bool opaque = true,
       bool needCheckLogin = true}) async {
-    if (needCheckLogin & !await UserManager.getInstance().isLogin) {
+    if (needCheckLogin && !await UserManager.getInstance().isLogin) {
       url = Routes.login;
     }
 

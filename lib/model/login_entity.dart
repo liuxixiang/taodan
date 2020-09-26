@@ -1,48 +1,38 @@
-// To parse this JSON data, do
-//
-//     final loginEntity = loginEntityFromJson(jsonString);
-
-import 'dart:convert';
-
 import 'package:taodan/model/user_info_entity.dart';
 
-LoginEntity loginEntityFromJson(String str) =>
-    LoginEntity.fromJson(json.decode(str));
-
-String loginEntityToJson(LoginEntity data) => json.encode(data.toJson());
-
 class LoginEntity {
-  LoginEntity({
-    this.userId,
-    this.inviteCode,
-    this.bindInviteFlag,
-    this.userInfoRspDto,
-    this.token,
-    this.secretKey,
-  });
-
   String userId;
-  String inviteCode;
-  bool bindInviteFlag;
-	UserInfoEntity userInfoRspDto;
+  String code;
+  UserInfoEntity userInfoRspDto;
   String token;
   String secretKey;
 
-  factory LoginEntity.fromJson(Map<String, dynamic> json) => LoginEntity(
-        userId: json["userId"],
-        inviteCode: json["inviteCode"],
-        bindInviteFlag: json["bindInviteFlag"],
-        userInfoRspDto: UserInfoEntity.fromJson(json["userInfoRspDto"]),
-        token: json["token"],
-        secretKey: json["secretKey"],
-      );
+  LoginEntity(
+      {this.userId,
+        this.code,
+        this.userInfoRspDto,
+        this.token,
+        this.secretKey});
 
-  Map<String, dynamic> toJson() => {
-        "userId": userId,
-        "inviteCode": inviteCode,
-        "bindInviteFlag": bindInviteFlag,
-        "userInfoRspDto": userInfoRspDto.toJson(),
-        "token": token,
-        "secretKey": secretKey,
-      };
+  LoginEntity.fromJson(Map<String, dynamic> json) {
+    userId = json['userId'];
+    code = json['code'];
+    userInfoRspDto = json['userInfoRspDto'] != null
+        ? new UserInfoEntity.fromJson(json['userInfoRspDto'])
+        : null;
+    token = json['token'];
+    secretKey = json['secretKey'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['userId'] = this.userId;
+    data['code'] = this.code;
+    if (this.userInfoRspDto != null) {
+      data['userInfoRspDto'] = this.userInfoRspDto.toJson();
+    }
+    data['token'] = this.token;
+    data['secretKey'] = this.secretKey;
+    return data;
+  }
 }
