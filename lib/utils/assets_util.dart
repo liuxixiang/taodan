@@ -35,6 +35,7 @@ class Dialog {
    static const String dialog_path = "assets/images/" + "dialog/";
    final String path = "assets/images/" + "dialog/";
   final String bg_dialog_chicken_name = dialog_path +"bg_dialog_chicken_name.png";
+  final String breeder_employ = dialog_path +"breeder_employ.png";
 }
 
 

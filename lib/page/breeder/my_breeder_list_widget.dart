@@ -12,6 +12,8 @@ import 'package:taodan/common/widgets/refresh_listview.dart';
 import 'package:taodan/common/widgets/td_cache_network_image.dart';
 import 'package:taodan/model/breeder_entity.dart';
 import 'package:taodan/page/breeder/my_breeder_viewmodel.dart';
+import 'package:taodan/page/widgets/dialog/dialog_chicken_name.dart';
+import 'package:taodan/page/widgets/dialog/dialog_employ.dart';
 import 'package:taodan/utils/assets_util.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:taodan/utils/object_utils.dart';
@@ -22,10 +24,12 @@ class MyBreederListWidget extends ViewModelWidget<MyBreederViewModel> {
   MyBreederListWidget(this._tabName);
 
   MyBreederViewModel _model;
+  BuildContext _context;
 
   @override
   Widget build(BuildContext context, MyBreederViewModel model) {
     this._model = model;
+    _context = context;
     // return _buildProductionTitle();
     return Container(
       padding: EdgeInsets.only(left: 8.w, right: 10.w),
@@ -155,7 +159,7 @@ class MyBreederListWidget extends ViewModelWidget<MyBreederViewModel> {
           right: AppDimens.dpDefPadding,
           width: _rightW,
           child: GestureDetector(
-            onTap: _model.employ(item),
+            onTap: () => _showEmployDialog(_context, item),
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.end, children: [
               TdCacheNetworkImage(
@@ -240,6 +244,15 @@ class MyBreederListWidget extends ViewModelWidget<MyBreederViewModel> {
         ),
       ],
     );
+  }
+
+  _showEmployDialog(BuildContext context, BreederInfoEntity bean) {
+    //Future类型,then或者await获取
+    showDialog(
+        context: context,
+        builder: (context) {
+          return EmployDialog(bean.name, bean.hirePrice);
+        });
   }
 
   Future<List<BreederInfoEntity>> _getList(

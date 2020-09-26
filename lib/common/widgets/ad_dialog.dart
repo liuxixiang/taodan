@@ -6,6 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 abstract class AdDialog extends Dialog {
   final double width;
+  BuildContext context;
 
   AdDialog({Key key, double width = AppDimens.dpDialogWidth})
       : width = width.w,
@@ -13,6 +14,7 @@ abstract class AdDialog extends Dialog {
 
   @override
   Widget build(BuildContext context) {
+    this.context = context;
     return Material(
         type: MaterialType.transparency,
         child: Container(
@@ -27,7 +29,8 @@ abstract class AdDialog extends Dialog {
               SizedBox(
                 height: 8.h,
               ),
-              _buildAdBanner()],
+              _buildAdBanner()
+            ],
           ),
         ));
   }

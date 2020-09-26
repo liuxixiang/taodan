@@ -3,8 +3,8 @@
 import os  
 # from pathlib2 import Path
 
-newName = "arrow_right_gray"
-moudle_name = "common"
+newName = "breeder_employ"
+moudle_name = "dialog"
 def findImage(file_dir):
    parentPath = os.path.abspath(os.path.join(os.path.abspath(__file__), "../../assets"))
    currentParent = os.path.abspath(os.path.join(os.path.abspath(__file__), "../"))
