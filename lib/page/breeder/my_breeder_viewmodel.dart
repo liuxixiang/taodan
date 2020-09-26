@@ -26,4 +26,8 @@ class MyBreederViewModel extends BaseViewModel {
         });
     return _breederEntities;
   }
+
+  employ(BreederInfoEntity item) {
+    
+  }
 }

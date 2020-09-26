@@ -8,11 +8,11 @@ class BreederEntity {
 
   BreederEntity(
       {this.needPaging,
-        this.result,
-        this.map,
-        this.page,
-        this.pageSize,
-        this.size});
+      this.result,
+      this.map,
+      this.page,
+      this.pageSize,
+      this.size});
 
   BreederEntity.fromJson(Map<String, dynamic> json) {
     needPaging = json['needPaging'];
@@ -57,22 +57,26 @@ class BreederInfoEntity {
   String getType;
   String validityDate;
   String userHireNum;
+  String backgroundUrl;
+  String buttonUrl;
 
   BreederInfoEntity(
       {this.userId,
-        this.status,
-        this.breederType,
-        this.name,
-        this.outPutGoldIngot,
-        this.baseOut,
-        this.startDate,
-        this.endDate,
-        this.hasOutPutGoldIngot,
-        this.hirePrice,
-        this.hireNum,
-        this.getType,
-        this.validityDate,
-        this.userHireNum});
+      this.status,
+      this.breederType,
+      this.name,
+      this.outPutGoldIngot,
+      this.baseOut,
+      this.startDate,
+      this.endDate,
+      this.hasOutPutGoldIngot,
+      this.hirePrice,
+      this.hireNum,
+      this.getType,
+      this.validityDate,
+      this.userHireNum,
+      this.backgroundUrl,
+      this.buttonUrl});
 
   BreederInfoEntity.fromJson(Map<String, dynamic> json) {
     userId = json['userId'];
@@ -89,6 +93,8 @@ class BreederInfoEntity {
     getType = json['getType'];
     validityDate = json['validityDate'];
     userHireNum = json['userHireNum'];
+    backgroundUrl = json['backgroundUrl'];
+    buttonUrl = json['buttonUrl'];
   }
 
   Map<String, dynamic> toJson() {
@@ -107,6 +113,8 @@ class BreederInfoEntity {
     data['getType'] = this.getType;
     data['validityDate'] = this.validityDate;
     data['userHireNum'] = this.userHireNum;
+    data['backgroundUrl'] = this.backgroundUrl;
+    data['buttonUrl'] = this.buttonUrl;
     return data;
   }
 }

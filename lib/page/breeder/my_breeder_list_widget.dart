@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
@@ -8,18 +9,23 @@ import 'package:taodan/common/values/dimens.dart';
 import 'package:taodan/common/values/strings.dart';
 import 'package:taodan/common/values/styles.dart';
 import 'package:taodan/common/widgets/refresh_listview.dart';
+import 'package:taodan/common/widgets/td_cache_network_image.dart';
 import 'package:taodan/model/breeder_entity.dart';
 import 'package:taodan/page/breeder/my_breeder_viewmodel.dart';
 import 'package:taodan/utils/assets_util.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:taodan/utils/object_utils.dart';
 
 class MyBreederListWidget extends ViewModelWidget<MyBreederViewModel> {
   String _tabName;
 
   MyBreederListWidget(this._tabName);
 
+  MyBreederViewModel _model;
+
   @override
   Widget build(BuildContext context, MyBreederViewModel model) {
+    this._model = model;
     // return _buildProductionTitle();
     return Container(
       padding: EdgeInsets.only(left: 8.w, right: 10.w),
@@ -101,9 +107,9 @@ class MyBreederListWidget extends ViewModelWidget<MyBreederViewModel> {
       alignment: AlignmentDirectional.center, //对齐方式,9个位置.
       // fit: StackFit.expand, //未定位widget占满Stack整个空间
       children: [
-        Image.asset(
-          AssetsUtil.breeder.bg_breeder_level,
-          fit: BoxFit.cover,
+        TdCacheNetworkImage(
+          url: item.backgroundUrl,
+          errPath: AssetsUtil.breeder.bg_breeder_level,
         ),
         Positioned(
           left: 93.5.w,
@@ -148,13 +154,15 @@ class MyBreederListWidget extends ViewModelWidget<MyBreederViewModel> {
           top: AppDimens.dpDefPadding,
           right: AppDimens.dpDefPadding,
           width: _rightW,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              Image.asset(
-                AssetsUtil.breeder.ic_breeder_employ,
-              ),
-            ],
+          child: GestureDetector(
+            onTap: _model.employ(item),
+            child:
+                Column(crossAxisAlignment: CrossAxisAlignment.end, children: [
+              TdCacheNetworkImage(
+                url: item.buttonUrl,
+                errPath: AssetsUtil.breeder.ic_breeder_employ,
+              )
+            ]),
           ),
         ),
       ],
