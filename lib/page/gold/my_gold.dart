@@ -5,9 +5,29 @@ class MyGoldPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Widget top = new Container();
-    return Stack(
-      children: [top],
+    return Scaffold(
+      body: new CustomScrollView(
+        slivers: <Widget>[
+          // new SliverAppBar(
+          //   title: Text("我的金元宝"),
+          //   expandedHeight: 230.0,
+          //   floating: false,
+          //   pinned: true,
+          //   snap: false,
+          // ),
+          
+          // ,
+          SliverFixedExtentList(
+            itemExtent: 50.0,
+            delegate: new SliverChildBuilderDelegate(
+              (context, index) => new ListTile(
+                title: new Text("Item $index"),
+              ),
+              childCount: 30,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

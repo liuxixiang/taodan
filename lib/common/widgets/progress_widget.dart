@@ -1,7 +1,9 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:taodan/utils/yy_screen_util.dart';
 
-class ProgressWidget extends StatefulWidget {
+class ProgressWidget extends StatelessWidget {
   int progress;
   int max;
   double width;
@@ -33,56 +35,48 @@ class ProgressWidget extends StatefulWidget {
         progressColor == null ? Color(0xFFFB8E92) : progressColor;
     this.borderColor = borderColor == null ? Color(0xffB12A2E) : borderColor;
     this.borderWidth = YYScreenUtil.setWidth(2);
-  }
-  @override
-  _ProgressWidgetState createState() => _ProgressWidgetState();
-}
-
-class _ProgressWidgetState extends State<ProgressWidget> {
-  _ProgressWidgetState();
-  double innerWidth;
-  num progress;
-  @override
-  void initState() {
-    innerWidth =
-        widget.progress / widget.max * (widget.width - widget.borderWidth * 2);
-    progress = 100.toDouble() * widget.progress / widget.max;
     if (progress > 100) {
       progress = 100;
     }
-    super.initState();
+  }
+  double get innerWidth => progress / max * (width - borderWidth * 2);
+
+  num get progressValue {
+    if (100.toDouble() * progress / max > 100) {
+      return 100;
+    } else {
+      return 100.toDouble() * progress / max;
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: widget.width,
-      height: widget.height,
+      width: width,
+      height: height,
       child: ClipRRect(
-          borderRadius: BorderRadius.all(Radius.circular(widget.radius)),
+          borderRadius: BorderRadius.all(Radius.circular(radius)),
           child: Stack(
             children: <Widget>[
               Container(
                 decoration: BoxDecoration(
-                  color: widget.bgColor,
+                  color: bgColor,
                   border: Border.all(
-                    color: widget.borderColor,
-                    width: widget.borderWidth,
+                    color: borderColor,
+                    width: borderWidth,
                   ),
-                  borderRadius:
-                      BorderRadius.all(Radius.circular(widget.radius)),
+                  borderRadius: BorderRadius.all(Radius.circular(radius)),
                 ),
               ),
               Positioned(
-                left: widget.borderWidth,
-                top: widget.borderWidth,
+                left: borderWidth,
+                top: borderWidth,
                 child: ClipRRect(
-                  borderRadius:
-                      BorderRadius.all(Radius.circular(widget.radius)),
+                  borderRadius: BorderRadius.all(Radius.circular(radius)),
                   child: Container(
                     width: innerWidth,
-                    height: widget.height - widget.borderWidth * 2,
-                    decoration: BoxDecoration(color: widget.progressColor),
+                    height: height - borderWidth * 2,
+                    decoration: BoxDecoration(color: progressColor),
                     child: Center(
                       child: Text(progress.toString() + "%",
                           style: TextStyle(

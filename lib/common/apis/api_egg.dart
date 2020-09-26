@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:taodan/api/http_utils.dart';
 import 'package:taodan/common/manager/context_manager.dart';
 import 'package:taodan/model/egg_entity.dart';
@@ -26,8 +25,6 @@ class EggApi {
           "userId": ContextManager.context.read<UserState>().userInfo.userId
         }, onSuccess: (code, msg, data) {
       onNetSuccess.call(EggEntity.fromJson(data));
-      // onNetSuccess.call();
-      // onNetSuccess.call(LoginEntity.fromJson(data));
     });
   }
 }

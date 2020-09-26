@@ -10,8 +10,8 @@ class CommonApi {
       Method.get,
       ApiPath.common.game,
       onSuccess: (code, msg, data) {
-        Map<String, dynamic> map = json.decode(data);
-        onNetSuccess.call(map["data"]);
+        // Map<String, dynamic> map = json.decode(data);
+        onNetSuccess.call(data["data"]);
       },
     );
   }

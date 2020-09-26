@@ -7,8 +7,6 @@ import 'package:taodan/common/widgets/task_bottom_sheet.dart';
 import 'package:taodan/page/home/index/egg_widget.dart';
 import 'package:taodan/router/navigator_util.dart';
 import 'package:taodan/state/commons.dart';
-import 'package:taodan/state/egg_state.dart';
-import 'package:taodan/state/user_state.dart';
 import 'package:taodan/utils/assets_util.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -47,7 +45,8 @@ class HomePageState extends State<HomeScreen> {
         break;
       case 3:
         // NavigatorUtil.goTest(context);
-        CommonApi.getGame((data) => {NavigatorUtil.goWebView(context, data)});
+        NavigatorUtil.goTest(context);
+        // CommonApi.getGame((data) => {NavigatorUtil.goWebView(context, data)});
         //todo 玩法引导
         break;
       default:
@@ -139,16 +138,6 @@ class HomePageState extends State<HomeScreen> {
       ],
     ),
   );
-  // Widget userLevel = Positioned(
-  //   top: YYScreenUtil.setHeight(36),
-  //   left: YYScreenUtil.setWidth(152),
-  //   child:,
-  // );
-  // Widget userLevelprogress = Positioned(
-  //   top: YYScreenUtil.setHeight(36),
-  //   right: YYScreenUtil.setWidth(10),
-  //   child:,
-  // );
   Widget userRow = Positioned(
     top: 36.h,
     right: 10.w,

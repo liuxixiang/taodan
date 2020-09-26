@@ -5,45 +5,64 @@ import 'package:taodan/common/widgets/progress_widget.dart';
 import 'package:taodan/model/egg_entity.dart';
 import 'package:taodan/state/egg_state.dart';
 import 'package:taodan/utils/assets_util.dart';
-import 'package:provider/provider.dart';
 
 class EggWidget extends StatefulWidget {
   EggWidget({Key key}) : super(key: key);
-  _EggWidgetState state = _EggWidgetState();
+  _EggWidgetState state;
   feed(EggEntity eggEntity) {
     state.updateEggInfo(eggEntity);
   }
 
   @override
-  _EggWidgetState createState() => state;
+  _EggWidgetState createState() {
+    state = _EggWidgetState();
+    return state;
+  }
 }
 
 class _EggWidgetState extends State<EggWidget> {
-  BuildContext _context;
-  EggState eggState = new EggState();
+  EggState eggState;
 
   updateEggInfo(EggEntity eggEntity) {
-    print(_context);
-    Provider.of<EggState>(_context, listen: false).setEggInfo(eggEntity);
+    // print(_context);
+    eggState.setEggInfo(eggEntity);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    eggState = EggState();
   }
 
   @override
   Widget build(BuildContext context) {
-    this._context = context;
-    print("wendjia" + _context.toString());
     return ChangeNotifierProvider(
       create: (_) => eggState,
-      builder: (context, child) => Positioned(
+      child: Positioned(
         left: 25.2.w,
         top: 452.h,
-        child: Column(
-          children: [
-            Image.asset(
-              AssetsUtil.index.egg,
-              height: 56.h,
-            ),
-            ProgressWidget(context.watch<EggState>().percent),
-          ],
+        child: Consumer<EggState>(
+          builder: (context, value, child) {
+            return Column(children: [
+              Stack(
+                alignment: AlignmentDirectional.center,
+                children: [
+                  Image.asset(
+                    AssetsUtil.index.egg,
+                    height: 56.h,
+                  ),
+                  Center(
+                    child: Text(
+                      "${value.eggEntity.userEggTotal ?? ""}",
+                      style: TextStyle(color: Colors.white, fontSize: 11.sp),
+                    ),
+                  )
+                ],
+              ),
+              ProgressWidget(value.percent),
+            ]);
+          },
+          // builder: (context, child) => ,
         ),
       ),
     );

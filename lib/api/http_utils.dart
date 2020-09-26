@@ -149,6 +149,8 @@ class HttpUtils {
         isShowError: isShowError);
   }
 
+
+
   Future<ResultData> requestNetwork(Method method, String url,
       {NetCallback onSuccess,
       NetCallback onError,
