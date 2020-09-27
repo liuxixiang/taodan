@@ -11,9 +11,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class EmployDialog extends AdDialog {
   final String employName;
-  final int hirePrice;
+  final String hirePrice;
+  final String canHiriCount;
 
-  EmployDialog(this.employName, this.hirePrice);
+  EmployDialog(this.employName, this.hirePrice, this.canHiriCount);
 
   @override
   Widget buildDialogContent() {
@@ -44,18 +45,18 @@ class EmployDialog extends AdDialog {
                 SizedBox(
                   height: 5.h,
                 ),
-                _buildBorderText("$hirePrice"),
+                _buildBorderText(hirePrice??''),
                 SizedBox(
                   height: 10.5.h,
                 ),
                 Text(
-                  "雇佣所需金元宝",
+                  "剩余金元宝",
                   style: AppStyles.textSize14_gray_66,
                 ),
                 SizedBox(
                   height: 5.h,
                 ),
-                _buildBorderText("$hirePrice"),
+                _buildBorderText(canHiriCount??""),
               ],
             )),
         Positioned(

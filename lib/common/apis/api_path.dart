@@ -20,6 +20,7 @@ class Member {
   final String feedChick = _path + "/feed/feedTheChick";
   final String eggInfo = _path + "/feed/queryEggProgress";
   final String findBreederInfo = _path + "/user/findBreederInfo";
+  final String exchangeBreeder = _path + "/user/exchangeBreeder";
 }
 
 class Common {

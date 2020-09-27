@@ -247,12 +247,14 @@ class MyBreederListWidget extends ViewModelWidget<MyBreederViewModel> {
   }
 
   _showEmployDialog(BuildContext context, BreederInfoEntity bean) {
-    //Future类型,then或者await获取
-    showDialog(
-        context: context,
-        builder: (context) {
-          return EmployDialog(bean.name, bean.hirePrice);
-        });
+    _model.checkExchangeBreeder(bean.breederType, (data) {
+      //Future类型,then或者await获取
+      showDialog(
+          context: context,
+          builder: (context) {
+            return EmployDialog(bean.name, data.hirePrice, data.canHiriCount);
+          });
+    });
   }
 
   Future<List<BreederInfoEntity>> _getList(

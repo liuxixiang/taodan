@@ -1,8 +1,7 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'package:taodan/common/apis/api_breeder.dart';
 import 'package:taodan/model/breeder_entity.dart';
+import 'package:taodan/model/check_exchange_breeder_entity.dart';
 
 class MyBreederViewModel extends BaseViewModel {
   int _page = 1;
@@ -27,7 +26,9 @@ class MyBreederViewModel extends BaseViewModel {
     return _breederEntities;
   }
 
-  employ(BreederInfoEntity item) {
-    
+  checkExchangeBreeder(String breederType,
+      Function(CheckExchangeBreederEntity breeder) fun) async {
+    await BreederApi.checkExchangeBreeder(
+        breederType, (data) async => {fun(data)});
   }
 }
