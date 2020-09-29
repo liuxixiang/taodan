@@ -252,7 +252,9 @@ class MyBreederListWidget extends ViewModelWidget<MyBreederViewModel> {
       showDialog(
           context: context,
           builder: (context) {
-            return EmployDialog(bean.name, data.hirePrice, data.canHiriCount);
+            return EmployDialog(bean.name, data.hirePrice, data.canHiriCount,() {
+              _model.addBreederInfo(bean.breederType, (breeder) => null);
+            });
           });
     });
   }

@@ -8,6 +8,7 @@ abstract class AdDialog extends Dialog {
   final double width;
   BuildContext context;
 
+
   AdDialog({Key key, double width = AppDimens.dpDialogWidth})
       : width = width.w,
         super(key: key);

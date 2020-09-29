@@ -21,6 +21,7 @@ class Member {
   final String eggInfo = _path + "/feed/queryEggProgress";
   final String findBreederInfo = _path + "/user/findBreederInfo";
   final String exchangeBreeder = _path + "/user/exchangeBreeder";
+  final String addBreederInfo = _path + "/user/addBreederInfo";
 }
 
 class Common {

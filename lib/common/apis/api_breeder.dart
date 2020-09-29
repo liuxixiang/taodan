@@ -31,12 +31,29 @@ class BreederApi {
   }
 
   ///B 雇佣    Y   雇佣中     N    已过期
-  static checkExchangeBreeder(
-      String type, OnNetSuccess<CheckExchangeBreederEntity> onNetSuccess) async {
+  static checkExchangeBreeder(String type,
+      OnNetSuccess<CheckExchangeBreederEntity> onNetSuccess) async {
     await HttpUtils.instance.requestNetwork(
       Method.get,
       ApiPath.member.exchangeBreeder,
       queryParameters: {
+        'breederType': type,
+      },
+      onSuccess: (code, msg, data) {
+        if (onNetSuccess != null) {
+          onNetSuccess(CheckExchangeBreederEntity.fromJson(data));
+        }
+      },
+    );
+  }
+
+  ///B 雇佣    Y   雇佣中     N    已过期
+  static addBreederInfo(String type,
+      OnNetSuccess<CheckExchangeBreederEntity> onNetSuccess) async {
+    await HttpUtils.instance.requestNetwork(
+      Method.get,
+      ApiPath.member.addBreederInfo,
+      params: {
         'breederType': type,
       },
       onSuccess: (code, msg, data) {

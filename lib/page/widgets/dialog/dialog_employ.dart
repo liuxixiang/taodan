@@ -13,8 +13,10 @@ class EmployDialog extends AdDialog {
   final String employName;
   final String hirePrice;
   final String canHiriCount;
+  final VoidCallback onSurePressed;
 
-  EmployDialog(this.employName, this.hirePrice, this.canHiriCount);
+  EmployDialog(
+      this.employName, this.hirePrice, this.canHiriCount, this.onSurePressed);
 
   @override
   Widget buildDialogContent() {
@@ -45,7 +47,7 @@ class EmployDialog extends AdDialog {
                 SizedBox(
                   height: 5.h,
                 ),
-                _buildBorderText(hirePrice??''),
+                _buildBorderText(hirePrice ?? ''),
                 SizedBox(
                   height: 10.5.h,
                 ),
@@ -56,7 +58,7 @@ class EmployDialog extends AdDialog {
                 SizedBox(
                   height: 5.h,
                 ),
-                _buildBorderText(canHiriCount??""),
+                _buildBorderText(canHiriCount ?? ""),
               ],
             )),
         Positioned(
@@ -91,7 +93,7 @@ class EmployDialog extends AdDialog {
                   text: '确定雇佣',
                   width: 120,
                   height: 40,
-                  onPressed: () {},
+                  onPressed: onSurePressed,
                 )
               ],
             ))

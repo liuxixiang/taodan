@@ -31,4 +31,9 @@ class MyBreederViewModel extends BaseViewModel {
     await BreederApi.checkExchangeBreeder(
         breederType, (data) async => {fun(data)});
   }
+
+  addBreederInfo(String breederType,
+      Function(CheckExchangeBreederEntity breeder) fun) async {
+    await BreederApi.addBreederInfo(breederType, (data) async => {fun(data)});
+  }
 }
