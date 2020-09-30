@@ -51,7 +51,7 @@ class BreederApi {
   static addBreederInfo(String type,
       OnNetSuccess<CheckExchangeBreederEntity> onNetSuccess) async {
     await HttpUtils.instance.requestNetwork(
-      Method.get,
+      Method.post,
       ApiPath.member.addBreederInfo,
       params: {
         'breederType': type,

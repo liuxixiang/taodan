@@ -159,7 +159,9 @@ class MyBreederListWidget extends ViewModelWidget<MyBreederViewModel> {
           right: AppDimens.dpDefPadding,
           width: _rightW,
           child: GestureDetector(
-            onTap: () => _showEmployDialog(_context, item),
+            onTap: () => item.breederType != "novice_breeder"
+                ? _showEmployDialog(_context, item)
+                : null,
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.end, children: [
               TdCacheNetworkImage(
@@ -252,7 +254,8 @@ class MyBreederListWidget extends ViewModelWidget<MyBreederViewModel> {
       showDialog(
           context: context,
           builder: (context) {
-            return EmployDialog(bean.name, data.hirePrice, data.canHiriCount,() {
+            return EmployDialog(bean.name, data.hirePrice, data.remainGoldCount,
+                () {
               _model.addBreederInfo(bean.breederType, (breeder) => null);
             });
           });
