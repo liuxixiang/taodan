@@ -14,7 +14,7 @@ import 'package:taodan/router/navigator_util.dart';
 import 'package:taodan/state/user_state.dart';
 import 'package:taodan/utils/assets_util.dart';
 
-class MineSence extends StatelessWidget {
+class MinePage extends StatelessWidget {
   BuildContext context;
 
   @override

@@ -20,7 +20,7 @@ class BottomNavigationWidget extends StatelessWidget {
       // ..add(BottomNavViewData(WheelDrawSence(), "转盘", "wheel_draw_icon"))
       ..add(BottomNavViewData(RewardSence(), "收益", "reward_icon"))
       ..add(BottomNavViewData(MessageSence(), "消息", "message_icon"))
-      ..add(BottomNavViewData(MineSence(), "我的", "mine_icon"));
+      ..add(BottomNavViewData(MinePage(), "我的", "mine_icon"));
 
     return ViewModelBuilder<BottomNavigationViewModel>.reactive(
       viewModelBuilder: () => BottomNavigationViewModel(),
