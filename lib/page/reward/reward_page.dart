@@ -52,32 +52,38 @@ class _RewardSenceState extends State<RewardSence>
             model.notifyListeners();
           });
         },
-        builder: (context, model, child) => SingleChildScrollView(
-              child: Container(
-                  color: Colors.white,
-                  child: Column(
-                    children: [
-                      _buildToolBar(),
-                      _buildGroupLever(model),
-                      Padding(
-                        padding: EdgeInsets.only(left: 15.w, right: 15.w),
+        builder: (context, model, child) => Column(
+              children: [
+                _buildToolBar(),
+                Expanded(
+                  child: SingleChildScrollView(
+                    child: Container(
+                        color: Colors.white,
                         child: Column(
                           children: [
-                            _buildCashBonus(model),
-                            SizedBox(
-                              height: 10.h,
-                            ),
-                            _buildGoldIngot(model),
-                            SizedBox(
-                              height: 10.h,
-                            ),
-                            _buildGold(model),
-                            _buildTabBar()
+                            _buildGroupLever(model),
+                            Padding(
+                              padding: EdgeInsets.only(left: 15.w, right: 15.w),
+                              child: Column(
+                                children: [
+                                  _buildCashBonus(model),
+                                  SizedBox(
+                                    height: 10.h,
+                                  ),
+                                  _buildGoldIngot(model),
+                                  SizedBox(
+                                    height: 10.h,
+                                  ),
+                                  _buildGold(model),
+                                  _buildTabBar()
+                                ],
+                              ),
+                            )
                           ],
-                        ),
-                      )
-                    ],
-                  )),
+                        )),
+                  ),
+                )
+              ],
             ));
   }
 
