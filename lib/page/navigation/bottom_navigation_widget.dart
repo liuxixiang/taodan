@@ -6,7 +6,7 @@ import 'package:taodan/page/mine/mine_page.dart';
 import 'package:taodan/page/navigation/bottom_navigation_viewmodel.dart';
 import 'package:taodan/page/home/home_page.dart';
 import 'package:taodan/page/home/meassage_page.dart';
-import 'package:taodan/page/home/reward_page.dart';
+import 'package:taodan/page/reward/reward_page.dart';
 import 'package:taodan/state/egg_state.dart';
 import 'package:taodan/utils/assets_util.dart';
 

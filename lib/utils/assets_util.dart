@@ -5,6 +5,7 @@ class AssetsUtil {
  static const Dialog dialog = Dialog();
  static const Common common = Common();
  static const Mine mine = Mine();
+ static const Reward reward = Reward();
  static const Index index = Index();
  static const Breeder breeder = Breeder();
  static const Sign sign = Sign();
@@ -46,6 +47,7 @@ class Common {
   final String arrow_right_white = common_path +"arrow_right_white.png";
   final String ic_wing = common_path +"ic_wing.png";
   final String back_arrow = common_path +"back_arrow.png";
+  final String ic_question = common_path +"ic_question.png";
   final String arrow_right_gray = common_path +"arrow_right_gray.png";
   final String no_data = common_path +"no_data.png";
   final String close_icon = common_path +"close_icon.png";
@@ -66,6 +68,15 @@ class Mine {
   final String college = mine_path +"college.png";
   final String head = mine_path +"head.png";
   final String gold = mine_path +"gold.png";
+}
+
+
+class Reward {
+   const Reward();
+   static const String reward_path = "assets/images/" + "reward/";
+   final String path = "assets/images/" + "reward/";
+  final String historical_earnings = reward_path +"historical_earnings.png";
+  final String bg_group_lever = reward_path +"bg_group_lever.png";
 }
 
 
