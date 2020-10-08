@@ -370,13 +370,121 @@ class _RewardSenceState extends State<RewardSence>
     return Column(
       children: [
         TitleWidget(
+          title: '喂养小鸡获得鸡蛋，砸蛋领金币',
+        ),
+        SizedBox(
+          height: 8.h,
+        ),
+        Container(
+          padding: EdgeInsets.symmetric(horizontal: 15.w),
+          decoration: new BoxDecoration(
+            border: new Border.all(color: AppColors.gray_db, width: 1.w),
+            // 边色与边宽度
+            color: Colors.white,
+            // 底色
+            //        shape: BoxShape.circle, // 圆形，使用圆形时不可以使用borderRadius
+            shape: BoxShape.rectangle,
+            // 默认值也是矩形
+            borderRadius: BorderRadius.circular(5.w),
+            // 圆角
+            // 边色与边宽度
+// 生成俩层阴影，一层绿，一层黄， 阴影位置由offset决定,阴影模糊层度由blurRadius大小决定（大就更透明更扩散），阴影模糊大小由spreadRadius决定
+            boxShadow: [
+              BoxShadow(
+                color: AppColors.gray_94,
+                offset: Offset(0, 1.w),
+              ),
+            ],
+          ),
+          height: 40.h,
+          child: Row(
+            children: [
+              Text(
+                '我的鸡蛋',
+                style: AppStyles.textSize15_black_33,
+              ),
+              Expanded(
+                child: Center(
+                  child: Text(
+                    '1',
+                    style: AppStyles.textSize15_black_33,
+                  ),
+                ),
+              ),
+              ButtonWidget(
+                height: 24.h,
+                width: 90.w,
+                text: '去砸蛋',
+                borderSideWidth: 0,
+                onPressed: () {},
+              )
+            ],
+          ),
+        ),
+        SizedBox(
+          height: 8.h,
+        ),
+        Container(
+          padding: EdgeInsets.symmetric(horizontal: 15.w),
+          decoration: new BoxDecoration(
+            border: new Border.all(color: AppColors.gray_db, width: 1.w),
+            // 边色与边宽度
+            color: Colors.white,
+            // 底色
+            //        shape: BoxShape.circle, // 圆形，使用圆形时不可以使用borderRadius
+            shape: BoxShape.rectangle,
+            // 默认值也是矩形
+            borderRadius: BorderRadius.circular(5.w),
+            // 圆角
+            // 边色与边宽度
+// 生成俩层阴影，一层绿，一层黄， 阴影位置由offset决定,阴影模糊层度由blurRadius大小决定（大就更透明更扩散），阴影模糊大小由spreadRadius决定
+            boxShadow: [
+              BoxShadow(
+                color: AppColors.gray_94,
+                offset: Offset(0, 1.w),
+              ),
+            ],
+          ),
+          height: 40.h,
+          child: Row(
+            children: [
+              Text(
+                '我的饲料',
+                style: AppStyles.textSize15_black_33,
+              ),
+              Expanded(
+                child: Center(
+                  child: Text(
+                    '200G',
+                    style: AppStyles.textSize15_black_33,
+                  ),
+                ),
+              ),
+              ButtonWidget(
+                height: 24.h,
+                width: 90.w,
+                text: '去喂鸡',
+                borderSideWidth: 0,
+                onPressed: () {},
+              )
+            ],
+          ),
+        )
+      ],
+    );
+  }
+
+  Widget _buildGroupGold() {
+    return Column(
+      children: [
+        TitleWidget(
           title: '金元宝(0%)',
         ),
       ],
     );
   }
 
-  Widget _buildGroupGold() {
+  Widget _buildAddGold() {
     return Column(
       children: [
         TitleWidget(
@@ -403,16 +511,6 @@ class _RewardSenceState extends State<RewardSence>
             ? AppStyles.textSize18_white
             : AppStyles.textSize18_yellow,
       ),
-    );
-  }
-
-  Widget _buildAddGold() {
-    return Column(
-      children: [
-        TitleWidget(
-          title: '金元宝(0%)',
-        ),
-      ],
     );
   }
 }
