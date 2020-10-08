@@ -7,10 +7,9 @@ import 'package:taodan/common/widgets/button_widget.dart';
 import 'package:taodan/common/widgets/title_widget.dart';
 import 'package:taodan/page/reward/item_content_widget.dart';
 import 'package:taodan/page/reward/lever_progress_widget.dart';
+import 'package:taodan/page/reward/reward_item_content_widget.dart';
 import 'package:taodan/page/reward/reward_viewmodel.dart';
 import 'package:taodan/utils/assets_util.dart';
-import 'package:taodan/utils/log_util.dart';
-import 'package:taodan/utils/toast_utils.dart';
 
 class RewardSence extends StatefulWidget {
   @override
@@ -21,17 +20,7 @@ class _RewardSenceState extends State<RewardSence>
     with SingleTickerProviderStateMixin {
   List<Widget> _myTabs = List();
   TabController _tabController; //需要定义一个Controller
-
-  @override
-  void initState() {
-    super.initState();
-    _myTabs
-      ..add(_buildPersonageGold())
-      ..add(_buildGroupGold())
-      ..add(_buildAddGold());
-    // 创建Controller
-    _tabController = TabController(length: _myTabs.length, vsync: this);
-  }
+  RewardViewModel _model;
 
   @override
   void dispose() {
@@ -47,6 +36,13 @@ class _RewardSenceState extends State<RewardSence>
         // disposeViewModel: false,
         viewModelBuilder: () => RewardViewModel(),
         onModelReady: (model) {
+          this._model = model;
+          _myTabs
+            ..add(_buildPersonageGold())
+            ..add(_buildGroupGold())
+            ..add(_buildAddGold());
+          // 创建Controller
+          _tabController = TabController(length: _myTabs.length, vsync: this);
           _tabController.addListener(() {
             model.tabIndex = _tabController.index;
             model.notifyListeners();
@@ -185,14 +181,7 @@ class _RewardSenceState extends State<RewardSence>
                 child: Image.asset(AssetsUtil.common.ic_question)),
           ],
         ),
-        Container(
-          margin: EdgeInsets.only(top: 10.h),
-          padding:
-              EdgeInsets.only(top: 8.h, left: 11.w, right: 11.w, bottom: 7.h),
-          decoration: BoxDecoration(
-              shape: BoxShape.rectangle,
-              borderRadius: BorderRadius.all(Radius.circular(5)),
-              color: AppColors.gray_f0),
+        RewardItemContentWidget(
           child: Column(
             children: [
               Row(
@@ -253,14 +242,7 @@ class _RewardSenceState extends State<RewardSence>
                 child: Image.asset(AssetsUtil.common.ic_question)),
           ],
         ),
-        Container(
-          margin: EdgeInsets.only(top: 10.h),
-          padding:
-              EdgeInsets.only(top: 8.h, left: 11.w, right: 11.w, bottom: 7.h),
-          decoration: BoxDecoration(
-              shape: BoxShape.rectangle,
-              borderRadius: BorderRadius.all(Radius.circular(5)),
-              color: AppColors.gray_f0),
+        RewardItemContentWidget(
           child: Column(
             children: [
               Row(
@@ -329,14 +311,7 @@ class _RewardSenceState extends State<RewardSence>
                 child: Image.asset(AssetsUtil.common.ic_question)),
           ],
         ),
-        Container(
-          margin: EdgeInsets.only(top: 10.h),
-          padding:
-              EdgeInsets.only(top: 8.h, left: 11.w, right: 11.w, bottom: 7.h),
-          decoration: BoxDecoration(
-              shape: BoxShape.rectangle,
-              borderRadius: BorderRadius.all(Radius.circular(5)),
-              color: AppColors.gray_f0),
+        RewardItemContentWidget(
           child: Column(
             children: [
               Row(
@@ -368,7 +343,20 @@ class _RewardSenceState extends State<RewardSence>
 
   Widget _buildPersonageGold() {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        SizedBox(
+          height: 4.h,
+        ),
+        Padding(
+            padding: EdgeInsets.only(left: 11.w),
+            child: Text(
+              '当日获取饲料>200G,才可以参与当天分红',
+              style: AppStyles.textSize12_gray_99,
+            )),
+        SizedBox(
+          height: 15.h,
+        ),
         TitleWidget(
           title: '喂养小鸡获得鸡蛋，砸蛋领金币',
         ),
@@ -477,9 +465,31 @@ class _RewardSenceState extends State<RewardSence>
   Widget _buildGroupGold() {
     return Column(
       children: [
-        TitleWidget(
-          title: '金元宝(0%)',
-        ),
+        RewardItemContentWidget(
+          child: Column(
+            children: [
+              Row(
+                children: [
+                  Expanded(
+                    child: ItemContentWidget(
+                      title: '邀请总人数',
+                      content: '56',
+                    ),
+                  ),
+                  SizedBox(
+                    width: 13.w,
+                  ),
+                  Expanded(
+                    child: ItemContentWidget(
+                      title: '活跃好友数',
+                      content: '20',
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        )
       ],
     );
   }
@@ -487,9 +497,31 @@ class _RewardSenceState extends State<RewardSence>
   Widget _buildAddGold() {
     return Column(
       children: [
-        TitleWidget(
-          title: '金元宝(0%)',
-        ),
+        RewardItemContentWidget(
+          child: Column(
+            children: [
+              Row(
+                children: [
+                  Expanded(
+                    child: ItemContentWidget(
+                      title: '今日投入金元宝',
+                      content: '56',
+                    ),
+                  ),
+                  SizedBox(
+                    width: 13.w,
+                  ),
+                  Expanded(
+                    child: ItemContentWidget(
+                      title: '获得加成金币',
+                      content: '20',
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        )
       ],
     );
   }

@@ -20,6 +20,8 @@ class AppStyles {
       TextStyle(fontSize: AppDimens.font_sp12, color: Colors.white);
   static TextStyle textSize12_gray_66 =
       TextStyle(fontSize: AppDimens.font_sp12, color: AppColors.gray_66);
+  static TextStyle textSize12_gray_99 =
+  TextStyle(fontSize: AppDimens.font_sp12, color: AppColors.gray_99);
 
   static TextStyle textSize13_white =
       TextStyle(fontSize: AppDimens.font_sp13, color: Colors.white);
