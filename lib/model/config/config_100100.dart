@@ -1,8 +1,5 @@
-import 'package:flutter/material.dart';
-import 'dart:convert';
-
-class TaskType {
-  TaskType(
+class Config100100 {
+  Config100100(
       {this.url,
       this.desc,
       this.icon,
@@ -27,7 +24,7 @@ class TaskType {
   String btnTitle;
   String taskId;
 
-  factory TaskType.fromJson(Map<String, dynamic> json) => TaskType(
+  factory Config100100.fromJson(Map<String, dynamic> json) => Config100100(
       url: json["url"],
       desc: json["desc"],
       icon: json["icon"],
@@ -39,6 +36,9 @@ class TaskType {
       btnImage: json["btnImage"],
       btnTitle: json["btnTitle"],
       taskId: json["taskId"]);
+
+  static List<Config100100> fromJsonList(List<dynamic> str) =>
+      str.map((e) => Config100100.fromJson(e)).toList();
 
   Map<String, dynamic> toJson() => {
         "url": url,
@@ -53,14 +53,4 @@ class TaskType {
         "btnTitle": btnTitle,
         "taskId": taskId
       };
-
-  static List<TaskType> taskTypesFromJson(String str) =>
-      List<TaskType>.from(json.decode(str).map((x) => TaskType.fromJson(x)));
-
-  static List<TaskType> taskTypesFromList(List<dynamic> str) =>
-      str.map((e) => TaskType.fromJson(e)).toList();
-  // List<TaskType>.from(str).map((x) => TaskType.fromJson(x));
-
-  static String taskTypesToJson(List<TaskType> data) =>
-      json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 }

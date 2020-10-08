@@ -1,18 +1,14 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:taodan/common/apis/api_task.dart';
-import 'package:taodan/common/manager/context_manager.dart';
-import 'package:taodan/model/task_type.dart';
+import 'package:provider/provider.dart';
+import 'package:taodan/model/config/config_100100.dart';
 import 'package:taodan/router/navigator_util.dart';
 import 'package:taodan/state/commons.dart';
 import 'package:taodan/state/user_state.dart';
 import 'package:taodan/utils/assets_util.dart';
-import 'package:provider/provider.dart';
 
 class TaskBottomSheet extends StatelessWidget {
-  List<TaskType> items = [];
+  List<Config100100> items = [];
 
   Widget build(BuildContext context) {
     items = context.watch<CommonState>().items;
@@ -124,7 +120,7 @@ class TaskBottomSheet extends StatelessWidget {
         ));
   }
 
-  _goTaskWall(BuildContext context, TaskType taskType) {
+  _goTaskWall(BuildContext context, Config100100 taskType) {
     NavigatorUtil.goTaskWall(context, taskType.url);
     TaskAPI.checkTask(taskType.taskId,
         context.read<UserState>().userInfo.userId, (data) => {});

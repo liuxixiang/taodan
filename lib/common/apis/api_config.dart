@@ -1,38 +1,23 @@
+import 'package:package_info/package_info.dart';
 import 'package:taodan/api/http_utils.dart';
-import 'package:taodan/model/task_type.dart';
+import 'package:taodan/common/config/keys.dart';
 
 import 'api_path.dart';
 import 'apis.dart';
 
 class ConfigApi {
-  static getConfigs<T>(String code, OnNetSuccess<T> onNetSuccess) async {
-    await HttpUtils.instance.requestNetwork(
-      Method.get,
-      ApiPath.common.configs,
-      // params: {
-      //   'code': code,
-      //   'mobile': mobile,
-      //   'loginType': 'mobile',
-      // },
-      // onSuccess: (code, msg, data) {
-      //   onNetSuccess.call(LoginEntity.fromJson(data));
-      // },
-    );
-  }
-
-  static getConfig(
-      String code, OnNetSuccess<List<TaskType>> onNetSuccess) async {
+  static getConfig(String code, OnNetSuccess onNetSuccess) async {
+    PackageInfo packageInfo = await PackageInfo.fromPlatform();
     await HttpUtils.instance.requestNetwork(Method.get, ApiPath.common.config,
         // params: {'code': code},
         queryParameters: {
           "paramCode": code,
-          "appId": "taodan",
-          "appVersion": "1.0.0",
+          "appId": Keys.APP_ID_VALUES,
+          "appVersion": packageInfo.version,
           "configVersion": "0",
-          "osType": "android"
+          "osType": Keys.APP_CLIENT_TYPE_VALUES
         }, onSuccess: (code, msg, data) {
-      print(data["data"].runtimeType);
-      onNetSuccess.call(TaskType.taskTypesFromList(data["data"]));
+      onNetSuccess.call(data);
     });
   }
 }

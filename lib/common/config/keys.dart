@@ -7,6 +7,9 @@ class Keys {
   static const String APP_ID = "appId";
   static const String APP_NAME = "appName";
 
+  static const String APP_ID_VALUES = "taodan";
+  static const String APP_CLIENT_TYPE_VALUES = "android";
+
   static const String APP_TIMESTAMP_KEY = "timestamp";
   static const String NONCE_KEY = "nonce";
   static const String SIGNATURE_KEY = "sign";
