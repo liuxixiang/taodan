@@ -8,7 +8,7 @@ AppBar appBar(context,
     bool centerTitle = true,
     Color backgroundColor,
     Widget rightWidget,
-    bool isLeading,
+    bool isLeading = true,
     TextStyle style,
     VoidCallback onPressed}) {
   return AppBar(
