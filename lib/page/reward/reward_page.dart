@@ -519,6 +519,16 @@ class _RewardSenceState extends State<RewardSence>
                   ),
                 ],
               ),
+              SizedBox(
+                height: 15.h,
+              ),
+              ButtonWidget(
+                height: 25.h,
+                color: AppColors.yellow,
+                borderSideWidth: 0,
+                onPressed: () {},
+                text: '投入金元宝，获得加成金币',
+              )
             ],
           ),
         )
