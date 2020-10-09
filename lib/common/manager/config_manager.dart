@@ -35,6 +35,7 @@ class ConfigManager {
         _transform(data);
       }
     });
+    return _configs;
   }
 
   Future<BaseConfigEntity> _loadConfig(String code) async {
