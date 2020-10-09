@@ -12,7 +12,7 @@ class CommonState with ChangeNotifier {
 
   Future<List<Config100100>> loadTaskWall() async {
     items = await ConfigManager.getInstance()
-        .getConfig(RemoteConfigCode.config_100100);
+        .getConfigParamList(RemoteConfigCode.config_100100);
     notifyListeners();
     return items;
   }
