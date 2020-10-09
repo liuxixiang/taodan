@@ -13,6 +13,7 @@ class ConfigManager {
   factory ConfigManager.getInstance() => _instance;
   static final _instance = ConfigManager._();
 
+  ///单个
   Future<BaseConfigEntity> getConfig(String code) async {
     if (_configs != null && _configs.containsKey(code)) {
       return _configs[code];
@@ -21,11 +22,13 @@ class ConfigManager {
     }
   }
 
+  ///单个云控返回list
   Future<List<T>> getConfigParamList<T>(String code) async {
     BaseConfigEntity configEntity = await getConfig(code);
     return configEntity.paramValue;
   }
 
+  ///多个云控
   loadConfigs(List<String> codes) async {
     if (codes == null || codes.isEmpty) {
       return;
@@ -43,6 +46,7 @@ class ConfigManager {
     return _configs[code];
   }
 
+  ///转换
   _transform(Map<String, dynamic> configMap) {
     if (configMap != null && configMap.isNotEmpty) {
       configMap.forEach((key, value) {
