@@ -8,6 +8,9 @@ class CommonState with ChangeNotifier {
 
   CommonState() {
     loadTaskWall();
+//    ConfigManager.getInstance()
+//        .loadConfigs(
+//        [RemoteConfigCode.config_100100, RemoteConfigCode.config_100101]);
   }
 
   Future<List<Config100100>> loadTaskWall() async {

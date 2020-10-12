@@ -3,6 +3,8 @@ import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:taodan/common/apis/api_path.dart';
+import 'package:taodan/common/config/remote_config.dart';
+import 'package:taodan/common/manager/config_manager.dart';
 import 'package:taodan/common/values/colors.dart';
 import 'package:taodan/router/application.dart';
 import 'package:taodan/router/routes.dart';
@@ -36,6 +38,9 @@ class MyApp extends StatelessWidget {
     WendjiaRouter router = WendjiaRouter();
     Routes.configureRoutes(router);
     Application.router = router;
+    ConfigManager.getInstance().batchInsertUpdateConfig("assets/json/mine_config.json");
+    ConfigManager.getInstance().loadConfigs(
+        [RemoteConfigCode.config_100100, RemoteConfigCode.config_100101]);
   }
 
   void initDio() {

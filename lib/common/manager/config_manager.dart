@@ -1,6 +1,8 @@
 import 'dart:collection';
 
+import 'package:flutter/services.dart';
 import 'package:taodan/common/apis/api_config.dart';
+import 'package:taodan/common/apis/apis.dart';
 import 'package:taodan/common/config/remote_config.dart';
 import 'package:taodan/model/config/base_config_entity.dart';
 import 'package:taodan/model/config/config_100100.dart';
@@ -67,5 +69,25 @@ class ConfigManager {
         }
       });
     }
+  }
+
+  ///批量新增云控
+  batchInsertUpdate(String json, OnNetSuccess<String> onNetSuccess) async {
+    await ConfigApi.batchInsertUpdate(json, onNetSuccess);
+  }
+
+  batchInsertUpdateConfig(String fileName) {
+    //访问json代码.
+    rootBundle.loadString(fileName).then(
+          (value) async => {
+            await ConfigManager.getInstance()
+                .batchInsertUpdate(value, (data) {})
+          },
+        );
+  }
+
+  ///新增云控
+  insertConfig(String json, OnNetSuccess<String> onNetSuccess) async {
+    await ConfigApi.insertConfig(json, onNetSuccess);
   }
 }

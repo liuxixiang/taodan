@@ -36,6 +36,10 @@ class Common {
 
   //upload
   final String upload = _path + '/common/oss/upload';
+
+  final String batchInsertUpdate = _path + '/commons/innerConfig/batchInsertUpdate';
+  final String insertConfig = _path + '/commons/innerConfig/insertConfig';
+
 }
 
 class Account {
