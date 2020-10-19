@@ -7,7 +7,6 @@
   "maxVersion": null,
   "minVersion": "1.0.0",
   "osType": "all",
-  "id": 1001011,
   "isValid": "1",
   "paramCode": "100101",
   "paramValue": [{
@@ -30,7 +29,6 @@
   "maxVersion": null,
   "minVersion": "1.0.0",
   "osType": "all",
-  "id": 1001012,
   "isValid": "1",
   "paramCode": "100101",
   "paramValue": [{
@@ -53,7 +51,6 @@
   "maxVersion": null,
   "minVersion": "1.0.0",
   "osType": "all",
-  "id": 1001013,
   "isValid": "1",
   "paramCode": "100101",
   "paramValue": [{
@@ -77,7 +74,6 @@
   "maxVersion": null,
   "minVersion": "1.0.0",
   "osType": "ios",
-  "id": 1001014,
   "isValid": "1",
   "paramCode": "100101",
   "paramValue": [{
@@ -100,7 +96,6 @@
   "maxVersion": "",
   "minVersion": "",
   "osType": "all",
-  "id": 1001015,
   "isValid": "1",
   "paramCode": "100101",
   "paramValue": [{
@@ -124,7 +119,6 @@
   "maxVersion": null,
   "minVersion": "1.0.0",
   "osType": "all",
-  "id": 1001016,
   "isValid": "1",
   "paramCode": "100101",
   "paramValue": [{

@@ -38,7 +38,7 @@ class MyApp extends StatelessWidget {
     WendjiaRouter router = WendjiaRouter();
     Routes.configureRoutes(router);
     Application.router = router;
-    ConfigManager.getInstance().batchInsertUpdateConfig("assets/json/mine_config.json");
+//    ConfigManager.getInstance().batchInsertUpdateConfig("assets/json/mine_config.json");
     ConfigManager.getInstance().loadConfigs(
         [RemoteConfigCode.config_100100, RemoteConfigCode.config_100101]);
   }

@@ -73,10 +73,10 @@ class HttpUtils {
     /// Fiddler抓包代理配置 https://www.jianshu.com/p/d831b1f7c45b
     (_dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate =
         (HttpClient client) {
-       client.findProxy = (uri) {
-         //proxy all request to localhost:8888
-         return 'PROXY 192.168.1.102:8888';
-       };
+      client.findProxy = (uri) {
+        //proxy all request to localhost:8888
+        return 'PROXY 192.168.1.119:8888';
+      };
       client.badCertificateCallback =
           (X509Certificate cert, String host, int port) => true;
     };
@@ -148,8 +148,6 @@ class HttpUtils {
         options: options,
         isShowError: isShowError);
   }
-
-
 
   Future<ResultData> requestNetwork(Method method, String url,
       {NetCallback onSuccess,

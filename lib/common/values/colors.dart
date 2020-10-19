@@ -28,6 +28,8 @@ class AppColors {
   static const Color gray_db = Color(0xffdbdbdb);
   static const Color gray_94 = Color(0x80949494);
   static const Color red = Color(0xFFFF4242);
+  static const Color deep_red = Color(0xFF8B0E1B);
+  static const Color red_711 = Color(0xFF680711);
   static const Color underline = Color(0xFF979797);
   static const Color bg_page = Color(0xFFEEEEEE);
 }

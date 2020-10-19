@@ -63,6 +63,11 @@ class NavigatorUtil {
     goNext(context, Routes.webview + "?url=" + value);
   }
 
+  //去砸蛋
+  static void goThrowingEgg(BuildContext context) {
+    goNext(context, Routes.throwingEgg);
+  }
+
   static Future<void> goNext(BuildContext context, url,
       {bool replace = false,
       bool opaque = true,

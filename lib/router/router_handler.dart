@@ -9,6 +9,7 @@ import 'package:taodan/page/sign/sign_page.dart';
 import 'package:taodan/page/splash/splash_page.dart';
 import 'package:taodan/page/task/task_wall.dart';
 import 'package:taodan/page/test/test.dart';
+import 'package:taodan/page/throwing_eggs/throwing_eggs_page.dart';
 import 'package:taodan/page/user_info/user_info_page.dart';
 import 'package:taodan/page/webview/webview_page.dart';
 import 'package:taodan/utils/log_util.dart';
@@ -63,13 +64,19 @@ class RouterHandler {
 
   var updateInfoHandler = new Handler(
       handlerFunc: (BuildContext context, Map<String, List<String>> params) {
-        // params["id"],
-        return UpdateInfoPage();
-      });
+    // params["id"],
+    return UpdateInfoPage();
+  });
 
   var webHandler = new Handler(
       handlerFunc: (BuildContext context, Map<String, List<String>> params) {
     print(params);
     return WebviewWidget(params["url"][0]);
+  });
+
+  var throwingEggsHandler = new Handler(
+      handlerFunc: (BuildContext context, Map<String, List<String>> params) {
+    print(params);
+    return ThrowingEggsPage();
   });
 }

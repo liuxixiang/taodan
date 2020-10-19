@@ -9,6 +9,7 @@ import 'package:taodan/page/reward/item_content_widget.dart';
 import 'package:taodan/page/reward/lever_progress_widget.dart';
 import 'package:taodan/page/reward/reward_item_content_widget.dart';
 import 'package:taodan/page/reward/reward_viewmodel.dart';
+import 'package:taodan/router/navigator_util.dart';
 import 'package:taodan/utils/assets_util.dart';
 
 class RewardSence extends StatefulWidget {
@@ -404,7 +405,9 @@ class _RewardSenceState extends State<RewardSence>
                 width: 90.w,
                 text: '去砸蛋',
                 borderSideWidth: 0,
-                onPressed: () {},
+                onPressed: () {
+                  NavigatorUtil.goThrowingEgg(context);
+                },
               )
             ],
           ),

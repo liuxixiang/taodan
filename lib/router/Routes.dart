@@ -12,11 +12,13 @@ class Routes {
   static const String taskWall = "app/task";
   static const String invite = "/invite"; //邀请码界面
   static const String test = "/test";
+
   // static const String taskWall = "/task";
   // static const String invite = "/invite";//邀请码界面
   static const String userInfo = "/userInfo"; //个人信息
   static const String webview = "/webview"; //个人信息
   static const String updateInfoPage = "/updateInfoPage"; //修改个人信息
+  static const String throwingEgg = "/throwingEgg"; //砸蛋
 
   // 配置route
   static void configureRoutes(Router router) {
@@ -38,5 +40,6 @@ class Routes {
     router.define(userInfo, handler: RouterHandler().userInfoHandler);
     router.define(webview, handler: RouterHandler().webHandler);
     router.define(updateInfoPage, handler: RouterHandler().updateInfoHandler);
+    router.define(throwingEgg, handler: RouterHandler().throwingEggsHandler);
   }
 }
