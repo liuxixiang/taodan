@@ -10,8 +10,11 @@ import 'package:taodan/utils/assets_util.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ThrowingEggsPage extends StatelessWidget {
+  BuildContext _context;
+
   @override
   Widget build(BuildContext context) {
+    _context = context;
     return Scaffold(
         appBar:
             appBar(context, title: "砸鸡蛋", backgroundColor: AppColors.deep_red),
@@ -21,7 +24,9 @@ class ThrowingEggsPage extends StatelessWidget {
                   child: Column(
                     children: [
                       _buildNoticeView(),
-                      _buildContentView(),
+                      Expanded(
+                        child: _buildContentView(),
+                      )
                     ],
                   ),
                 )));
@@ -62,9 +67,9 @@ class ThrowingEggsPage extends StatelessWidget {
   _buildContentView() {
     return Container(
       width: double.infinity,
-      height: double.infinity,
       decoration: BoxDecoration(
         image: DecorationImage(
+          fit: BoxFit.fill,
           image: AssetImage(AssetsUtil.throwing_egg.bg_throwing_egg),
         ),
       ),
@@ -76,10 +81,16 @@ class ThrowingEggsPage extends StatelessWidget {
     return Stack(
       children: [
         Container(
+          alignment: Alignment.topCenter,
           child: Text('剩余10个鸡蛋'),
         ),
-        Image.asset(AssetsUtil.throwing_egg.bg_egg),
-        Image.asset(AssetsUtil.throwing_egg.ic_hammer)
+        Container(
+            alignment: Alignment.topCenter,
+            child: Image.asset(AssetsUtil.throwing_egg.bg_egg)),
+        Positioned(
+            top: 109.h,
+            right: 40.w,
+            child: Image.asset(AssetsUtil.throwing_egg.ic_hammer))
       ],
     );
   }
