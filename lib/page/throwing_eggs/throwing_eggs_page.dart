@@ -24,9 +24,7 @@ class ThrowingEggsPage extends StatelessWidget {
                   child: Column(
                     children: [
                       _buildNoticeView(),
-                      Expanded(
-                        child: _buildContentView(),
-                      )
+                      Expanded(child: _buildContentView()),
                     ],
                   ),
                 )));
@@ -73,7 +71,15 @@ class ThrowingEggsPage extends StatelessWidget {
           image: AssetImage(AssetsUtil.throwing_egg.bg_throwing_egg),
         ),
       ),
-      child: _buildEgg(),
+      child: Column(
+        children: [
+          _buildEgg(),
+          SizedBox(
+            height: 20.h,
+          ),
+          _buildBtnThrowing(),
+        ],
+      ),
     );
   }
 
@@ -91,6 +97,20 @@ class ThrowingEggsPage extends StatelessWidget {
             top: 109.h,
             right: 40.w,
             child: Image.asset(AssetsUtil.throwing_egg.ic_hammer))
+      ],
+    );
+  }
+
+  _buildBtnThrowing() {
+    return Stack(
+      alignment: Alignment.center,
+      children: [
+        Image.asset(AssetsUtil.throwing_egg.bg_btn_throwing),
+        Positioned(
+          bottom: 19.h,
+          child: Text("立即砸蛋",
+          style: AppStyles.textSize18_white,),
+        )
       ],
     );
   }

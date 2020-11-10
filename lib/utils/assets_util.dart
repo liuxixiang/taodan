@@ -77,6 +77,7 @@ class Throwing_egg {
    const Throwing_egg();
    static const String throwing_egg_path = "assets/images/" + "throwing_egg/";
    final String path = "assets/images/" + "throwing_egg/";
+  final String bg_btn_throwing = throwing_egg_path +"bg_btn_throwing.png";
   final String ic_hammer = throwing_egg_path +"ic_hammer.png";
   final String bg_egg = throwing_egg_path +"bg_egg.png";
   final String bg_throwing_egg = throwing_egg_path +"bg_throwing_egg.png";
