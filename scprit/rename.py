@@ -4,7 +4,7 @@ import os
 
 # from pathlib2 import Path
 
-newName = "bg_egg"
+newName = "bg_btn_throwing"
 moudle_name = "throwing_egg"
 
 
