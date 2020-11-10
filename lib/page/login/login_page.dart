@@ -8,7 +8,7 @@ import 'package:taodan/model/user_info_entity.dart';
 
 import 'package:taodan/router/navigator_util.dart';
 import 'package:taodan/state/user_state.dart';
-import 'package:taodan/utils/EventBus.dart';
+import 'package:taodan/utils/event_bus.dart';
 import 'package:taodan/utils/assets_util.dart';
 import 'package:taodan/utils/yy_screen_util.dart';
 import 'package:provider/provider.dart';

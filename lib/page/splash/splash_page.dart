@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:taodan/common/manager/user_manager.dart';
-import 'package:taodan/common/widgets/progress_widget.dart';
-import 'package:taodan/page/amount/amount_index.dart';
 import 'package:taodan/router/navigator_util.dart';
-import 'package:taodan/utils/log_util.dart';
+import 'package:taodan/utils/yy_screen_util.dart';
 
 class SplashPage extends StatefulWidget {
   @override
@@ -14,7 +11,7 @@ class _SplashPagState extends State<SplashPage> {
   @override
   void initState() {
     Future.delayed(Duration(seconds: 1), () async {
-     NavigatorUtil.goHome(context);
+      NavigatorUtil.goHome(context);
       // if (await UserManager.getInstance().checkLogin()) {
       //   NavigatorUtil.goHome(context);
       // }
@@ -29,6 +26,10 @@ class _SplashPagState extends State<SplashPage> {
 
   @override
   Widget build(BuildContext context) {
+    //设置适配尺寸 (填入设计稿中设备的屏幕尺寸) 此处假如设计稿是按iPhone6的尺寸设计的(iPhone6 750*1334)
+    YYScreenUtil.init(context,
+        designSize: Size(375, 667), allowFontScaling: false);
+
     return Scaffold(
       body: Text(""),
     );

@@ -11,7 +11,7 @@ import 'package:taodan/common/widgets/clear_textfield.dart';
 import 'package:taodan/page/invite/invite_viewmodel.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:taodan/router/navigator_util.dart';
-import 'package:taodan/utils/EventBus.dart';
+import 'package:taodan/utils/event_bus.dart';
 
 class InvitePage extends StatelessWidget {
   @override

@@ -3,7 +3,6 @@ import 'package:fluro/fluro.dart';
 import 'package:taodan/router/router_handler.dart';
 
 class Routes {
-  static Router router;
   static const String root = '/'; // 根目录
   static const String login = '/login'; // 登录
   static const String home = '/home'; // 首页
@@ -21,7 +20,7 @@ class Routes {
   static const String throwingEgg = "/throwingEgg"; //砸蛋
 
   // 配置route
-  static void configureRoutes(Router router) {
+  static void configureRoutes(FluroRouter router) {
     // 未发现对应route
     router.notFoundHandler = Handler(
         handlerFunc: (BuildContext context, Map<String, dynamic> params) {

@@ -4,7 +4,7 @@ import 'package:stacked/stacked.dart';
 import 'package:taodan/common/apis/api_user.dart';
 import 'package:taodan/common/config/event_code.dart';
 import 'package:taodan/state/user_state.dart';
-import 'package:taodan/utils/EventBus.dart';
+import 'package:taodan/utils/event_bus.dart';
 
 class InviteViewModel extends BaseViewModel {
   String _inviteCode = '';

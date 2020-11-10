@@ -6,12 +6,9 @@ import 'package:taodan/common/apis/api_path.dart';
 import 'package:taodan/common/config/remote_config.dart';
 import 'package:taodan/common/manager/config_manager.dart';
 import 'package:taodan/common/values/colors.dart';
-import 'package:taodan/router/application.dart';
-import 'package:taodan/router/routes.dart';
-import 'package:taodan/router/wendjia_router.dart';
+import 'package:taodan/router/Routes.dart';
 import 'package:taodan/state/user_state.dart';
 import 'package:taodan/utils/log_util.dart';
-import 'package:taodan/utils/yy_screen_util.dart';
 
 import 'api/http_utils.dart';
 import 'api/interceptors/header_interceptor.dart';
@@ -35,9 +32,9 @@ class MyApp extends StatelessWidget {
   MyApp() {
     LogUtil.init();
     initDio();
-    WendjiaRouter router = WendjiaRouter();
-    Routes.configureRoutes(router);
-    Application.router = router;
+    Global.router = FluroRouter();
+    Routes.configureRoutes(Global.router);
+
 //    ConfigManager.getInstance().batchInsertUpdateConfig("assets/json/mine_config.json");
     ConfigManager.getInstance().loadConfigs(
         [RemoteConfigCode.config_100100, RemoteConfigCode.config_100101]);
@@ -64,11 +61,10 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    YYScreenUtil.init(designSize: Size(375, 667), allowFontScaling: false);
 
     return MaterialApp(
       title: 'Flutter Demo',
-      onGenerateRoute: Application.router.generator,
+      onGenerateRoute: Global.router.generator,
       navigatorKey: ContextManager.navigatorKey,
       theme: ThemeData(
           // This is the theme of your application.

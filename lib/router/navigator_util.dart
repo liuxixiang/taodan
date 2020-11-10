@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:taodan/common/Global.dart';
 import 'package:taodan/common/manager/user_manager.dart';
-import 'package:taodan/router/application.dart';
-import 'package:taodan/router/application.dart';
 import 'package:taodan/router/routes.dart';
 
 class NavigatorUtil {
@@ -49,13 +48,12 @@ class NavigatorUtil {
 
   ///修改个人信息
   static void goUpdateInfoPage(BuildContext context) {
-    Application.router
-        .navigateTo(context, Routes.updateInfoPage, replace: false);
+    goNext(context, Routes.updateInfoPage);
   }
 
   // 返回
   static void goBack(BuildContext context) {
-    Application.router.pop(context);
+    Global.router.pop(context);
   }
 
   static void goWebView(BuildContext context, String url) {
@@ -76,11 +74,10 @@ class NavigatorUtil {
       url = Routes.login;
     }
 
-    Application.router.navigateNext(
+    Global.router.navigateTo(
       context,
       url,
       replace: replace,
-      opaque: opaque,
     );
   }
 }

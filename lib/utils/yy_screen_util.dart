@@ -1,13 +1,14 @@
 import 'dart:ui';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 // import 'package:flutter_screenutil/screenutil.dart';
 
 class YYScreenUtil {
-  static init({
+  static init(BuildContext context,{
     Size designSize,
     bool allowFontScaling = false,
   }) {
-    ScreenUtil.init(designSize: designSize, allowFontScaling: allowFontScaling);
+    ScreenUtil.init(context,designSize: designSize, allowFontScaling: allowFontScaling);
   }
 
   static num setSp(num fontSize, {bool allowFontScalingSelf}) {

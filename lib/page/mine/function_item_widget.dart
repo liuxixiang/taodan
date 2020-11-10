@@ -21,7 +21,7 @@ class FunctionItemWidget extends StatelessWidget {
       child: Column(
         children: [
           Badge(
-            position: BadgePosition.topRight(top: -5.w, right: -5.w),
+            position: BadgePosition.topEnd(top: -5.w, end: -5.w),
             badgeColor: AppColors.red,
             padding: EdgeInsets.all(3),
             showBadge: (num ?? "").isNotEmpty,
